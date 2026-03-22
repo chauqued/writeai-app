@@ -182,8 +182,6 @@
 </div>
 
 <script>
-const GROQ_API_KEY = 'YOUR_GROQ_API_KEY_HERE';
-
 const tools = {
   blog: {
     name: 'Blog Post Writer', desc: 'Generate a full SEO-optimized blog post from your topic.', isPro: false,
@@ -267,13 +265,13 @@ async function generate() {
   out.innerHTML = '<span class="output-placeholder">Writing your content...</span>';
   document.getElementById('output-actions').style.display = 'none';
   try {
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GROQ_API_KEY },
-      body: JSON.stringify({ model: 'llama3-8b-8192', max_tokens: 1000, messages: [{ role: 'user', content: t.buildPrompt(input, opts) }] })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: t.buildPrompt(input, opts) })
     });
     const data = await res.json();
-    currentOutput = data.choices?.[0]?.message?.content || 'Error generating. Please try again.';
+    currentOutput = data.result || 'Error generating content. Please try again.';
     out.textContent = currentOutput;
     document.getElementById('output-actions').style.display = 'flex';
     if (!isPro) {
@@ -283,7 +281,7 @@ async function generate() {
       const bar = document.getElementById('bar-fill'); if(bar) bar.style.width = (used/5*100)+'%';
       const lbl = document.getElementById('usage-label'); if(lbl) lbl.textContent = `Free usage: ${used}/5 today`;
     }
-  } catch(e) { out.textContent = 'Something went wrong. Check your API key and try again.'; }
+  } catch(e) { out.textContent = 'Something went wrong. Please try again.'; }
   btn.disabled = false; btn.innerHTML = '✦ Generate';
 }
 
