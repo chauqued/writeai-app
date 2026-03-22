@@ -126,8 +126,8 @@
     <div class="tool-card" onclick="openTool('blog')"><div class="tool-icon">✍️</div><h3>Blog Post Writer</h3><p>Full SEO-ready blog posts from a single topic in seconds.</p><span class="tool-tag tag-free">Free</span></div>
     <div class="tool-card" onclick="openTool('email')"><div class="tool-icon">📧</div><h3>Cold Email Generator</h3><p>Personalized outreach emails that actually get replies.</p><span class="tool-tag tag-free">Free</span></div>
     <div class="tool-card" onclick="openTool('rewrite')"><div class="tool-icon">🔄</div><h3>Content Rewriter</h3><p>Refresh old content or change tone instantly.</p><span class="tool-tag tag-free">Free</span></div>
-    <div class="tool-card" onclick="openTool('product')"><div class="tool-icon">🛒</div><h3>Product Descriptions</h3><p>Compelling copy for your listings that converts browsers to buyers.</p><span class="tool-tag tag-pro">Pro</span></div>
-    <div class="tool-card" onclick="openTool('linkedin')"><div class="tool-icon">💼</div><h3>LinkedIn Posts</h3><p>Thought leadership content that grows your professional audience.</p><span class="tool-tag tag-pro">Pro</span></div>
+    <div class="tool-card" onclick="openTool('product')"><div class="tool-icon">🛒</div><h3>Product Descriptions</h3><p>Compelling copy for your listings that converts.</p><span class="tool-tag tag-pro">Pro</span></div>
+    <div class="tool-card" onclick="openTool('linkedin')"><div class="tool-icon">💼</div><h3>LinkedIn Posts</h3><p>Thought leadership content that grows your audience.</p><span class="tool-tag tag-pro">Pro</span></div>
     <div class="tool-card" onclick="openTool('seo')"><div class="tool-icon">🔍</div><h3>SEO Meta Generator</h3><p>Titles, descriptions and keywords optimized to rank.</p><span class="tool-tag tag-pro">Pro</span></div>
   </div>
 </div>
@@ -182,6 +182,8 @@
 </div>
 
 <script>
+const GROQ_KEY = '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';
+
 const tools = {
   blog: {
     name: 'Blog Post Writer', desc: 'Generate a full SEO-optimized blog post from your topic.', isPro: false,
@@ -190,7 +192,7 @@ const tools = {
       { id: 'tone', label: 'Tone', values: ['Professional','Casual','Friendly','Authoritative'] },
       { id: 'length', label: 'Length', values: ['Short (300w)','Medium (600w)','Long (1000w)'] }
     ],
-    buildPrompt(i,o){ return `Write a ${o.length||'medium'} blog post about: "${i}". Tone: ${o.tone||'professional'}. Include a catchy title, intro, 3-4 subheadings, and conclusion. Make it engaging and SEO-friendly.`; }
+    buildPrompt(i,o){ return `Write a ${o.length||'medium'} blog post about: "${i}". Tone: ${o.tone||'professional'}. Include a catchy title, intro, 3-4 subheadings, and conclusion.`; }
   },
   email: {
     name: 'Cold Email Generator', desc: 'Write a personalized cold email that gets responses.', isPro: false,
@@ -255,7 +257,7 @@ async function generate() {
   const t = tools[currentTool], input = document.getElementById('tool-input').value.trim();
   if (!input) { alert('Please enter some input first!'); return; }
   if (!isPro && freeUsesLeft <= 0) {
-    document.getElementById('main-content').insertAdjacentHTML('beforeend', `<div class="paywall-card"><h3>You've hit your daily limit</h3><p>Upgrade to Pro for unlimited generations and all tools.</p><button class="btn-primary" onclick="showPage('pricing')">Upgrade for $19/mo →</button></div>`);
+    document.getElementById('main-content').insertAdjacentHTML('beforeend', `<div class="paywall-card"><h3>You've hit your daily limit</h3><p>Upgrade to Pro for unlimited generations.</p><button class="btn-primary" onclick="showPage('pricing')">Upgrade for $19/mo →</button></div>`);
     return;
   }
   const opts = {};
@@ -265,13 +267,20 @@ async function generate() {
   out.innerHTML = '<span class="output-placeholder">Writing your content...</span>';
   document.getElementById('output-actions').style.display = 'none';
   try {
-    const res = await fetch('/api/generate', {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: t.buildPrompt(input, opts) })
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + GROQ_KEY
+      },
+      body: JSON.stringify({
+        model: 'llama3-8b-8192',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: t.buildPrompt(input, opts) }]
+      })
     });
     const data = await res.json();
-    currentOutput = data.result || 'Error generating content. Please try again.';
+    currentOutput = data.choices?.[0]?.message?.content || 'Error generating content. Please try again.';
     out.textContent = currentOutput;
     document.getElementById('output-actions').style.display = 'flex';
     if (!isPro) {
@@ -281,7 +290,7 @@ async function generate() {
       const bar = document.getElementById('bar-fill'); if(bar) bar.style.width = (used/5*100)+'%';
       const lbl = document.getElementById('usage-label'); if(lbl) lbl.textContent = `Free usage: ${used}/5 today`;
     }
-  } catch(e) { out.textContent = 'Something went wrong. Please try again.'; }
+  } catch(e) { out.textContent = 'Something went wrong: ' + e.message; }
   btn.disabled = false; btn.innerHTML = '✦ Generate';
 }
 
