@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WriteAI — AI Writing Suite</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --brand: #0F6E56; --brand-light: #E1F5EE; --brand-mid: #1D9E75;
@@ -13,16 +13,22 @@
     --text: #1a1a18; --muted: #6b6b65; --border: rgba(0,0,0,0.1);
   }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+  /* PAGES */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* NAV */
   nav { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; border-bottom: 1px solid var(--border); background: var(--card); }
   .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: var(--brand); letter-spacing: -0.5px; }
   .logo span { color: var(--accent); }
   .nav-links { display: flex; gap: 1rem; align-items: center; }
-  .nav-link { font-size: 14px; color: var(--muted); cursor: pointer; padding: 6px 12px; border-radius: 6px; transition: all 0.15s; border: none; background: none; font-family: inherit; }
+  .nav-link { font-size: 14px; color: var(--muted); cursor: pointer; padding: 6px 12px; border-radius: 6px; border: none; background: none; font-family: inherit; }
   .nav-link:hover { background: var(--brand-light); color: var(--brand); }
-  .nav-cta { background: var(--brand); color: #fff; padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: all 0.15s; }
+  .nav-cta { background: var(--brand); color: #fff; padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; }
   .nav-cta:hover { background: var(--brand-mid); }
-  .page { display: none; }
-  .page.active { display: block; }
+
+  /* LANDING */
   .hero { text-align: center; padding: 5rem 2rem 4rem; max-width: 700px; margin: 0 auto; }
   .hero-badge { display: inline-block; background: var(--brand-light); color: var(--brand); font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem; letter-spacing: 0.5px; text-transform: uppercase; }
   h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.1; color: var(--text); margin-bottom: 1.25rem; letter-spacing: -1.5px; }
@@ -44,6 +50,8 @@
   .tool-tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-top: 10px; font-weight: 500; }
   .tag-free { background: var(--brand-light); color: var(--brand); }
   .tag-pro { background: #faeeda; color: #854F0B; }
+
+  /* PRICING */
   .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 0 2rem 4rem; max-width: 760px; margin: 0 auto; }
   .price-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 16px; padding: 1.8rem; position: relative; }
   .price-card.featured { border-color: var(--brand); }
@@ -62,10 +70,54 @@
   .btn-plan.free:hover { border-color: var(--brand); color: var(--brand); }
   .btn-plan.pro { background: var(--brand); color: #fff; }
   .btn-plan.pro:hover { background: var(--brand-mid); }
-  .app-layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 61px); }
+
+  /* AUTH */
+  .auth-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; background: var(--bg); }
+  .auth-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; width: 100%; max-width: 420px; }
+  .auth-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--brand); text-align: center; margin-bottom: 0.3rem; }
+  .auth-logo span { color: var(--accent); }
+  .auth-sub { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 2rem; }
+  .auth-tabs { display: flex; background: var(--bg); border-radius: 10px; padding: 4px; margin-bottom: 1.5rem; }
+  .auth-tab { flex: 1; padding: 8px; text-align: center; border-radius: 7px; font-size: 14px; cursor: pointer; border: none; background: none; font-family: inherit; color: var(--muted); transition: all 0.15s; }
+  .auth-tab.active { background: var(--card); color: var(--text); font-weight: 500; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .field { margin-bottom: 1rem; }
+  .field label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: var(--text); }
+  .field input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; color: var(--text); background: var(--card); outline: none; transition: border 0.15s; }
+  .field input:focus { border-color: var(--brand); }
+  .auth-btn { width: 100%; padding: 12px; background: var(--brand); color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: inherit; margin-top: 0.5rem; transition: all 0.15s; }
+  .auth-btn:hover { background: var(--brand-mid); }
+  .auth-divider { text-align: center; color: var(--muted); font-size: 13px; margin: 1rem 0; }
+
+  /* SURVEY */
+  .survey-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; background: var(--bg); }
+  .survey-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; width: 100%; max-width: 520px; }
+  .survey-step { display: none; }
+  .survey-step.active { display: block; }
+  .survey-progress { display: flex; gap: 6px; margin-bottom: 2rem; }
+  .progress-dot { flex: 1; height: 4px; border-radius: 2px; background: var(--border); transition: background 0.3s; }
+  .progress-dot.done { background: var(--brand); }
+  .survey-q { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; letter-spacing: -0.3px; }
+  .survey-hint { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
+  .survey-options { display: flex; flex-direction: column; gap: 10px; }
+  .survey-option { padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; font-size: 14px; transition: all 0.15s; display: flex; align-items: center; gap: 10px; }
+  .survey-option:hover { border-color: var(--brand); background: var(--brand-light); }
+  .survey-option.selected { border-color: var(--brand); background: var(--brand-light); color: var(--brand); font-weight: 500; }
+  .survey-option .opt-icon { font-size: 18px; }
+  .survey-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; }
+  .survey-back { background: none; border: none; color: var(--muted); font-size: 14px; cursor: pointer; font-family: inherit; padding: 8px 0; }
+  .survey-next { background: var(--brand); color: #fff; border: none; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .survey-next:hover { background: var(--brand-mid); }
+  .survey-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* DASHBOARD */
+  .app-layout { display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 61px); }
   .sidebar { background: var(--card); border-right: 1px solid var(--border); padding: 1.5rem 1rem; }
-  .sidebar-label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; margin: 0.8rem 0 0.4rem 0.5rem; }
-  .sidebar-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 14px; cursor: pointer; color: var(--text); transition: all 0.15s; border: none; background: none; width: 100%; text-align: left; font-family: inherit; }
+  .sidebar-user { padding: 0.5rem; margin-bottom: 1rem; }
+  .user-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--brand); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .user-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .user-plan { font-size: 11px; color: var(--muted); }
+  .sidebar-label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; margin: 1rem 0 0.4rem 0.5rem; }
+  .sidebar-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 14px; cursor: pointer; color: var(--text); border: none; background: none; width: 100%; text-align: left; font-family: inherit; transition: all 0.15s; }
   .sidebar-item:hover { background: var(--brand-light); color: var(--brand); }
   .sidebar-item.active { background: var(--brand-light); color: var(--brand); font-weight: 500; }
   .item-icon { font-size: 16px; }
@@ -75,64 +127,103 @@
   .bar-bg { background: var(--border); height: 6px; border-radius: 3px; }
   .bar-fill { background: var(--brand); height: 6px; border-radius: 3px; }
   .main-content { padding: 2rem; overflow-y: auto; }
+
+  /* DASHBOARD HOME */
+  .dash-greeting { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.5rem; margin-bottom: 0.3rem; letter-spacing: -0.5px; }
+  .dash-sub { color: var(--muted); font-size: 14px; margin-bottom: 2rem; }
+  .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 2rem; }
+  .dash-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+  .dash-card-icon { font-size: 22px; margin-bottom: 8px; }
+  .dash-card h4 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .dash-card p { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .dash-card.highlight { border-color: var(--brand); background: var(--brand-light); }
+  .tasks-section { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .tasks-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 1rem; }
+  .task-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .task-item:last-child { border-bottom: none; }
+  .task-check { width: 18px; height: 18px; border: 1.5px solid var(--border); border-radius: 4px; cursor: pointer; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .task-check.done { background: var(--brand); border-color: var(--brand); color: #fff; font-size: 11px; }
+  .task-text { font-size: 13px; line-height: 1.5; }
+  .task-text.done { text-decoration: line-through; color: var(--muted); }
+  .task-tag { font-size: 10px; padding: 2px 7px; border-radius: 4px; background: var(--brand-light); color: var(--brand); margin-left: auto; flex-shrink: 0; }
+
+  /* TOOL UI */
   .tool-header { margin-bottom: 1.5rem; }
   .tool-header h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.4rem; letter-spacing: -0.3px; }
   .tool-header p { font-size: 14px; color: var(--muted); margin-top: 4px; }
-  .input-area { width: 100%; padding: 1rem; border: 1.5px solid var(--border); border-radius: 10px; font-size: 14px; font-family: inherit; color: var(--text); background: var(--card); resize: vertical; min-height: 120px; transition: border 0.15s; outline: none; }
+  .input-area { width: 100%; padding: 1rem; border: 1.5px solid var(--border); border-radius: 10px; font-size: 14px; font-family: inherit; color: var(--text); background: var(--card); resize: vertical; min-height: 120px; outline: none; transition: border 0.15s; }
   .input-area:focus { border-color: var(--brand); }
   .options-row { display: flex; gap: 10px; margin: 1rem 0; flex-wrap: wrap; align-items: center; }
   .select-input { padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px; font-family: inherit; background: var(--card); color: var(--text); cursor: pointer; outline: none; }
-  .generate-btn { background: var(--brand); color: #fff; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: all 0.15s; display: flex; align-items: center; gap: 8px; }
+  .generate-btn { background: var(--brand); color: #fff; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; display: flex; align-items: center; gap: 8px; transition: all 0.15s; }
   .generate-btn:hover:not(:disabled) { background: var(--brand-mid); }
   .generate-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   .output-box { background: var(--card); border: 1.5px solid var(--border); border-radius: 10px; padding: 1.2rem; min-height: 120px; font-size: 14px; line-height: 1.7; color: var(--text); margin-top: 1rem; white-space: pre-wrap; word-break: break-word; }
-  .output-placeholder { color: var(--muted); font-style: italic; font-size: 14px; }
+  .output-placeholder { color: var(--muted); font-style: italic; }
   .output-actions { display: flex; gap: 8px; margin-top: 10px; }
   .action-btn { padding: 7px 14px; border-radius: 7px; font-size: 13px; cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--text); font-family: inherit; transition: all 0.15s; }
   .action-btn:hover { border-color: var(--brand); color: var(--brand); }
   .paywall-card { background: var(--card); border: 2px solid var(--brand); border-radius: 14px; padding: 2rem; max-width: 380px; margin: 2rem auto; text-align: center; }
   .paywall-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 8px; }
   .paywall-card p { font-size: 14px; color: var(--muted); margin-bottom: 1.5rem; }
+  .free-uses-counter { font-size: 12px; color: var(--muted); }
   .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .free-uses-counter { font-size: 12px; color: var(--muted); }
+  .locked-banner { background: #faeeda; border-radius: 10px; padding: 1rem 1.2rem; font-size: 14px; color: #633806; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+  .unlock-btn { background: #854F0B; color: #fff; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; font-family: inherit; margin-left: 6px; }
+
   @media (max-width: 600px) { .app-layout { grid-template-columns: 1fr; } .sidebar { display: none; } nav { padding: 1rem; } }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- NAV -->
+<nav id="main-nav" style="display:none;">
   <div class="logo">Write<span>AI</span></div>
   <div class="nav-links">
     <button class="nav-link" onclick="showPage('landing')">Home</button>
     <button class="nav-link" onclick="showPage('pricing')">Pricing</button>
-    <button class="nav-cta" onclick="showPage('app')">Launch App</button>
+    <button class="nav-cta" id="nav-action" onclick="showPage('auth')">Get started</button>
   </div>
 </nav>
 
+<!-- LANDING -->
 <div id="page-landing" class="page active">
+  <nav style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid var(--border);background:var(--card);">
+    <div class="logo">Write<span>AI</span></div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="showPage('pricing')">Pricing</button>
+      <button class="nav-link" onclick="showPage('auth')">Log in</button>
+      <button class="nav-cta" onclick="showPage('auth')">Get started free</button>
+    </div>
+  </nav>
   <div class="hero">
     <div class="hero-badge">AI Writing Suite</div>
-    <h1>Write 10x faster with <em>AI</em> on your side</h1>
-    <p>Blog posts, cold emails, product descriptions, LinkedIn content — generated in seconds.</p>
+    <h1>Your personal <em>AI writer</em> that knows you</h1>
+    <p>Answer 5 quick questions and get a personalised AI dashboard with tools and daily tasks built around your goals.</p>
     <div class="hero-btns">
-      <button class="btn-primary" onclick="showPage('app')">Start writing free →</button>
+      <button class="btn-primary" onclick="showPage('auth')">Start for free →</button>
       <button class="btn-secondary" onclick="showPage('pricing')">See pricing</button>
     </div>
   </div>
   <p class="section-title">Everything you need to write</p>
-  <p class="section-sub">6 powerful AI tools in one place</p>
+  <p class="section-sub">6 AI tools personalised to your goals</p>
   <div class="tools-grid">
-    <div class="tool-card" onclick="openTool('blog')"><div class="tool-icon">✍️</div><h3>Blog Post Writer</h3><p>Full SEO-ready blog posts from a single topic in seconds.</p><span class="tool-tag tag-free">Free</span></div>
-    <div class="tool-card" onclick="openTool('email')"><div class="tool-icon">📧</div><h3>Cold Email Generator</h3><p>Personalized outreach emails that actually get replies.</p><span class="tool-tag tag-free">Free</span></div>
-    <div class="tool-card" onclick="openTool('rewrite')"><div class="tool-icon">🔄</div><h3>Content Rewriter</h3><p>Refresh old content or change tone instantly.</p><span class="tool-tag tag-free">Free</span></div>
-    <div class="tool-card" onclick="openTool('product')"><div class="tool-icon">🛒</div><h3>Product Descriptions</h3><p>Compelling copy for your listings that converts.</p><span class="tool-tag tag-pro">Pro</span></div>
-    <div class="tool-card" onclick="openTool('linkedin')"><div class="tool-icon">💼</div><h3>LinkedIn Posts</h3><p>Thought leadership content that grows your audience.</p><span class="tool-tag tag-pro">Pro</span></div>
-    <div class="tool-card" onclick="openTool('seo')"><div class="tool-icon">🔍</div><h3>SEO Meta Generator</h3><p>Titles, descriptions and keywords optimized to rank.</p><span class="tool-tag tag-pro">Pro</span></div>
+    <div class="tool-card"><div class="tool-icon">✍️</div><h3>Blog Post Writer</h3><p>Full SEO-ready blog posts from a single topic.</p><span class="tool-tag tag-free">Free</span></div>
+    <div class="tool-card"><div class="tool-icon">📧</div><h3>Cold Email Generator</h3><p>Personalized outreach emails that get replies.</p><span class="tool-tag tag-free">Free</span></div>
+    <div class="tool-card"><div class="tool-icon">🔄</div><h3>Content Rewriter</h3><p>Refresh old content or change tone instantly.</p><span class="tool-tag tag-free">Free</span></div>
+    <div class="tool-card"><div class="tool-icon">🛒</div><h3>Product Descriptions</h3><p>Compelling copy that converts browsers to buyers.</p><span class="tool-tag tag-pro">Pro</span></div>
+    <div class="tool-card"><div class="tool-icon">💼</div><h3>LinkedIn Posts</h3><p>Thought leadership content that grows your audience.</p><span class="tool-tag tag-pro">Pro</span></div>
+    <div class="tool-card"><div class="tool-icon">🔍</div><h3>SEO Meta Generator</h3><p>Titles and keywords optimized to rank.</p><span class="tool-tag tag-pro">Pro</span></div>
   </div>
 </div>
 
+<!-- PRICING -->
 <div id="page-pricing" class="page">
+  <nav style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid var(--border);background:var(--card);">
+    <div class="logo" onclick="showPage('landing')" style="cursor:pointer;">Write<span>AI</span></div>
+    <button class="nav-cta" onclick="showPage('auth')">Get started</button>
+  </nav>
   <p class="section-title" style="margin-top:3rem;">Simple pricing</p>
   <p class="section-sub">Start free, upgrade when you need more</p>
   <div class="pricing-grid">
@@ -141,18 +232,18 @@
       <div class="price-amount">$0 <span>/ month</span></div>
       <p class="price-desc">Perfect for trying it out</p>
       <ul class="price-features">
-        <li>5 generations per day</li><li>Blog Writer & Email tools</li><li>Content Rewriter</li>
+        <li>5 generations per day</li><li>Blog, Email & Rewriter tools</li><li>Personalised dashboard</li>
         <li class="no">Product Descriptions</li><li class="no">LinkedIn Posts</li><li class="no">SEO Meta Generator</li>
       </ul>
-      <button class="btn-plan free" onclick="showPage('app')">Get started free</button>
+      <button class="btn-plan free" onclick="showPage('auth')">Get started free</button>
     </div>
     <div class="price-card featured">
       <div class="featured-badge">Most popular</div>
       <h3>Pro</h3>
-      <div class="price-amount">$19 <span>/ month</span></div>
-      <p class="price-desc">For serious creators & businesses</p>
+      <div class="price-amount">$9.99 <span>/ month</span></div>
+      <p class="price-desc">For creators & businesses</p>
       <ul class="price-features">
-        <li>Unlimited generations</li><li>All 6 writing tools</li><li>Content Rewriter</li>
+        <li>Unlimited generations</li><li>All 6 writing tools</li><li>Personalised AI task manager</li>
         <li>Product Descriptions</li><li>LinkedIn Posts</li><li>SEO Meta Generator</li>
       </ul>
       <button class="btn-plan pro" onclick="alert('Connect your Stripe payment link here!')">Upgrade to Pro</button>
@@ -160,14 +251,134 @@
   </div>
 </div>
 
+<!-- AUTH -->
+<div id="page-auth" class="page">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-logo">Write<span>AI</span></div>
+      <div class="auth-sub">Your personalised AI writing suite</div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchTab('login')">Log in</button>
+        <button class="auth-tab" onclick="switchTab('signup')">Sign up</button>
+      </div>
+      <div id="auth-form">
+        <div class="field"><label>Email</label><input type="email" id="auth-email" placeholder="you@example.com"></div>
+        <div class="field"><label>Password</label><input type="password" id="auth-password" placeholder="••••••••"></div>
+        <div class="field" id="name-field" style="display:none;"><label>Your name</label><input type="text" id="auth-name" placeholder="First name"></div>
+        <button class="auth-btn" onclick="handleAuth()">Continue →</button>
+      </div>
+      <div class="auth-divider">or</div>
+      <button class="btn-secondary" style="width:100%;text-align:center;" onclick="guestLogin()">Continue as guest</button>
+    </div>
+  </div>
+</div>
+
+<!-- SURVEY -->
+<div id="page-survey" class="page">
+  <div class="survey-wrap">
+    <div class="survey-card">
+      <div class="auth-logo" style="text-align:left;margin-bottom:0.3rem;">Write<span style="color:var(--accent)">AI</span></div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1.5rem;">5 quick questions to personalise your experience</p>
+      <div class="survey-progress" id="survey-progress">
+        <div class="progress-dot done" id="dot-0"></div>
+        <div class="progress-dot" id="dot-1"></div>
+        <div class="progress-dot" id="dot-2"></div>
+        <div class="progress-dot" id="dot-3"></div>
+        <div class="progress-dot" id="dot-4"></div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="survey-step active" id="step-0">
+        <div class="survey-q">What best describes your work?</div>
+        <div class="survey-hint">This helps us tailor your tools and daily tasks.</div>
+        <div class="survey-options">
+          <div class="survey-option" onclick="selectOption(0,this,'Freelancer / Consultant')"><span class="opt-icon">💼</span> Freelancer / Consultant</div>
+          <div class="survey-option" onclick="selectOption(0,this,'Business Owner')"><span class="opt-icon">🏢</span> Business Owner</div>
+          <div class="survey-option" onclick="selectOption(0,this,'Content Creator')"><span class="opt-icon">🎥</span> Content Creator</div>
+          <div class="survey-option" onclick="selectOption(0,this,'Job Seeker')"><span class="opt-icon">🔍</span> Job Seeker</div>
+        </div>
+        <div class="survey-nav"><span></span><button class="survey-next" id="next-0" disabled onclick="nextStep(0)">Next →</button></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="survey-step" id="step-1">
+        <div class="survey-q">What's your main content goal?</div>
+        <div class="survey-hint">We'll prioritise tools that help you achieve this.</div>
+        <div class="survey-options">
+          <div class="survey-option" onclick="selectOption(1,this,'Grow my audience')"><span class="opt-icon">📈</span> Grow my audience</div>
+          <div class="survey-option" onclick="selectOption(1,this,'Generate leads & sales')"><span class="opt-icon">💰</span> Generate leads & sales</div>
+          <div class="survey-option" onclick="selectOption(1,this,'Build my personal brand')"><span class="opt-icon">⭐</span> Build my personal brand</div>
+          <div class="survey-option" onclick="selectOption(1,this,'Save time on writing')"><span class="opt-icon">⚡</span> Save time on writing</div>
+        </div>
+        <div class="survey-nav"><button class="survey-back" onclick="prevStep(1)">← Back</button><button class="survey-next" id="next-1" disabled onclick="nextStep(1)">Next →</button></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="survey-step" id="step-2">
+        <div class="survey-q">What type of content do you create most?</div>
+        <div class="survey-hint">We'll highlight the most relevant tools for you.</div>
+        <div class="survey-options">
+          <div class="survey-option" onclick="selectOption(2,this,'Blog posts & articles')"><span class="opt-icon">✍️</span> Blog posts & articles</div>
+          <div class="survey-option" onclick="selectOption(2,this,'Social media content')"><span class="opt-icon">📱</span> Social media content</div>
+          <div class="survey-option" onclick="selectOption(2,this,'Emails & outreach')"><span class="opt-icon">📧</span> Emails & outreach</div>
+          <div class="survey-option" onclick="selectOption(2,this,'Product & sales copy')"><span class="opt-icon">🛒</span> Product & sales copy</div>
+        </div>
+        <div class="survey-nav"><button class="survey-back" onclick="prevStep(2)">← Back</button><button class="survey-next" id="next-2" disabled onclick="nextStep(2)">Next →</button></div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="survey-step" id="step-3">
+        <div class="survey-q">How much do you currently write per week?</div>
+        <div class="survey-hint">Helps us set realistic daily goals for you.</div>
+        <div class="survey-options">
+          <div class="survey-option" onclick="selectOption(3,this,'Rarely — just starting out')"><span class="opt-icon">🌱</span> Rarely — just starting out</div>
+          <div class="survey-option" onclick="selectOption(3,this,'A few pieces a week')"><span class="opt-icon">📝</span> A few pieces a week</div>
+          <div class="survey-option" onclick="selectOption(3,this,'Daily content creator')"><span class="opt-icon">🔥</span> Daily content creator</div>
+          <div class="survey-option" onclick="selectOption(3,this,'Professional writer')"><span class="opt-icon">🏆</span> Professional writer</div>
+        </div>
+        <div class="survey-nav"><button class="survey-back" onclick="prevStep(3)">← Back</button><button class="survey-next" id="next-3" disabled onclick="nextStep(3)">Next →</button></div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="survey-step" id="step-4">
+        <div class="survey-q">What's your biggest writing challenge?</div>
+        <div class="survey-hint">We'll create tasks specifically to help with this.</div>
+        <div class="survey-options">
+          <div class="survey-option" onclick="selectOption(4,this,'Getting started / blank page')"><span class="opt-icon">😰</span> Getting started / blank page</div>
+          <div class="survey-option" onclick="selectOption(4,this,'Not enough time')"><span class="opt-icon">⏰</span> Not enough time</div>
+          <div class="survey-option" onclick="selectOption(4,this,'Ideas run dry quickly')"><span class="opt-icon">💡</span> Ideas run dry quickly</div>
+          <div class="survey-option" onclick="selectOption(4,this,'Content doesn\'t convert')"><span class="opt-icon">📊</span> Content doesn't convert</div>
+        </div>
+        <div class="survey-nav"><button class="survey-back" onclick="prevStep(4)">← Back</button><button class="survey-next" id="next-4" disabled onclick="finishSurvey()">Build my dashboard →</button></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
 <div id="page-app" class="page">
+  <nav style="display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);background:var(--card);">
+    <div class="logo">Write<span>AI</span></div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <span id="nav-username" style="font-size:14px;color:var(--muted);"></span>
+      <button class="nav-link" onclick="logout()">Log out</button>
+    </div>
+  </nav>
   <div class="app-layout">
     <aside class="sidebar">
+      <div class="sidebar-user">
+        <div class="user-avatar" id="sidebar-avatar">U</div>
+        <div class="user-name" id="sidebar-name">User</div>
+        <div class="user-plan" id="sidebar-plan">Free plan</div>
+      </div>
+      <div class="sidebar-label">Menu</div>
+      <button class="sidebar-item active" onclick="openSection('dashboard')" id="nav-dashboard"><span class="item-icon">🏠</span> Dashboard</button>
       <div class="sidebar-label">Free tools</div>
-      <button class="sidebar-item active" onclick="openTool('blog')" id="nav-blog"><span class="item-icon">✍️</span> Blog Writer</button>
+      <button class="sidebar-item" onclick="openTool('blog')" id="nav-blog"><span class="item-icon">✍️</span> Blog Writer</button>
       <button class="sidebar-item" onclick="openTool('email')" id="nav-email"><span class="item-icon">📧</span> Cold Email</button>
       <button class="sidebar-item" onclick="openTool('rewrite')" id="nav-rewrite"><span class="item-icon">🔄</span> Rewriter</button>
-      <div class="sidebar-label" style="margin-top:1rem;">Pro tools</div>
+      <div class="sidebar-label">Pro tools</div>
       <button class="sidebar-item" onclick="openTool('product')" id="nav-product"><span class="item-icon">🛒</span> Product Desc <span class="pro-badge">PRO</span></button>
       <button class="sidebar-item" onclick="openTool('linkedin')" id="nav-linkedin"><span class="item-icon">💼</span> LinkedIn <span class="pro-badge">PRO</span></button>
       <button class="sidebar-item" onclick="openTool('seo')" id="nav-seo"><span class="item-icon">🔍</span> SEO Meta <span class="pro-badge">PRO</span></button>
@@ -175,89 +386,201 @@
         <div class="usage-label" id="usage-label">Free usage: 0/5 today</div>
         <div class="bar-bg"><div class="bar-fill" id="bar-fill" style="width:0%"></div></div>
       </div>
-      <button class="btn-plan pro" style="margin-top:1rem;padding:10px;font-size:13px;" onclick="showPage('pricing')">Upgrade to Pro →</button>
+      <button class="btn-plan pro" style="margin-top:1rem;padding:10px;font-size:13px;" onclick="showPage('pricing')">Upgrade — $9.99/mo →</button>
     </aside>
     <main class="main-content" id="main-content"></main>
   </div>
 </div>
 
 <script>
+const GROQ_API_KEY = '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';
 
+let user = null;
+let surveyAnswers = {};
+let currentTool = 'blog';
+let freeUsesLeft = 5;
+let isPro = false;
+let currentOutput = '';
+let isLogin = true;
 
 const tools = {
-  blog: {
-    name: 'Blog Post Writer', desc: 'Generate a full SEO-optimized blog post from your topic.', isPro: false,
-    placeholder: 'Enter your blog topic, e.g. "How to grow a herb garden indoors"',
-    options: [
-      { id: 'tone', label: 'Tone', values: ['Professional','Casual','Friendly','Authoritative'] },
-      { id: 'length', label: 'Length', values: ['Short (300w)','Medium (600w)','Long (1000w)'] }
-    ],
-    buildPrompt(i,o){ return `Write a ${o.length||'medium'} blog post about: "${i}". Tone: ${o.tone||'professional'}. Include a catchy title, intro, 3-4 subheadings, and conclusion.`; }
-  },
-  email: {
-    name: 'Cold Email Generator', desc: 'Write a personalized cold email that gets responses.', isPro: false,
-    placeholder: 'Describe your offer and target, e.g. "Selling SEO services to local restaurants"',
-    options: [{ id: 'style', label: 'Style', values: ['Direct','Friendly','Value-first','Story-based'] }],
-    buildPrompt(i,o){ return `Write a cold email for: "${i}". Style: ${o.style||'friendly'}. Under 150 words, with subject line, hook, value prop, and one CTA.`; }
-  },
-  rewrite: {
-    name: 'Content Rewriter', desc: 'Paste your content and get a fresh, improved version.', isPro: false,
-    placeholder: 'Paste the content you want to rewrite here...',
-    options: [{ id: 'tone', label: 'New tone', values: ['Simpler','More formal','More casual','More persuasive','Shorter'] }],
-    buildPrompt(i,o){ return `Rewrite the following to be ${o.tone||'clearer and more engaging'}. Keep the core message:\n\n"${i}"`; }
-  },
-  product: {
-    name: 'Product Description Writer', desc: 'Create compelling product copy that sells.', isPro: true,
-    placeholder: 'Describe your product, e.g. "Handmade leather wallet, slim, 4 card slots, brown"',
-    options: [{ id: 'platform', label: 'Platform', values: ['Shopify','Amazon','Etsy','General'] }],
-    buildPrompt(i,o){ return `Write a compelling product description for ${o.platform||'e-commerce'} for: "${i}". Include bullet points, benefits-focused language, and persuasive closing.`; }
-  },
-  linkedin: {
-    name: 'LinkedIn Post Generator', desc: 'Create scroll-stopping LinkedIn content.', isPro: true,
-    placeholder: 'What do you want to post about? e.g. "Lessons from launching my first SaaS"',
-    options: [{ id: 'format', label: 'Format', values: ['Story','Tips list','Insight','Controversial take'] }],
-    buildPrompt(i,o){ return `Write a LinkedIn post in ${o.format||'story'} format about: "${i}". Short paragraphs, strong hook, end with a question. 150-250 words.`; }
-  },
-  seo: {
-    name: 'SEO Meta Generator', desc: 'Generate optimized titles, descriptions and keywords.', isPro: true,
-    placeholder: 'What is your page about? e.g. "A recipe blog post about vegan chocolate cake"',
-    options: [],
-    buildPrompt(i,o){ return `Generate SEO metadata for: "${i}". Provide: 1) Three title options (under 60 chars), 2) Meta description (under 155 chars), 3) 8 target keywords.`; }
-  }
+  blog: { name: 'Blog Post Writer', desc: 'Generate a full SEO-optimized blog post from your topic.', isPro: false, placeholder: 'Enter your blog topic, e.g. "How to grow a herb garden indoors"', options: [{id:'tone',label:'Tone',values:['Professional','Casual','Friendly','Authoritative']},{id:'length',label:'Length',values:['Short (300w)','Medium (600w)','Long (1000w)']}], buildPrompt(i,o){return `Write a ${o.length||'medium'} blog post about: "${i}". Tone: ${o.tone||'professional'}. Include a catchy title, intro, 3-4 subheadings, and conclusion.`;} },
+  email: { name: 'Cold Email Generator', desc: 'Write a personalized cold email that gets responses.', isPro: false, placeholder: 'Describe your offer and target, e.g. "Selling SEO services to local restaurants"', options: [{id:'style',label:'Style',values:['Direct','Friendly','Value-first','Story-based']}], buildPrompt(i,o){return `Write a cold email for: "${i}". Style: ${o.style||'friendly'}. Under 150 words, with subject line, hook, value prop, and one CTA.`;} },
+  rewrite: { name: 'Content Rewriter', desc: 'Paste your content and get a fresh, improved version.', isPro: false, placeholder: 'Paste the content you want to rewrite here...', options: [{id:'tone',label:'New tone',values:['Simpler','More formal','More casual','More persuasive','Shorter']}], buildPrompt(i,o){return `Rewrite the following to be ${o.tone||'clearer and more engaging'}:\n\n"${i}"`;} },
+  product: { name: 'Product Description Writer', desc: 'Create compelling product copy that sells.', isPro: true, placeholder: 'Describe your product, e.g. "Handmade leather wallet, slim, 4 card slots, brown"', options: [{id:'platform',label:'Platform',values:['Shopify','Amazon','Etsy','General']}], buildPrompt(i,o){return `Write a compelling product description for ${o.platform||'e-commerce'} for: "${i}". Include bullet points, benefits-focused language, and persuasive closing.`;} },
+  linkedin: { name: 'LinkedIn Post Generator', desc: 'Create scroll-stopping LinkedIn content.', isPro: true, placeholder: 'What do you want to post about? e.g. "Lessons from launching my first SaaS"', options: [{id:'format',label:'Format',values:['Story','Tips list','Insight','Controversial take']}], buildPrompt(i,o){return `Write a LinkedIn post in ${o.format||'story'} format about: "${i}". Short paragraphs, strong hook, end with a question. 150-250 words.`;} },
+  seo: { name: 'SEO Meta Generator', desc: 'Generate optimized titles, descriptions and keywords.', isPro: true, placeholder: 'What is your page about? e.g. "A recipe blog post about vegan chocolate cake"', options: [], buildPrompt(i,o){return `Generate SEO metadata for: "${i}". Provide: 1) Three title options (under 60 chars), 2) Meta description (under 155 chars), 3) 8 target keywords.`;} }
 };
-
-let currentTool = 'blog', freeUsesLeft = 5, isPro = false, currentOutput = '';
 
 function showPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
-  if (page === 'app') renderTool(currentTool);
+  if (page === 'app') renderDashboard();
+}
+
+function switchTab(tab) {
+  isLogin = tab === 'login';
+  document.querySelectorAll('.auth-tab').forEach((t,i) => t.classList.toggle('active', (i===0&&isLogin)||(i===1&&!isLogin)));
+  document.getElementById('name-field').style.display = isLogin ? 'none' : 'block';
+}
+
+function handleAuth() {
+  const email = document.getElementById('auth-email').value.trim();
+  const password = document.getElementById('auth-password').value.trim();
+  if (!email || !password) { alert('Please fill in all fields'); return; }
+  const name = isLogin ? (email.split('@')[0]) : (document.getElementById('auth-name').value.trim() || email.split('@')[0]);
+  user = { email, name, isGuest: false };
+  const existing = localStorage.getItem('writeai_survey_' + email);
+  if (existing) { surveyAnswers = JSON.parse(existing); showPage('app'); }
+  else { showPage('survey'); }
+}
+
+function guestLogin() {
+  user = { email: 'guest', name: 'Guest', isGuest: true };
+  const existing = localStorage.getItem('writeai_survey_guest');
+  if (existing) { surveyAnswers = JSON.parse(existing); showPage('app'); }
+  else { showPage('survey'); }
+}
+
+function logout() {
+  user = null; surveyAnswers = {};
+  showPage('landing');
+}
+
+let stepAnswers = {};
+function selectOption(step, el, value) {
+  el.closest('.survey-options').querySelectorAll('.survey-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  stepAnswers[step] = value;
+  document.getElementById('next-' + step).disabled = false;
+}
+
+function nextStep(current) {
+  surveyAnswers['q' + (current+1)] = stepAnswers[current];
+  document.getElementById('step-' + current).classList.remove('active');
+  document.getElementById('step-' + (current+1)).classList.add('active');
+  document.getElementById('dot-' + (current+1)).classList.add('done');
+}
+
+function prevStep(current) {
+  document.getElementById('step-' + current).classList.remove('active');
+  document.getElementById('step-' + (current-1)).classList.add('active');
+}
+
+function finishSurvey() {
+  surveyAnswers['q5'] = stepAnswers[4];
+  if (user) localStorage.setItem('writeai_survey_' + user.email, JSON.stringify(surveyAnswers));
+  showPage('app');
+}
+
+function getPersonalisedTasks() {
+  const role = surveyAnswers.q1 || '';
+  const goal = surveyAnswers.q2 || '';
+  const content = surveyAnswers.q3 || '';
+  const challenge = surveyAnswers.q5 || '';
+  const tasks = [];
+
+  if (content.includes('Blog')) { tasks.push({ text: 'Write one blog post outline using the Blog Writer', tag: 'Blog', done: false }); tasks.push({ text: 'Research 3 trending topics in your niche', tag: 'Research', done: false }); }
+  if (content.includes('Social') || goal.includes('audience')) { tasks.push({ text: 'Draft a LinkedIn post about your expertise', tag: 'LinkedIn', done: false }); tasks.push({ text: 'Schedule 3 posts for this week', tag: 'Social', done: false }); }
+  if (content.includes('Email') || goal.includes('leads')) { tasks.push({ text: 'Write a cold email sequence for your top prospect', tag: 'Email', done: false }); tasks.push({ text: 'Build a list of 10 potential leads', tag: 'Outreach', done: false }); }
+  if (content.includes('Product') || role.includes('Business')) { tasks.push({ text: 'Rewrite your top product description', tag: 'Copy', done: false }); tasks.push({ text: 'Update your website homepage headline', tag: 'Copy', done: false }); }
+  if (challenge.includes('blank') || challenge.includes('started')) { tasks.push({ text: 'Use the Blog Writer with just one word as input', tag: 'Tip', done: false }); }
+  if (challenge.includes('time')) { tasks.push({ text: 'Set a 15-min writing sprint using AI to draft first', tag: 'Tip', done: false }); }
+  if (challenge.includes('convert')) { tasks.push({ text: 'Run your best piece through the Content Rewriter', tag: 'Optimise', done: false }); tasks.push({ text: 'Generate SEO meta for your top 3 pages', tag: 'SEO', done: false }); }
+  if (tasks.length < 3) {
+    tasks.push({ text: 'Try the Blog Writer on a topic you care about', tag: 'Start', done: false });
+    tasks.push({ text: 'Generate a cold email for your dream client', tag: 'Email', done: false });
+    tasks.push({ text: 'Rewrite your LinkedIn bio using the Rewriter', tag: 'Brand', done: false });
+  }
+  return tasks.slice(0, 5);
+}
+
+function getRecommendedTools() {
+  const content = surveyAnswers.q3 || '';
+  const goal = surveyAnswers.q2 || '';
+  const recs = [];
+  if (content.includes('Blog')) recs.push({ id: 'blog', reason: 'Matches your blog content focus' });
+  if (content.includes('Email') || goal.includes('leads')) recs.push({ id: 'email', reason: 'Great for your lead gen goal' });
+  if (content.includes('Social')) recs.push({ id: 'linkedin', reason: 'Perfect for growing your audience' });
+  if (content.includes('Product')) recs.push({ id: 'product', reason: 'Tailored for your product copy' });
+  if (goal.includes('audience') || goal.includes('brand')) recs.push({ id: 'seo', reason: 'Helps you get found online' });
+  if (recs.length < 2) { recs.push({ id: 'blog', reason: 'Best place to start' }); recs.push({ id: 'rewrite', reason: 'Quick wins on existing content' }); }
+  return recs.slice(0, 3);
+}
+
+let taskState = [];
+function renderDashboard() {
+  const name = user?.name || 'there';
+  document.getElementById('sidebar-avatar').textContent = name[0].toUpperCase();
+  document.getElementById('sidebar-name').textContent = name;
+  document.getElementById('sidebar-plan').textContent = isPro ? 'Pro plan' : 'Free plan';
+  document.getElementById('nav-username').textContent = name;
+  if (taskState.length === 0) taskState = getPersonalisedTasks();
+  const recs = getRecommendedTools();
+  const toolNames = { blog: 'Blog Writer', email: 'Cold Email', rewrite: 'Rewriter', product: 'Product Desc', linkedin: 'LinkedIn', seo: 'SEO Meta' };
+  const toolIcons = { blog: '✍️', email: '📧', rewrite: '🔄', product: '🛒', linkedin: '💼', seo: '🔍' };
+  const hasAnswers = Object.keys(surveyAnswers).length > 0;
+  document.getElementById('main-content').innerHTML = `
+    <div class="dash-greeting">Welcome back, ${name} 👋</div>
+    <div class="dash-sub">${hasAnswers ? 'Here\'s your personalised writing plan for today.' : 'Complete your profile survey to personalise your dashboard.'}</div>
+    ${!hasAnswers ? `<button class="btn-primary" onclick="showPage('survey')" style="margin-bottom:2rem;">Take the survey →</button>` : ''}
+    <div class="tasks-section">
+      <div class="tasks-title">📋 Your tasks for today</div>
+      ${taskState.map((task, i) => `
+        <div class="task-item" id="task-${i}">
+          <div class="task-check ${task.done ? 'done' : ''}" onclick="toggleTask(${i})">${task.done ? '✓' : ''}</div>
+          <div class="task-text ${task.done ? 'done' : ''}">${task.text}</div>
+          <span class="task-tag">${task.tag}</span>
+        </div>
+      `).join('')}
+    </div>
+    <p class="section-title" style="text-align:left;font-size:1rem;margin:0 0 0.8rem;">⭐ Recommended for you</p>
+    <div class="dash-grid">
+      ${recs.map(r => `
+        <div class="dash-card ${!tools[r.id].isPro || isPro ? 'highlight' : ''}" onclick="openTool('${r.id}')" style="cursor:pointer;">
+          <div class="dash-card-icon">${toolIcons[r.id]}</div>
+          <h4>${toolNames[r.id]}</h4>
+          <p>${r.reason}</p>
+          ${tools[r.id].isPro && !isPro ? '<span style="font-size:11px;color:#854F0B;background:#faeeda;padding:2px 7px;border-radius:4px;display:inline-block;margin-top:6px;">PRO</span>' : ''}
+        </div>
+      `).join('')}
+    </div>`;
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+  document.getElementById('nav-dashboard').classList.add('active');
+}
+
+function toggleTask(i) {
+  taskState[i].done = !taskState[i].done;
+  renderDashboard();
+}
+
+function openSection(section) {
+  if (section === 'dashboard') renderDashboard();
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+  document.getElementById('nav-' + section).classList.add('active');
 }
 
 function openTool(id) {
-  currentTool = id; showPage('app');
-  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-  const el = document.getElementById('nav-' + id);
-  if (el) el.classList.add('active');
-}
-
-function renderTool(id) {
-  const t = tools[id], main = document.getElementById('main-content'), locked = t.isPro && !isPro;
+  currentTool = id;
+  const t = tools[id], locked = t.isPro && !isPro;
   const opts = t.options.map(o => `<select class="select-input" id="opt-${o.id}">${o.values.map(v=>`<option>${v}</option>`).join('')}</select>`).join('');
-  main.innerHTML = `
+  document.getElementById('main-content').innerHTML = `
     <div class="tool-header"><h2>${t.name}</h2><p>${t.desc}</p></div>
-    ${locked ? `<div style="background:#faeeda;border-radius:10px;padding:1rem 1.2rem;font-size:14px;color:#633806;margin-bottom:1.2rem;display:flex;align-items:center;gap:10px;">🔒 This is a Pro tool. <button onclick="showPage('pricing')" style="background:#854F0B;color:#fff;border:none;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:13px;font-family:inherit;margin-left:6px;">Upgrade →</button></div>` : ''}
+    ${locked ? `<div class="locked-banner">🔒 This is a Pro tool. <button class="unlock-btn" onclick="showPage('pricing')">Upgrade for $9.99/mo →</button></div>` : ''}
     <textarea class="input-area" id="tool-input" placeholder="${t.placeholder}" ${locked?'disabled':''}></textarea>
     <div class="options-row">${opts}<button class="generate-btn" id="gen-btn" onclick="generate()" ${locked?'disabled':''}>✦ Generate</button>${!isPro?`<span class="free-uses-counter">${freeUsesLeft} free uses left today</span>`:''}</div>
     <div class="output-box" id="output-box"><span class="output-placeholder">Your generated content will appear here...</span></div>
-    <div class="output-actions" id="output-actions" style="display:none;"><button class="action-btn" onclick="copyOutput()">Copy</button><button class="action-btn" onclick="generate()">Regenerate</button></div>`;
+    <div class="output-actions" id="output-actions" style="display:none;"><button class="action-btn" onclick="copyOutput()">Copy</button><button class="action-btn" onclick="openTool('${id}')">Regenerate</button></div>`;
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('active');
 }
 
 async function generate() {
   const t = tools[currentTool], input = document.getElementById('tool-input').value.trim();
   if (!input) { alert('Please enter some input first!'); return; }
   if (!isPro && freeUsesLeft <= 0) {
-    document.getElementById('main-content').insertAdjacentHTML('beforeend', `<div class="paywall-card"><h3>You've hit your daily limit</h3><p>Upgrade to Pro for unlimited generations.</p><button class="btn-primary" onclick="showPage('pricing')">Upgrade for $19/mo →</button></div>`);
+    document.getElementById('main-content').insertAdjacentHTML('beforeend', `<div class="paywall-card"><h3>You've hit your daily limit</h3><p>Upgrade to Pro for unlimited generations.</p><button class="btn-primary" onclick="showPage('pricing')">Upgrade for $9.99/mo →</button></div>`);
     return;
   }
   const opts = {};
@@ -267,21 +590,22 @@ async function generate() {
   out.innerHTML = '<span class="output-placeholder">Writing your content...</span>';
   document.getElementById('output-actions').style.display = 'none';
   try {
-    const res = await fetch('/api/generate', {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: t.buildPrompt(input, opts) })
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GROQ_API_KEY },
+      body: JSON.stringify({ model: 'llama-3.1-8b-instant', max_tokens: 1000, messages: [{ role: 'user', content: t.buildPrompt(input, opts) }] })
     });
     const data = await res.json();
-    currentOutput = data.result || data.error || 'Error generating content. Please try again.';
+    if (!res.ok) { out.textContent = 'Error: ' + (data.error?.message || 'Something went wrong'); btn.disabled=false; btn.innerHTML='✦ Generate'; return; }
+    currentOutput = data.choices?.[0]?.message?.content || 'No content returned.';
     out.textContent = currentOutput;
     document.getElementById('output-actions').style.display = 'flex';
     if (!isPro) {
       freeUsesLeft--;
       document.querySelectorAll('.free-uses-counter').forEach(el => el.textContent = freeUsesLeft + ' free uses left today');
       const used = 5 - freeUsesLeft;
-      const bar = document.getElementById('bar-fill'); if(bar) bar.style.width = (used/5*100)+'%';
-      const lbl = document.getElementById('usage-label'); if(lbl) lbl.textContent = `Free usage: ${used}/5 today`;
+      const bar = document.getElementById('bar-fill'); if(bar) bar.style.width=(used/5*100)+'%';
+      const lbl = document.getElementById('usage-label'); if(lbl) lbl.textContent=`Free usage: ${used}/5 today`;
     }
   } catch(e) { out.textContent = 'Something went wrong: ' + e.message; }
   btn.disabled = false; btn.innerHTML = '✦ Generate';
@@ -293,8 +617,6 @@ function copyOutput() {
     setTimeout(() => btn.textContent = 'Copy', 1500);
   });
 }
-
-renderTool('blog');
 </script>
 </body>
 </html>
