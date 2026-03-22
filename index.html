@@ -182,7 +182,7 @@
 </div>
 
 <script>
-const GROQ_KEY = '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';
+
 
 const tools = {
   blog: {
@@ -267,20 +267,13 @@ async function generate() {
   out.innerHTML = '<span class="output-placeholder">Writing your content...</span>';
   document.getElementById('output-actions').style.display = 'none';
   try {
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + GROQ_KEY
-      },
-      body: JSON.stringify({
-        model: 'llama3-8b-8192',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: t.buildPrompt(input, opts) }]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: t.buildPrompt(input, opts) })
     });
     const data = await res.json();
-    currentOutput = data.choices?.[0]?.message?.content || 'Error generating content. Please try again.';
+    currentOutput = data.result || data.error || 'Error generating content. Please try again.';
     out.textContent = currentOutput;
     document.getElementById('output-actions').style.display = 'flex';
     if (!isPro) {
