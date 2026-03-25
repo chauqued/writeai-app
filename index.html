@@ -10,63 +10,54 @@
 :root{
   --brand:#0F6E56;--brand-light:#E1F5EE;--brand-mid:#1D9E75;--accent:#D85A30;
   --bg:#f7f6f2;--card:#ffffff;--text:#1a1a18;--muted:#6b6b65;--border:rgba(0,0,0,0.1);
-  --sidebar:240px;
+  --sidebar:250px;
 }
-body.dark{
-  --bg:#1a1a18;--card:#242422;--text:#f0ede8;--muted:#9a9890;--border:rgba(255,255,255,0.1);
-  --brand-light:rgba(15,110,86,0.2);
-}
+body.dark{--bg:#1a1a18;--card:#242422;--text:#f0ede8;--muted:#9a9890;--border:rgba(255,255,255,0.1);--brand-light:rgba(15,110,86,0.2);}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;min-height:100vh;transition:background 0.2s,color 0.2s;}
 .page{display:none;}.page.active{display:block;}
 
-/* NAV */
-.topnav{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid var(--border);background:var(--card);}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);background:var(--card);position:sticky;top:0;z-index:100;}
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--brand);letter-spacing:-0.5px;cursor:pointer;}
 .logo span{color:var(--accent);}
-.nav-links{display:flex;gap:1rem;align-items:center;}
+.nav-links{display:flex;gap:0.8rem;align-items:center;}
 .nav-link{font-size:14px;color:var(--muted);cursor:pointer;padding:6px 12px;border-radius:6px;border:none;background:none;font-family:inherit;transition:all 0.15s;}
 .nav-link:hover{background:var(--brand-light);color:var(--brand);}
-.nav-cta{background:var(--brand);color:#fff;padding:8px 18px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all 0.15s;}
-.nav-cta:hover{background:var(--brand-mid);}
-.dark-toggle{background:none;border:1.5px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;color:var(--text);transition:all 0.15s;}
-.dark-toggle:hover{border-color:var(--brand);}
+.nav-cta{background:var(--brand);color:#fff;padding:8px 18px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:none;font-family:inherit;}
+.dark-toggle{background:none;border:1.5px solid var(--border);border-radius:8px;padding:5px 9px;cursor:pointer;font-size:15px;color:var(--text);}
 
-/* BUTTONS */
-.btn-primary{background:var(--brand);color:#fff;padding:13px 28px;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all 0.15s;}
-.btn-primary:hover{background:var(--brand-mid);transform:translateY(-2px);}
-.btn-secondary{background:transparent;color:var(--text);padding:13px 28px;border-radius:10px;font-size:15px;cursor:pointer;border:1.5px solid var(--border);font-family:inherit;transition:all 0.15s;}
+.btn-primary{background:var(--brand);color:#fff;padding:12px 26px;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all 0.15s;}
+.btn-primary:hover{background:var(--brand-mid);transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:var(--text);padding:12px 26px;border-radius:10px;font-size:15px;cursor:pointer;border:1.5px solid var(--border);font-family:inherit;transition:all 0.15s;}
 .btn-secondary:hover{border-color:var(--brand);color:var(--brand);}
-.btn-plan{width:100%;padding:12px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all 0.15s;}
+.btn-plan{width:100%;padding:11px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all 0.15s;}
 .btn-plan.free{background:var(--bg);color:var(--text);border:1.5px solid var(--border);}
 .btn-plan.pro{background:var(--brand);color:#fff;}
 .btn-plan.pro:hover{background:var(--brand-mid);}
 
-/* LANDING */
 .hero{text-align:center;padding:5rem 2rem 4rem;max-width:700px;margin:0 auto;}
 .hero-badge{display:inline-block;background:var(--brand-light);color:var(--brand);font-size:12px;font-weight:500;padding:4px 14px;border-radius:20px;margin-bottom:1.5rem;letter-spacing:0.5px;text-transform:uppercase;}
-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.2rem,5vw,3.5rem);line-height:1.1;color:var(--text);margin-bottom:1.25rem;letter-spacing:-1.5px;}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;color:var(--text);margin-bottom:1.25rem;letter-spacing:-1.5px;}
 h1 em{color:var(--brand);font-style:normal;}
-.hero p{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto 2.5rem;font-weight:300;}
+.hero p{font-size:16px;color:var(--muted);max-width:500px;margin:0 auto 2.5rem;font-weight:300;}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.6rem;text-align:center;margin:3rem 0 0.5rem;letter-spacing:-0.5px;}
-.section-sub{text-align:center;color:var(--muted);margin-bottom:2rem;font-size:15px;}
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;padding:0 2rem 4rem;max-width:1000px;margin:0 auto;}
-.tool-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;cursor:pointer;transition:all 0.2s;}
-.tool-card:hover{border-color:var(--brand);transform:translateY(-3px);}
-.tool-icon{font-size:24px;margin-bottom:8px;}
-.tool-card h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px;color:var(--text);}
+.section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.5rem;text-align:center;margin:3rem 0 0.5rem;letter-spacing:-0.5px;}
+.section-sub{text-align:center;color:var(--muted);margin-bottom:2rem;font-size:14px;}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;padding:0 2rem 4rem;max-width:1000px;margin:0 auto;}
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem;cursor:pointer;transition:all 0.2s;}
+.tool-card:hover{border-color:var(--brand);transform:translateY(-2px);}
+.tool-icon{font-size:22px;margin-bottom:7px;}
+.tool-card h3{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:3px;color:var(--text);}
 .tool-card p{font-size:12px;color:var(--muted);line-height:1.4;}
-.tool-tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;margin-top:8px;font-weight:500;}
+.tool-tag{display:inline-block;font-size:10px;padding:2px 6px;border-radius:4px;margin-top:6px;font-weight:500;}
 .tag-free{background:var(--brand-light);color:var(--brand);}
 .tag-pro{background:#faeeda;color:#854F0B;}
 
-/* PRICING */
 .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;padding:0 2rem 4rem;max-width:760px;margin:0 auto;}
 .price-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:1.8rem;position:relative;}
 .price-card.featured{border-color:var(--brand);}
 .featured-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--brand);color:#fff;font-size:11px;font-weight:500;padding:4px 14px;border-radius:20px;white-space:nowrap;}
 .price-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:0.5rem;}
-.price-amount{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;color:var(--brand);line-height:1;margin:0.8rem 0 0.3rem;}
+.price-amount{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--brand);line-height:1;margin:0.8rem 0 0.3rem;}
 .price-amount span{font-size:14px;font-weight:400;color:var(--muted);}
 .price-desc{font-size:13px;color:var(--muted);margin-bottom:1.2rem;}
 .price-features{list-style:none;margin-bottom:1.5rem;}
@@ -75,7 +66,6 @@ h1 em{color:var(--brand);font-style:normal;}
 .price-features li.no:before{content:"✗ ";color:#ccc;}
 .price-features li.no{color:var(--muted);}
 
-/* AUTH */
 .auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:var(--bg);}
 .auth-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;width:100%;max-width:420px;}
 .auth-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--brand);text-align:center;margin-bottom:0.3rem;}
@@ -91,8 +81,8 @@ h1 em{color:var(--brand);font-style:normal;}
 .auth-btn{width:100%;padding:12px;background:var(--brand);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;font-family:inherit;margin-top:0.5rem;}
 .auth-btn:hover{background:var(--brand-mid);}
 .auth-divider{text-align:center;color:var(--muted);font-size:13px;margin:1rem 0;}
+.referral-field{background:var(--brand-light);border-radius:8px;padding:0.8rem;font-size:13px;color:var(--brand);margin-top:1rem;text-align:center;}
 
-/* SURVEY */
 .survey-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:var(--bg);}
 .survey-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;width:100%;max-width:520px;}
 .survey-step{display:none;}.survey-step.active{display:block;}
@@ -102,91 +92,130 @@ h1 em{color:var(--brand);font-style:normal;}
 .survey-q{font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:0.5rem;letter-spacing:-0.3px;}
 .survey-hint{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}
 .survey-options{display:flex;flex-direction:column;gap:10px;}
-.survey-option{padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;transition:all 0.15s;display:flex;align-items:center;gap:10px;background:var(--card);color:var(--text);}
-.survey-option:hover{border-color:var(--brand);background:var(--brand-light);}
-.survey-option.selected{border-color:var(--brand);background:var(--brand-light);color:var(--brand);font-weight:500;}
-.opt-icon{font-size:18px;}
+.survey-option{padding:11px 15px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;transition:all 0.15s;display:flex;align-items:center;gap:10px;background:var(--card);color:var(--text);}
+.survey-option:hover,.survey-option.selected{border-color:var(--brand);background:var(--brand-light);color:var(--brand);font-weight:500;}
+.opt-icon{font-size:17px;}
 .survey-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem;}
 .survey-back{background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;font-family:inherit;padding:8px 0;}
 .survey-next{background:var(--brand);color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;}
 .survey-next:disabled{opacity:0.4;cursor:not-allowed;}
 
-/* APP LAYOUT */
-.app-layout{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:calc(100vh - 61px);}
-.sidebar{background:var(--card);border-right:1px solid var(--border);padding:1.2rem 0.8rem;overflow-y:auto;height:calc(100vh - 61px);position:sticky;top:0;}
-.sidebar-user{padding:0.5rem 0.5rem 1rem;border-bottom:1px solid var(--border);margin-bottom:0.8rem;}
-.user-avatar{width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-bottom:6px;}
-.user-name{font-size:14px;font-weight:500;color:var(--text);}
+.app-layout{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:calc(100vh - 57px);}
+.sidebar{background:var(--card);border-right:1px solid var(--border);padding:1rem 0.8rem;overflow-y:auto;height:calc(100vh - 57px);position:sticky;top:57px;}
+.sidebar-user{padding:0.5rem 0.5rem 0.8rem;border-bottom:1px solid var(--border);margin-bottom:0.5rem;}
+.user-avatar{width:34px;height:34px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;margin-bottom:5px;}
+.user-name{font-size:13px;font-weight:500;color:var(--text);}
 .user-plan{font-size:11px;color:var(--muted);}
-.sidebar-label{font-size:10px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;margin:0.8rem 0 0.3rem 0.5rem;}
-.sidebar-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:7px;font-size:13px;cursor:pointer;color:var(--text);border:none;background:none;width:100%;text-align:left;font-family:inherit;transition:all 0.15s;}
+.search-wrap{position:relative;margin:0.5rem 0;}
+.search-input{width:100%;padding:7px 10px 7px 30px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--bg);color:var(--text);outline:none;}
+.search-input:focus{border-color:var(--brand);}
+.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--muted);}
+.sidebar-label{font-size:10px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;margin:0.7rem 0 0.3rem 0.5rem;}
+.sidebar-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;font-size:13px;cursor:pointer;color:var(--text);border:none;background:none;width:100%;text-align:left;font-family:inherit;transition:all 0.15s;}
 .sidebar-item:hover{background:var(--brand-light);color:var(--brand);}
 .sidebar-item.active{background:var(--brand-light);color:var(--brand);font-weight:500;}
+.sidebar-item.hidden{display:none;}
 .item-icon{font-size:14px;flex-shrink:0;}
+.fav-star{margin-left:auto;font-size:12px;cursor:pointer;opacity:0.4;transition:opacity 0.15s;}
+.fav-star.active{opacity:1;color:#f59e0b;}
 .pro-badge{font-size:9px;background:#faeeda;color:#854F0B;padding:1px 5px;border-radius:3px;margin-left:auto;flex-shrink:0;}
-.usage-bar{margin:0.8rem 0.5rem;}
+.usage-bar{margin:0.7rem 0.5rem;}
 .usage-label{font-size:11px;color:var(--muted);margin-bottom:4px;}
 .bar-bg{background:var(--border);height:5px;border-radius:3px;}
 .bar-fill{background:var(--brand);height:5px;border-radius:3px;transition:width 0.3s;}
-.main-content{padding:2rem;overflow-y:auto;}
+.main-content{padding:1.8rem;overflow-y:auto;}
 
-/* DASHBOARD */
-.dash-greeting{font-family:'Syne',sans-serif;font-weight:700;font-size:1.5rem;margin-bottom:0.3rem;letter-spacing:-0.5px;}
+.dash-greeting{font-family:'Syne',sans-serif;font-weight:700;font-size:1.4rem;margin-bottom:0.3rem;letter-spacing:-0.5px;}
 .dash-sub{color:var(--muted);font-size:14px;margin-bottom:1.5rem;}
-.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:1.5rem;}
-.dash-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem;cursor:pointer;transition:all 0.15s;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.5rem;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center;}
+.stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:var(--brand);}
+.stat-label{font-size:12px;color:var(--muted);margin-top:2px;}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:11px;margin-bottom:1.5rem;}
+.dash-card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:1rem;cursor:pointer;transition:all 0.15s;}
 .dash-card:hover{border-color:var(--brand);transform:translateY(-2px);}
 .dash-card.highlight{border-color:var(--brand);background:var(--brand-light);}
-.dash-card-icon{font-size:20px;margin-bottom:6px;}
-.dash-card h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:3px;}
+.dash-card-icon{font-size:19px;margin-bottom:6px;}
+.dash-card h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:3px;}
 .dash-card p{font-size:11px;color:var(--muted);line-height:1.4;}
-.tasks-section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;}
-.tasks-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:1rem;}
-.task-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+.tasks-section{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:1.3rem;margin-bottom:1.5rem;}
+.tasks-title{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:0.8rem;}
+.task-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
 .task-item:last-child{border-bottom:none;}
-.task-check{width:18px;height:18px;border:1.5px solid var(--border);border-radius:4px;cursor:pointer;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
-.task-check.done{background:var(--brand);border-color:var(--brand);color:#fff;font-size:11px;}
+.task-check{width:17px;height:17px;border:1.5px solid var(--border);border-radius:4px;cursor:pointer;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+.task-check.done{background:var(--brand);border-color:var(--brand);color:#fff;font-size:10px;}
 .task-text{font-size:13px;line-height:1.5;flex:1;}
 .task-text.done{text-decoration:line-through;color:var(--muted);}
-.task-tag{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--brand-light);color:var(--brand);flex-shrink:0;}
+.task-tag{font-size:10px;padding:2px 6px;border-radius:4px;background:var(--brand-light);color:var(--brand);flex-shrink:0;}
 
-/* TOOL UI */
 .tool-header{margin-bottom:1.2rem;}
-.tool-header h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:-0.3px;}
+.tool-header h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-0.3px;}
 .tool-header p{font-size:13px;color:var(--muted);margin-top:3px;}
 .input-wrap{position:relative;}
 .input-area{width:100%;padding:1rem;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;color:var(--text);background:var(--card);resize:vertical;min-height:110px;outline:none;transition:border 0.15s;}
 .input-area:focus{border-color:var(--brand);}
-.word-counter{position:absolute;bottom:8px;right:12px;font-size:11px;color:var(--muted);pointer-events:none;}
-.options-row{display:flex;gap:10px;margin:0.8rem 0;flex-wrap:wrap;align-items:center;}
-.select-input{padding:7px 11px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--card);color:var(--text);cursor:pointer;outline:none;}
-.generate-btn{background:var(--brand);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:none;font-family:inherit;display:flex;align-items:center;gap:8px;transition:all 0.15s;}
+.word-counter{position:absolute;bottom:8px;right:12px;font-size:11px;color:var(--muted);pointer-events:none;background:var(--card);padding:0 4px;}
+.options-row{display:flex;gap:8px;margin:0.7rem 0;flex-wrap:wrap;align-items:center;}
+.select-input{padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;font-family:inherit;background:var(--card);color:var(--text);cursor:pointer;outline:none;}
+.generate-btn{background:var(--brand);color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:none;font-family:inherit;display:flex;align-items:center;gap:7px;transition:all 0.15s;}
 .generate-btn:hover:not(:disabled){background:var(--brand-mid);}
 .generate-btn:disabled{opacity:0.6;cursor:not-allowed;}
-.output-box{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:1.2rem;min-height:110px;font-size:14px;line-height:1.7;color:var(--text);margin-top:0.8rem;white-space:pre-wrap;word-break:break-word;}
+.output-box{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:1.1rem;min-height:110px;font-size:14px;line-height:1.7;color:var(--text);margin-top:0.8rem;white-space:pre-wrap;word-break:break-word;}
 .output-placeholder{color:var(--muted);font-style:italic;}
-.output-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
-.action-btn{padding:6px 14px;border-radius:7px;font-size:13px;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;transition:all 0.15s;}
+.output-actions{display:flex;gap:7px;margin-top:8px;flex-wrap:wrap;}
+.action-btn{padding:6px 13px;border-radius:7px;font-size:13px;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;transition:all 0.15s;}
 .action-btn:hover{border-color:var(--brand);color:var(--brand);}
 .free-uses-counter{font-size:12px;color:var(--muted);}
 .spinner{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.locked-banner{background:#faeeda;border-radius:10px;padding:0.9rem 1.1rem;font-size:13px;color:#633806;margin-bottom:1rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.unlock-btn{background:#854F0B;color:#fff;border:none;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit;}
+.locked-banner{background:#faeeda;border-radius:9px;padding:0.8rem 1rem;font-size:13px;color:#633806;margin-bottom:1rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.unlock-btn{background:#854F0B;color:#fff;border:none;padding:5px 11px;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit;}
 .paywall-card{background:var(--card);border:2px solid var(--brand);border-radius:14px;padding:2rem;max-width:380px;margin:2rem auto;text-align:center;}
 .paywall-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:8px;}
 .paywall-card p{font-size:14px;color:var(--muted);margin-bottom:1.5rem;}
 
-/* HISTORY */
-.history-empty{text-align:center;padding:3rem;color:var(--muted);font-size:14px;}
-.history-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem;margin-bottom:10px;cursor:pointer;transition:all 0.15s;}
+.history-item{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:1rem;margin-bottom:9px;cursor:pointer;transition:all 0.15s;}
 .history-item:hover{border-color:var(--brand);}
-.history-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
-.history-tool{font-size:12px;font-weight:500;color:var(--brand);background:var(--brand-light);padding:2px 8px;border-radius:4px;}
+.history-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.history-tool{font-size:11px;font-weight:500;color:var(--brand);background:var(--brand-light);padding:2px 7px;border-radius:4px;}
 .history-time{font-size:11px;color:var(--muted);}
-.history-input{font-size:13px;font-weight:500;margin-bottom:4px;color:var(--text);}
+.history-input{font-size:13px;font-weight:500;margin-bottom:3px;color:var(--text);}
 .history-preview{font-size:12px;color:var(--muted);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
-.history-actions{display:flex;gap:6px;margin-top:8px;}
+.history-actions{display:flex;gap:6px;margin-top:7px;}
+
+.onboarding-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;display:flex;align-items:center;justify-content:center;padding:2rem;}
+.onboarding-card{background:var(--card);border-radius:20px;padding:2.5rem;max-width:480px;width:100%;text-align:center;}
+.onboarding-icon{font-size:48px;margin-bottom:1rem;}
+.onboarding-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.4rem;margin-bottom:0.5rem;}
+.onboarding-text{color:var(--muted);font-size:14px;margin-bottom:1.5rem;line-height:1.6;}
+.onboarding-steps{display:flex;gap:6px;justify-content:center;margin-bottom:1.5rem;}
+.onboarding-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:background 0.3s;}
+.onboarding-dot.active{background:var(--brand);}
+.onboarding-btns{display:flex;gap:10px;justify-content:center;}
+
+.referral-box{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:1.3rem;margin-bottom:1.5rem;}
+.referral-title{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:0.5rem;}
+.referral-link-row{display:flex;gap:8px;align-items:center;margin-top:0.8rem;}
+.referral-link{flex:1;padding:8px 12px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:12px;color:var(--muted);font-family:inherit;outline:none;}
+.referral-copy-btn{background:var(--brand);color:#fff;border:none;padding:8px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.referral-stats{display:flex;gap:12px;margin-top:0.8rem;}
+.ref-stat{background:var(--bg);border-radius:8px;padding:0.6rem 1rem;text-align:center;flex:1;}
+.ref-stat-num{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;color:var(--brand);}
+.ref-stat-label{font-size:11px;color:var(--muted);}
+
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:2rem;}
+.admin-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;}
+.admin-num{font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;color:var(--brand);}
+.admin-label{font-size:12px;color:var(--muted);margin-top:2px;}
+.admin-table{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.admin-table table{width:100%;border-collapse:collapse;font-size:13px;}
+.admin-table th{padding:10px 14px;text-align:left;font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);background:var(--bg);}
+.admin-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text);}
+.admin-table tr:last-child td{border-bottom:none;}
+.admin-badge{font-size:10px;padding:2px 7px;border-radius:4px;}
+.badge-pro{background:#E1F5EE;color:#0F6E56;}
+.badge-free{background:var(--bg);color:var(--muted);border:1px solid var(--border);}
+.badge-owner{background:#faeeda;color:#854F0B;}
 
 @media(max-width:600px){.app-layout{grid-template-columns:1fr;}.sidebar{display:none;}nav{padding:1rem;}}
 </style>
@@ -198,7 +227,7 @@ h1 em{color:var(--brand);font-style:normal;}
   <div class="topnav">
     <div class="logo">Write<span>AI</span></div>
     <div class="nav-links">
-      <button class="dark-toggle" onclick="toggleDark()" id="dark-btn">🌙</button>
+      <button class="dark-toggle" onclick="toggleDark()">🌙</button>
       <button class="nav-link" onclick="showPage('pricing')">Pricing</button>
       <button class="nav-link" onclick="showPage('auth')">Log in</button>
       <button class="nav-cta" onclick="showPage('auth')">Get started free</button>
@@ -214,16 +243,16 @@ h1 em{color:var(--brand);font-style:normal;}
     </div>
   </div>
   <p class="section-title">20+ AI tools across 5 categories</p>
-  <p class="section-sub">All personalised to your goals after signup</p>
+  <p class="section-sub">Personalised to your goals after signup</p>
   <div class="tools-grid">
     <div class="tool-card"><div class="tool-icon">✍️</div><h3>Blog Writer</h3><p>SEO-ready posts in seconds.</p><span class="tool-tag tag-free">Free</span></div>
     <div class="tool-card"><div class="tool-icon">📧</div><h3>Cold Email</h3><p>Outreach that gets replies.</p><span class="tool-tag tag-free">Free</span></div>
     <div class="tool-card"><div class="tool-icon">🐦</div><h3>Twitter/X Thread</h3><p>Viral threads on any topic.</p><span class="tool-tag tag-free">Free</span></div>
+    <div class="tool-card"><div class="tool-icon">📣</div><h3>Ad Copy</h3><p>Facebook & Google ads that convert.</p><span class="tool-tag tag-pro">Pro</span></div>
+    <div class="tool-card"><div class="tool-icon">📰</div><h3>Press Release</h3><p>Professional announcements.</p><span class="tool-tag tag-pro">Pro</span></div>
+    <div class="tool-card"><div class="tool-icon">💌</div><h3>Email Sequence</h3><p>Multi-email nurture campaigns.</p><span class="tool-tag tag-pro">Pro</span></div>
+    <div class="tool-card"><div class="tool-icon">📝</div><h3>Cover Letter</h3><p>Tailored letters that get interviews.</p><span class="tool-tag tag-pro">Pro</span></div>
     <div class="tool-card"><div class="tool-icon">🎥</div><h3>YouTube Script</h3><p>Full video scripts & hooks.</p><span class="tool-tag tag-pro">Pro</span></div>
-    <div class="tool-card"><div class="tool-icon">📱</div><h3>TikTok Captions</h3><p>Captions that stop the scroll.</p><span class="tool-tag tag-pro">Pro</span></div>
-    <div class="tool-card"><div class="tool-icon">👤</div><h3>Bio Writer</h3><p>Professional bios for any platform.</p><span class="tool-tag tag-pro">Pro</span></div>
-    <div class="tool-card"><div class="tool-icon">📊</div><h3>Pitch Deck Copy</h3><p>Investor-ready slide content.</p><span class="tool-tag tag-pro">Pro</span></div>
-    <div class="tool-card"><div class="tool-icon">🔍</div><h3>SEO Meta</h3><p>Keywords & titles that rank.</p><span class="tool-tag tag-pro">Pro</span></div>
   </div>
 </div>
 
@@ -246,8 +275,8 @@ h1 em{color:var(--brand);font-style:normal;}
       <ul class="price-features">
         <li>5 generations per day</li><li>Blog, Email & Twitter tools</li>
         <li>Personalised dashboard</li><li>Generation history</li>
-        <li class="no">YouTube & TikTok tools</li><li class="no">Business & Branding tools</li>
-        <li class="no">Unlimited generations</li>
+        <li>Referral programme</li>
+        <li class="no">Pro writing tools</li><li class="no">Unlimited generations</li>
       </ul>
       <button class="btn-plan free" onclick="showPage('auth')">Get started free</button>
     </div>
@@ -259,7 +288,8 @@ h1 em{color:var(--brand);font-style:normal;}
       <ul class="price-features">
         <li>Unlimited generations</li><li>All 20+ writing tools</li>
         <li>Personalised AI task manager</li><li>Full generation history</li>
-        <li>YouTube & TikTok tools</li><li>Business & Branding tools</li>
+        <li>Ad copy, press releases & more</li>
+        <li>Email sequences & cover letters</li>
         <li>Priority support</li>
       </ul>
       <button class="btn-plan pro" onclick="alert('Connect your Stripe payment link here!')">Upgrade to Pro</button>
@@ -280,6 +310,7 @@ h1 em{color:var(--brand);font-style:normal;}
       <div class="field"><label>Email</label><input type="email" id="auth-email" placeholder="you@example.com"></div>
       <div class="field"><label>Password</label><input type="password" id="auth-password" placeholder="••••••••"></div>
       <div class="field" id="name-field" style="display:none;"><label>Your name</label><input type="text" id="auth-name" placeholder="First name"></div>
+      <div class="field" id="ref-field" style="display:none;"><label>Referral code (optional)</label><input type="text" id="auth-ref" placeholder="e.g. WRITE-ABC123"></div>
       <button class="auth-btn" onclick="handleAuth()">Continue →</button>
       <div class="auth-divider">or</div>
       <button class="btn-secondary" style="width:100%;text-align:center;" onclick="guestLogin()">Continue as guest</button>
@@ -363,8 +394,8 @@ h1 em{color:var(--brand);font-style:normal;}
 <div id="page-app" class="page">
   <div class="topnav">
     <div class="logo" onclick="openSection('dashboard')">Write<span>AI</span></div>
-    <div style="display:flex;gap:10px;align-items:center;">
-      <button class="dark-toggle" onclick="toggleDark()" id="app-dark-btn">🌙</button>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="dark-toggle" onclick="toggleDark()">🌙</button>
       <span id="nav-username" style="font-size:13px;color:var(--muted);"></span>
       <button class="nav-link" onclick="logout()">Log out</button>
     </div>
@@ -374,37 +405,44 @@ h1 em{color:var(--brand);font-style:normal;}
       <div class="sidebar-user">
         <div class="user-avatar" id="sidebar-avatar">U</div>
         <div class="user-name" id="sidebar-name">User</div>
-        <div class="user-plan" id="sidebar-plan">Free plan · <span id="uses-left-label">5 uses left</span></div>
+        <div class="user-plan" id="sidebar-plan">Free plan</div>
       </div>
-
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" placeholder="Search tools..." oninput="searchTools(this.value)">
+      </div>
       <div class="sidebar-label">Menu</div>
       <button class="sidebar-item" onclick="openSection('dashboard')" id="nav-dashboard"><span class="item-icon">🏠</span> Dashboard</button>
       <button class="sidebar-item" onclick="openSection('history')" id="nav-history"><span class="item-icon">📚</span> History</button>
+      <button class="sidebar-item" onclick="openSection('referral')" id="nav-referral"><span class="item-icon">🎁</span> Referrals</button>
+      <button class="sidebar-item" onclick="openSection('favourites')" id="nav-favourites"><span class="item-icon">⭐</span> Favourites</button>
+      <button class="sidebar-item" id="nav-admin" style="display:none;" onclick="openSection('admin')"><span class="item-icon">👑</span> Admin</button>
 
       <div class="sidebar-label">Writing</div>
-      <button class="sidebar-item" onclick="openTool('blog')" id="nav-blog"><span class="item-icon">✍️</span> Blog Writer</button>
-      <button class="sidebar-item" onclick="openTool('email')" id="nav-email"><span class="item-icon">📧</span> Cold Email</button>
-      <button class="sidebar-item" onclick="openTool('rewrite')" id="nav-rewrite"><span class="item-icon">🔄</span> Rewriter</button>
+      <button class="sidebar-item tool-nav" onclick="openTool('blog')" id="nav-blog" data-name="blog writer"><span class="item-icon">✍️</span> Blog Writer <span class="fav-star" onclick="toggleFav(event,'blog')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('email')" id="nav-email" data-name="cold email"><span class="item-icon">📧</span> Cold Email <span class="fav-star" onclick="toggleFav(event,'email')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('rewrite')" id="nav-rewrite" data-name="rewriter"><span class="item-icon">🔄</span> Rewriter <span class="fav-star" onclick="toggleFav(event,'rewrite')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('emailseq')" id="nav-emailseq" data-name="email sequence"><span class="item-icon">💌</span> Email Sequence <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'emailseq')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('coverletter')" id="nav-coverletter" data-name="cover letter"><span class="item-icon">📝</span> Cover Letter <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'coverletter')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('pressrelease')" id="nav-pressrelease" data-name="press release"><span class="item-icon">📰</span> Press Release <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'pressrelease')">★</span></button>
 
-      <div class="sidebar-label">Social media</div>
-      <button class="sidebar-item" onclick="openTool('twitter')" id="nav-twitter"><span class="item-icon">🐦</span> Twitter/X Thread</button>
-      <button class="sidebar-item" onclick="openTool('instagram')" id="nav-instagram"><span class="item-icon">📸</span> Instagram Caption <span class="pro-badge">PRO</span></button>
-      <button class="sidebar-item" onclick="openTool('tiktok')" id="nav-tiktok"><span class="item-icon">📱</span> TikTok Caption <span class="pro-badge">PRO</span></button>
+      <div class="sidebar-label">Social & Ads</div>
+      <button class="sidebar-item tool-nav" onclick="openTool('twitter')" id="nav-twitter" data-name="twitter thread"><span class="item-icon">🐦</span> Twitter/X Thread <span class="fav-star" onclick="toggleFav(event,'twitter')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('adcopy')" id="nav-adcopy" data-name="ad copy"><span class="item-icon">📣</span> Ad Copy <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'adcopy')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('instagram')" id="nav-instagram" data-name="instagram caption"><span class="item-icon">📸</span> Instagram Caption <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'instagram')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('tiktok')" id="nav-tiktok" data-name="tiktok caption"><span class="item-icon">📱</span> TikTok Caption <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'tiktok')">★</span></button>
 
       <div class="sidebar-label">Video</div>
-      <button class="sidebar-item" onclick="openTool('ytscript')" id="nav-ytscript"><span class="item-icon">🎥</span> YouTube Script <span class="pro-badge">PRO</span></button>
-      <button class="sidebar-item" onclick="openTool('yttitle')" id="nav-yttitle"><span class="item-icon">🎬</span> YouTube Title/Desc <span class="pro-badge">PRO</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('ytscript')" id="nav-ytscript" data-name="youtube script"><span class="item-icon">🎥</span> YouTube Script <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'ytscript')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('yttitle')" id="nav-yttitle" data-name="youtube title"><span class="item-icon">🎬</span> YouTube Title & Desc <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'yttitle')">★</span></button>
 
       <div class="sidebar-label">Business</div>
-      <button class="sidebar-item" onclick="openTool('pitch')" id="nav-pitch"><span class="item-icon">📊</span> Pitch Deck Copy <span class="pro-badge">PRO</span></button>
-      <button class="sidebar-item" onclick="openTool('proposal')" id="nav-proposal"><span class="item-icon">📄</span> Business Proposal <span class="pro-badge">PRO</span></button>
-      <button class="sidebar-item" onclick="openTool('product')" id="nav-product"><span class="item-icon">🛒</span> Product Desc <span class="pro-badge">PRO</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('pitch')" id="nav-pitch" data-name="pitch deck"><span class="item-icon">📊</span> Pitch Deck Copy <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'pitch')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('product')" id="nav-product" data-name="product description"><span class="item-icon">🛒</span> Product Desc <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'product')">★</span></button>
 
       <div class="sidebar-label">Branding</div>
-      <button class="sidebar-item" onclick="openTool('bio')" id="nav-bio"><span class="item-icon">👤</span> Bio Writer <span class="pro-badge">PRO</span></button>
-      <button class="sidebar-item" onclick="openTool('cv')" id="nav-cv"><span class="item-icon">📋</span> CV Summary <span class="pro-badge">PRO</span></button>
-      <button class="sidebar-item" onclick="openTool('linkedin')" id="nav-linkedin"><span class="item-icon">💼</span> LinkedIn Post <span class="pro-badge">PRO</span></button>
-      <button class="sidebar-item" onclick="openTool('seo')" id="nav-seo"><span class="item-icon">🔍</span> SEO Meta <span class="pro-badge">PRO</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('bio')" id="nav-bio" data-name="bio writer"><span class="item-icon">👤</span> Bio Writer <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'bio')">★</span></button>
+      <button class="sidebar-item tool-nav" onclick="openTool('linkedin')" id="nav-linkedin" data-name="linkedin post"><span class="item-icon">💼</span> LinkedIn Post <span class="pro-badge">PRO</span><span class="fav-star" onclick="toggleFav(event,'linkedin')">★</span></button>
 
       <div class="usage-bar">
         <div class="usage-label" id="usage-label">Free: 0/5 today</div>
@@ -416,100 +454,134 @@ h1 em{color:var(--brand);font-style:normal;}
   </div>
 </div>
 
+<!-- ONBOARDING OVERLAY -->
+<div class="onboarding-overlay" id="onboarding-overlay" style="display:none;">
+  <div class="onboarding-card">
+    <div class="onboarding-icon" id="ob-icon">👋</div>
+    <div class="onboarding-title" id="ob-title">Welcome to WriteAI!</div>
+    <div class="onboarding-text" id="ob-text">Your personalised AI writing suite is ready. Let's take a quick tour.</div>
+    <div class="onboarding-steps">
+      <div class="onboarding-dot active" id="ob-dot-0"></div>
+      <div class="onboarding-dot" id="ob-dot-1"></div>
+      <div class="onboarding-dot" id="ob-dot-2"></div>
+      <div class="onboarding-dot" id="ob-dot-3"></div>
+    </div>
+    <div class="onboarding-btns">
+      <button class="btn-secondary" onclick="skipOnboarding()">Skip</button>
+      <button class="btn-primary" onclick="nextOnboarding()">Next →</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const GROQ_API_KEY = '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';
-const OWNER_EMAIL = 'chaceom@icloud.com';
+const OWNER_EMAIL = 'your@email.com'; // ← Change this to your email
 const OWNER_DAILY_LIMIT = 50;
 const FREE_DAILY_LIMIT = 5;
+const AFFILIATE_COMMISSION = 30; // % commission for referrals
+
+const ONBOARDING_STEPS = [
+  {icon:'👋', title:'Welcome to WriteAI!', text:'Your personalised AI writing suite is ready. Here\'s a quick tour to get you started.'},
+  {icon:'🛠️', title:'20+ writing tools', text:'Use the sidebar to access tools for blogs, emails, social media, video scripts, ads and more. Star your favourites!'},
+  {icon:'📋', title:'Your daily tasks', text:'Your dashboard shows personalised tasks based on your goals. Tick them off as you go to stay on track.'},
+  {icon:'🎁', title:'Earn free Pro days', text:'Share your referral link with friends. Every signup earns you a free Pro day — and they earn one too!'},
+];
 
 const tools = {
-  blog:      { name:'Blog Post Writer',       cat:'Writing',  isPro:false, icon:'✍️',  placeholder:'Enter your blog topic, e.g. "How to grow herbs indoors"', options:[{id:'tone',label:'Tone',values:['Professional','Casual','Friendly','Authoritative']},{id:'length',label:'Length',values:['Short (300w)','Medium (600w)','Long (1000w)']}], buildPrompt(i,o){return `Write a ${o.length||'medium'} blog post about: "${i}". Tone: ${o.tone||'professional'}. Include catchy title, intro, 3-4 subheadings, conclusion. SEO-friendly.`;} },
-  email:     { name:'Cold Email Generator',   cat:'Writing',  isPro:false, icon:'📧',  placeholder:'Describe your offer and target, e.g. "SEO services to restaurants"', options:[{id:'style',label:'Style',values:['Direct','Friendly','Value-first','Story-based']}], buildPrompt(i,o){return `Write a cold email for: "${i}". Style: ${o.style||'friendly'}. Under 150 words. Include subject line, hook, value prop, one CTA.`;} },
-  rewrite:   { name:'Content Rewriter',       cat:'Writing',  isPro:false, icon:'🔄',  placeholder:'Paste the content you want to rewrite...', options:[{id:'tone',label:'New tone',values:['Simpler','More formal','More casual','More persuasive','Shorter']}], buildPrompt(i,o){return `Rewrite the following to be ${o.tone||'clearer and more engaging'}. Keep the core message:\n\n"${i}"`;} },
-  twitter:   { name:'Twitter/X Thread',       cat:'Social',   isPro:false, icon:'🐦',  placeholder:'What topic do you want to thread about? e.g. "5 lessons from building a SaaS"', options:[{id:'tweets',label:'Length',values:['5 tweets','8 tweets','10 tweets']}], buildPrompt(i,o){return `Write a ${o.tweets||'5 tweets'} Twitter/X thread about: "${i}". Start with a hook tweet, number each tweet, end with a CTA. Each tweet under 280 chars.`;} },
-  instagram: { name:'Instagram Caption',      cat:'Social',   isPro:true,  icon:'📸',  placeholder:'Describe your post, e.g. "Sunset photo at the beach, feeling grateful"', options:[{id:'vibe',label:'Vibe',values:['Inspirational','Fun & casual','Professional','Storytelling']}], buildPrompt(i,o){return `Write an Instagram caption for: "${i}". Vibe: ${o.vibe||'casual'}. Include 2-3 relevant emojis, a hook first line, body text, and 10 relevant hashtags.`;} },
-  tiktok:    { name:'TikTok Caption',         cat:'Social',   isPro:true,  icon:'📱',  placeholder:'Describe your TikTok video, e.g. "Cooking pasta in 60 seconds"', options:[{id:'style',label:'Style',values:['Trendy & fun','Educational','Storytelling','Viral hook']}], buildPrompt(i,o){return `Write a TikTok caption for a video about: "${i}". Style: ${o.style||'trendy'}. Include a hook, short punchy caption, trending hashtags, and a call to follow.`;} },
-  ytscript:  { name:'YouTube Script',         cat:'Video',    isPro:true,  icon:'🎥',  placeholder:'Enter your video topic, e.g. "How to start a podcast in 2025"', options:[{id:'length',label:'Length',values:['Short (3-5 min)','Medium (8-10 min)','Long (15+ min)']}], buildPrompt(i,o){return `Write a full YouTube script for a ${o.length||'medium'} video about: "${i}". Include: hook (first 30 secs), intro, 3-5 main sections with talking points, transitions, and a strong CTA outro.`;} },
-  yttitle:   { name:'YouTube Title & Desc',   cat:'Video',    isPro:true,  icon:'🎬',  placeholder:'Describe your video, e.g. "Tutorial on making sourdough bread"', options:[], buildPrompt(i,o){return `Generate YouTube metadata for a video about: "${i}". Provide: 1) 5 click-worthy title options, 2) Full SEO description (200 words), 3) 15 tags, 4) 3 thumbnail text ideas.`;} },
-  pitch:     { name:'Pitch Deck Copy',        cat:'Business', isPro:true,  icon:'📊',  placeholder:'Describe your business/startup, e.g. "AI tool for small restaurant bookings"', options:[{id:'slide',label:'Slide',values:['Problem','Solution','Market Size','Business Model','Full deck outline']}], buildPrompt(i,o){return `Write pitch deck content for the "${o.slide||'full deck outline'}" slide for this business: "${i}". Make it clear, compelling, and investor-ready.`;} },
-  proposal:  { name:'Business Proposal',      cat:'Business', isPro:true,  icon:'📄',  placeholder:'Describe the project and client, e.g. "Website redesign for a law firm"', options:[{id:'tone',label:'Tone',values:['Formal','Friendly-professional','Bold & confident']}], buildPrompt(i,o){return `Write a business proposal for: "${i}". Tone: ${o.tone||'professional'}. Include: executive summary, scope of work, deliverables, timeline, pricing section placeholder, and next steps.`;} },
-  product:   { name:'Product Description',    cat:'Business', isPro:true,  icon:'🛒',  placeholder:'Describe your product, e.g. "Handmade leather wallet, slim, 4 card slots"', options:[{id:'platform',label:'Platform',values:['Shopify','Amazon','Etsy','General']}], buildPrompt(i,o){return `Write a compelling product description for ${o.platform||'e-commerce'} for: "${i}". Include bullet features, benefits-focused language, and persuasive closing.`;} },
-  bio:       { name:'Bio Writer',             cat:'Branding', isPro:true,  icon:'👤',  placeholder:'Describe yourself, e.g. "Marketing consultant, 10 years exp, helps SaaS companies"', options:[{id:'platform',label:'Platform',values:['LinkedIn','Twitter/X','Instagram','Website','General']}], buildPrompt(i,o){return `Write a professional bio for ${o.platform||'general use'} for: "${i}". Make it engaging, credible, and end with what you help people achieve.`;} },
-  cv:        { name:'CV Summary',             cat:'Branding', isPro:true,  icon:'📋',  placeholder:'Paste your experience/skills, e.g. "5 years software dev, React, Node, led team of 4"', options:[{id:'role',label:'Target role',values:['Tech / Engineering','Marketing / Creative','Business / Management','General']}], buildPrompt(i,o){return `Write a powerful CV personal summary for a ${o.role||'general'} role based on: "${i}". 3-4 sentences. Highlight key strengths, experience, and career goal.`;} },
-  linkedin:  { name:'LinkedIn Post',          cat:'Branding', isPro:true,  icon:'💼',  placeholder:'What do you want to post about? e.g. "Lessons from my first year freelancing"', options:[{id:'format',label:'Format',values:['Story','Tips list','Insight','Controversial take']}], buildPrompt(i,o){return `Write a LinkedIn post in ${o.format||'story'} format about: "${i}". Short paragraphs, strong hook, end with a question. 150-250 words.`;} },
-  seo:       { name:'SEO Meta Generator',     cat:'Branding', isPro:true,  icon:'🔍',  placeholder:'What is your page about? e.g. "Vegan chocolate cake recipe blog post"', options:[], buildPrompt(i,o){return `Generate SEO metadata for: "${i}". Provide: 1) Three title options (under 60 chars), 2) Meta description (under 155 chars), 3) 8 target keywords.`;} }
+  blog:        {name:'Blog Post Writer',    cat:'Writing',    isPro:false, icon:'✍️',  placeholder:'Enter your blog topic, e.g. "How to grow herbs indoors"', options:[{id:'tone',label:'Tone',values:['Professional','Casual','Friendly','Authoritative']},{id:'length',label:'Length',values:['Short (300w)','Medium (600w)','Long (1000w)']}], buildPrompt(i,o){return `Write a ${o.length||'medium'} blog post about: "${i}". Tone: ${o.tone||'professional'}. Include catchy title, intro, 3-4 subheadings, conclusion. SEO-friendly.`;}},
+  email:       {name:'Cold Email Generator',cat:'Writing',    isPro:false, icon:'📧',  placeholder:'Describe your offer and target, e.g. "SEO services to restaurants"', options:[{id:'style',label:'Style',values:['Direct','Friendly','Value-first','Story-based']}], buildPrompt(i,o){return `Write a cold email for: "${i}". Style: ${o.style||'friendly'}. Under 150 words. Include subject line, hook, value prop, one CTA.`;}},
+  rewrite:     {name:'Content Rewriter',    cat:'Writing',    isPro:false, icon:'🔄',  placeholder:'Paste the content you want to rewrite...', options:[{id:'tone',label:'New tone',values:['Simpler','More formal','More casual','More persuasive','Shorter']}], buildPrompt(i,o){return `Rewrite the following to be ${o.tone||'clearer and more engaging'}. Keep the core message:\n\n"${i}"`;}},
+  emailseq:    {name:'Email Sequence',      cat:'Writing',    isPro:true,  icon:'💌',  placeholder:'Describe your product/service and audience, e.g. "SaaS tool for freelancers, 5-email welcome sequence"', options:[{id:'emails',label:'Emails',values:['3 emails','5 emails','7 emails']},{id:'goal',label:'Goal',values:['Welcome & onboard','Nurture leads','Re-engage','Launch']}], buildPrompt(i,o){return `Write a ${o.emails||'5'} email ${o.goal||'nurture'} sequence for: "${i}". Each email: subject line, preview text, body. Space them 2-3 days apart. Include clear CTAs.`;}},
+  coverletter: {name:'Cover Letter',        cat:'Writing',    isPro:true,  icon:'📝',  placeholder:'Paste the job description and your key experience, e.g. "Marketing manager role at tech startup, 5 years experience"', options:[{id:'tone',label:'Tone',values:['Professional','Enthusiastic','Confident','Concise']}], buildPrompt(i,o){return `Write a compelling cover letter in ${o.tone||'professional'} tone for: "${i}". 3 paragraphs: hook/opening, relevant experience, closing CTA. Under 300 words.`;}},
+  pressrelease:{name:'Press Release',       cat:'Writing',    isPro:true,  icon:'📰',  placeholder:'Describe your announcement, e.g. "New AI writing tool launch targeting content creators"', options:[{id:'type',label:'Type',values:['Product launch','Company news','Partnership','Event']}], buildPrompt(i,o){return `Write a professional ${o.type||'product launch'} press release for: "${i}". Include: headline, dateline, lead paragraph, body with quotes, boilerplate, contact info placeholder.`;}},
+  twitter:     {name:'Twitter/X Thread',    cat:'Social',     isPro:false, icon:'🐦',  placeholder:'What topic do you want to thread about? e.g. "5 lessons from building a SaaS"', options:[{id:'tweets',label:'Length',values:['5 tweets','8 tweets','10 tweets']}], buildPrompt(i,o){return `Write a ${o.tweets||'5 tweets'} Twitter/X thread about: "${i}". Start with a hook tweet, number each tweet, end with CTA. Each tweet under 280 chars.`;}},
+  adcopy:      {name:'Ad Copy',             cat:'Social',     isPro:true,  icon:'📣',  placeholder:'Describe your product and audience, e.g. "Fitness app for busy mums aged 30-45"', options:[{id:'platform',label:'Platform',values:['Facebook/Instagram','Google','TikTok','LinkedIn']},{id:'goal',label:'Goal',values:['Awareness','Clicks','Conversions','App installs']}], buildPrompt(i,o){return `Write ${o.platform||'Facebook'} ad copy for ${o.goal||'conversions'} for: "${i}". Include: primary text (125 chars), headline (40 chars), description (30 chars), and 3 variations.`;}},
+  instagram:   {name:'Instagram Caption',   cat:'Social',     isPro:true,  icon:'📸',  placeholder:'Describe your post, e.g. "Sunset photo at the beach, feeling grateful"', options:[{id:'vibe',label:'Vibe',values:['Inspirational','Fun & casual','Professional','Storytelling']}], buildPrompt(i,o){return `Write an Instagram caption for: "${i}". Vibe: ${o.vibe||'casual'}. Hook first line, body, 2-3 emojis, 10 relevant hashtags.`;}},
+  tiktok:      {name:'TikTok Caption',      cat:'Social',     isPro:true,  icon:'📱',  placeholder:'Describe your TikTok video, e.g. "Cooking pasta in 60 seconds"', options:[{id:'style',label:'Style',values:['Trendy & fun','Educational','Storytelling','Viral hook']}], buildPrompt(i,o){return `Write a TikTok caption for: "${i}". Style: ${o.style||'trendy'}. Hook, punchy caption, trending hashtags, call to follow.`;}},
+  ytscript:    {name:'YouTube Script',      cat:'Video',      isPro:true,  icon:'🎥',  placeholder:'Enter your video topic, e.g. "How to start a podcast in 2025"', options:[{id:'length',label:'Length',values:['Short (3-5 min)','Medium (8-10 min)','Long (15+ min)']}], buildPrompt(i,o){return `Write a full YouTube script for a ${o.length||'medium'} video about: "${i}". Include: hook (first 30 secs), intro, 3-5 main sections, transitions, strong CTA outro.`;}},
+  yttitle:     {name:'YouTube Title & Desc',cat:'Video',      isPro:true,  icon:'🎬',  placeholder:'Describe your video, e.g. "Tutorial on making sourdough bread"', options:[], buildPrompt(i,o){return `Generate YouTube metadata for: "${i}". Provide: 1) 5 click-worthy titles, 2) Full SEO description (200 words), 3) 15 tags, 4) 3 thumbnail text ideas.`;}},
+  pitch:       {name:'Pitch Deck Copy',     cat:'Business',   isPro:true,  icon:'📊',  placeholder:'Describe your business/startup, e.g. "AI tool for small restaurant bookings"', options:[{id:'slide',label:'Slide',values:['Problem','Solution','Market Size','Business Model','Full deck outline']}], buildPrompt(i,o){return `Write pitch deck content for the "${o.slide||'full deck outline'}" slide for: "${i}". Clear, compelling, investor-ready.`;}},
+  product:     {name:'Product Description', cat:'Business',   isPro:true,  icon:'🛒',  placeholder:'Describe your product, e.g. "Handmade leather wallet, slim, 4 card slots"', options:[{id:'platform',label:'Platform',values:['Shopify','Amazon','Etsy','General']}], buildPrompt(i,o){return `Write a compelling product description for ${o.platform||'e-commerce'} for: "${i}". Bullet features, benefits-focused, persuasive closing.`;}},
+  bio:         {name:'Bio Writer',          cat:'Branding',   isPro:true,  icon:'👤',  placeholder:'Describe yourself, e.g. "Marketing consultant, 10 years exp, helps SaaS companies"', options:[{id:'platform',label:'Platform',values:['LinkedIn','Twitter/X','Instagram','Website']}], buildPrompt(i,o){return `Write a professional bio for ${o.platform||'general use'} for: "${i}". Engaging, credible, end with what you help people achieve.`;}},
+  linkedin:    {name:'LinkedIn Post',       cat:'Branding',   isPro:true,  icon:'💼',  placeholder:'What do you want to post about? e.g. "Lessons from my first year freelancing"', options:[{id:'format',label:'Format',values:['Story','Tips list','Insight','Controversial take']}], buildPrompt(i,o){return `Write a LinkedIn post in ${o.format||'story'} format about: "${i}". Short paragraphs, strong hook, end with question. 150-250 words.`;}}
 };
 
-let user = null, surveyAnswers = {}, currentTool = 'blog', isPro = false, currentOutput = '', isLogin = true, taskState = [], stepAnswers = {};
+let user=null, surveyAnswers={}, currentTool='blog', isPro=false, currentOutput='', isLogin=true, taskState=[], stepAnswers={}, obStep=0, favourites=[], allUsers=[];
 
-function getTodayKey(email){ return 'writeai_uses_' + email + '_' + new Date().toDateString(); }
-function getDailyLimit(email){ return email === OWNER_EMAIL ? OWNER_DAILY_LIMIT : (isPro ? 999999 : FREE_DAILY_LIMIT); }
-function getUsesLeft(){
-  if(!user) return FREE_DAILY_LIMIT;
-  const used = parseInt(localStorage.getItem(getTodayKey(user.email))||'0');
-  return Math.max(0, getDailyLimit(user.email) - used);
-}
-function incrementUses(){
-  if(!user) return;
-  const key = getTodayKey(user.email);
-  const used = parseInt(localStorage.getItem(key)||'0');
-  localStorage.setItem(key, used+1);
-  updateUsageUI();
-}
+// UTILS
+function getTodayKey(email){return 'writeai_uses_'+email+'_'+new Date().toDateString();}
+function getDailyLimit(email){return email===OWNER_EMAIL?OWNER_DAILY_LIMIT:(isPro?999999:FREE_DAILY_LIMIT);}
+function getUsesLeft(){if(!user)return FREE_DAILY_LIMIT;const used=parseInt(localStorage.getItem(getTodayKey(user.email))||'0');return Math.max(0,getDailyLimit(user.email)-used);}
+function incrementUses(){if(!user)return;const key=getTodayKey(user.email);localStorage.setItem(key,(parseInt(localStorage.getItem(key)||'0')+1).toString());updateUsageUI();}
 function updateUsageUI(){
-  const left = getUsesLeft();
-  const limit = getDailyLimit(user?.email);
-  const used = limit - left;
-  const isOwner = user?.email === OWNER_EMAIL;
-  const label = isOwner ? `Owner: ${used}/${limit} today` : (isPro ? 'Pro: unlimited' : `Free: ${used}/${FREE_DAILY_LIMIT} today`);
-  const el = document.getElementById('usage-label'); if(el) el.textContent = label;
-  const bar = document.getElementById('bar-fill'); if(bar) bar.style.width = Math.min(100,(used/limit)*100)+'%';
-  const plan = document.getElementById('sidebar-plan'); if(plan) plan.innerHTML = (isOwner?'Owner account':'(isPro?"Pro plan":"Free plan")') + ' · <span id="uses-left-label">'+left+' uses left</span>';
-  const planEl = document.getElementById('sidebar-plan');
-  if(planEl) planEl.innerHTML = (isOwner ? '👑 Owner account' : isPro ? '⭐ Pro plan' : 'Free plan') + ' &nbsp;·&nbsp; ' + left + ' left today';
+  const left=getUsesLeft(),limit=getDailyLimit(user?.email),used=limit-left;
+  const isOwner=user?.email===OWNER_EMAIL;
+  const lbl=document.getElementById('usage-label');if(lbl)lbl.textContent=isOwner?`Owner: ${used}/${limit}`:(isPro?'Pro: unlimited':`Free: ${used}/${FREE_DAILY_LIMIT}`);
+  const bar=document.getElementById('bar-fill');if(bar)bar.style.width=Math.min(100,(used/limit)*100)+'%';
+  const sp=document.getElementById('sidebar-plan');if(sp)sp.textContent=(isOwner?'👑 Owner':(isPro?'⭐ Pro':'Free'))+' · '+left+' left';
 }
 
-function showPage(page){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+page).classList.add('active');
-  if(page==='app') setTimeout(()=>{ if(document.getElementById('main-content').innerHTML==='') openSection('dashboard'); },50);
-}
+function showPage(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+page).classList.add('active');if(page==='app')setTimeout(()=>{if(!document.getElementById('main-content').innerHTML.trim())openSection('dashboard');},50);}
+function switchTab(tab){isLogin=tab==='login';document.querySelectorAll('.auth-tab').forEach((t,i)=>t.classList.toggle('active',(i===0&&isLogin)||(i===1&&!isLogin)));document.getElementById('name-field').style.display=isLogin?'none':'block';document.getElementById('ref-field').style.display=isLogin?'none':'block';}
 
-function switchTab(tab){
-  isLogin = tab==='login';
-  document.querySelectorAll('.auth-tab').forEach((t,i)=>t.classList.toggle('active',(i===0&&isLogin)||(i===1&&!isLogin)));
-  document.getElementById('name-field').style.display = isLogin?'none':'block';
-}
+function generateReferralCode(email){return 'WRITE-'+btoa(email).slice(0,6).toUpperCase();}
+function getReferralKey(email){return 'writeai_referrals_'+email;}
 
 function handleAuth(){
-  const email = document.getElementById('auth-email').value.trim();
-  const password = document.getElementById('auth-password').value.trim();
+  const email=document.getElementById('auth-email').value.trim();
+  const password=document.getElementById('auth-password').value.trim();
   if(!email||!password){alert('Please fill in all fields');return;}
-  const name = isLogin?(email.split('@')[0]):(document.getElementById('auth-name').value.trim()||email.split('@')[0]);
-  user = {email, name, isGuest:false};
-  const existing = localStorage.getItem('writeai_survey_'+email);
-  if(existing){surveyAnswers=JSON.parse(existing);showPage('app');}
-  else showPage('survey');
+  const name=isLogin?(email.split('@')[0]):(document.getElementById('auth-name').value.trim()||email.split('@')[0]);
+  const refCode=document.getElementById('auth-ref')?.value.trim();
+
+  // Track user
+  const usersKey='writeai_all_users';
+  const users=JSON.parse(localStorage.getItem(usersKey)||'[]');
+  const existingUser=users.find(u=>u.email===email);
+  if(!existingUser){
+    const newUser={email,name,plan:'free',joined:new Date().toLocaleDateString(),uses:0};
+    users.push(newUser);
+    localStorage.setItem(usersKey,JSON.stringify(users));
+    // Handle referral
+    if(refCode){
+      // Find referrer and give them a bonus day
+      const allU=JSON.parse(localStorage.getItem(usersKey)||'[]');
+      allU.forEach(u=>{
+        if(generateReferralCode(u.email)===refCode){
+          const bonusKey='writeai_bonus_'+u.email;
+          localStorage.setItem(bonusKey,(parseInt(localStorage.getItem(bonusKey)||'0')+5).toString());
+          const refs=JSON.parse(localStorage.getItem(getReferralKey(u.email))||'[]');
+          refs.push({email,joined:new Date().toLocaleDateString()});
+          localStorage.setItem(getReferralKey(u.email),JSON.stringify(refs));
+        }
+      });
+      // Give new user bonus too
+      const bonusKey='writeai_bonus_'+email;
+      localStorage.setItem(bonusKey,'5');
+    }
+  }
+
+  user={email,name,isGuest:false};
+  favourites=JSON.parse(localStorage.getItem('writeai_favs_'+email)||'[]');
+  const existing=localStorage.getItem('writeai_survey_'+email);
+  if(existing){surveyAnswers=JSON.parse(existing);showPage('app');setupAdmin();}
+  else{showPage('survey');}
 }
 
-function guestLogin(){
-  user={email:'guest_'+Date.now(),name:'Guest',isGuest:true};
-  showPage('survey');
-}
-
+function guestLogin(){user={email:'guest_'+Date.now(),name:'Guest',isGuest:true};favourites=[];showPage('survey');}
 function logout(){user=null;surveyAnswers={};taskState=[];showPage('landing');}
+function setupAdmin(){const btn=document.getElementById('nav-admin');if(btn)btn.style.display=user?.email===OWNER_EMAIL?'flex':'none';}
 
 function toggleDark(){
   document.body.classList.toggle('dark');
-  const isDark = document.body.classList.contains('dark');
-  localStorage.setItem('writeai_dark', isDark);
-  document.querySelectorAll('.dark-toggle, #app-dark-btn').forEach(b=>b.textContent=isDark?'☀️':'🌙');
+  const d=document.body.classList.contains('dark');
+  localStorage.setItem('writeai_dark',d);
+  document.querySelectorAll('.dark-toggle').forEach(b=>b.textContent=d?'☀️':'🌙');
 }
 
 function selectOption(step,el,value){
   el.closest('.survey-options').querySelectorAll('.survey-option').forEach(o=>o.classList.remove('selected'));
-  el.classList.add('selected');
-  stepAnswers[step]=value;
+  el.classList.add('selected');stepAnswers[step]=value;
   document.getElementById('next-'+step).disabled=false;
 }
 function nextStep(current){
@@ -518,80 +590,119 @@ function nextStep(current){
   document.getElementById('step-'+(current+1)).classList.add('active');
   document.getElementById('dot-'+(current+1)).classList.add('done');
 }
-function prevStep(current){
-  document.getElementById('step-'+current).classList.remove('active');
-  document.getElementById('step-'+(current-1)).classList.add('active');
-}
+function prevStep(current){document.getElementById('step-'+current).classList.remove('active');document.getElementById('step-'+(current-1)).classList.add('active');}
 function finishSurvey(){
   surveyAnswers['q5']=stepAnswers[4];
-  if(user) localStorage.setItem('writeai_survey_'+user.email, JSON.stringify(surveyAnswers));
-  showPage('app');
+  if(user)localStorage.setItem('writeai_survey_'+user.email,JSON.stringify(surveyAnswers));
+  showPage('app');setupAdmin();
+  // Show onboarding for new users
+  const seen=localStorage.getItem('writeai_ob_'+user?.email);
+  if(!seen){obStep=0;showOnboarding();}
+}
+
+// ONBOARDING
+function showOnboarding(){
+  const s=ONBOARDING_STEPS[obStep];
+  document.getElementById('ob-icon').textContent=s.icon;
+  document.getElementById('ob-title').textContent=s.title;
+  document.getElementById('ob-text').textContent=s.text;
+  document.querySelectorAll('.onboarding-dot').forEach((d,i)=>d.classList.toggle('active',i===obStep));
+  document.getElementById('onboarding-overlay').style.display='flex';
+}
+function nextOnboarding(){obStep++;if(obStep>=ONBOARDING_STEPS.length)skipOnboarding();else showOnboarding();}
+function skipOnboarding(){document.getElementById('onboarding-overlay').style.display='none';if(user)localStorage.setItem('writeai_ob_'+user.email,'1');openSection('dashboard');}
+
+// FAVOURITES
+function toggleFav(e,toolId){
+  e.stopPropagation();
+  const idx=favourites.indexOf(toolId);
+  if(idx>-1)favourites.splice(idx,1);else favourites.push(toolId);
+  if(user&&!user.isGuest)localStorage.setItem('writeai_favs_'+user.email,JSON.stringify(favourites));
+  updateFavStars();
+}
+function updateFavStars(){
+  document.querySelectorAll('.fav-star').forEach(s=>{
+    const btn=s.closest('.sidebar-item');
+    if(btn){const id=btn.id.replace('nav-','');s.classList.toggle('active',favourites.includes(id));}
+  });
+}
+
+function searchTools(query){
+  const q=query.toLowerCase();
+  document.querySelectorAll('.tool-nav').forEach(item=>{
+    const name=item.getAttribute('data-name')||'';
+    item.classList.toggle('hidden',q.length>0&&!name.includes(q));
+  });
 }
 
 function getPersonalisedTasks(){
-  const role=surveyAnswers.q1||'', goal=surveyAnswers.q2||'', content=surveyAnswers.q3||'', challenge=surveyAnswers.q5||'';
+  const role=surveyAnswers.q1||'',goal=surveyAnswers.q2||'',content=surveyAnswers.q3||'',challenge=surveyAnswers.q5||'';
   const tasks=[];
   if(content.includes('Blog')){tasks.push({text:'Write one blog post outline using the Blog Writer',tag:'Blog',done:false});tasks.push({text:'Research 3 trending topics in your niche',tag:'Research',done:false});}
-  if(content.includes('Social')){tasks.push({text:'Draft a Twitter thread about your expertise',tag:'Twitter',done:false});tasks.push({text:'Write 3 Instagram captions for this week',tag:'Instagram',done:false});}
-  if(content.includes('Video')){tasks.push({text:'Script your next YouTube video intro',tag:'YouTube',done:false});tasks.push({text:'Generate titles for your next 3 videos',tag:'YouTube',done:false});}
-  if(content.includes('Business')||role.includes('Business')){tasks.push({text:'Rewrite your top product description',tag:'Product',done:false});tasks.push({text:'Draft a proposal template for new clients',tag:'Business',done:false});}
-  if(goal.includes('brand')||role.includes('Job')){tasks.push({text:'Update your LinkedIn bio using the Bio Writer',tag:'Branding',done:false});tasks.push({text:'Refresh your CV summary',tag:'CV',done:false});}
-  if(challenge.includes('blank')||challenge.includes('started')){tasks.push({text:'Use any tool with just a single keyword as input',tag:'Tip',done:false});}
-  if(challenge.includes('time')){tasks.push({text:'Set a 15-min writing sprint using AI to draft first',tag:'Tip',done:false});}
-  if(challenge.includes('convert')){tasks.push({text:'Run your best piece through the Content Rewriter',tag:'Optimise',done:false});}
-  if(tasks.length<3){tasks.push({text:'Try the Blog Writer on a topic you care about',tag:'Start',done:false});tasks.push({text:'Generate a cold email for your dream client',tag:'Email',done:false});tasks.push({text:'Create a Twitter thread on your area of expertise',tag:'Twitter',done:false});}
+  if(content.includes('Social')){tasks.push({text:'Draft a Twitter thread about your expertise',tag:'Twitter',done:false});tasks.push({text:'Write 3 Instagram captions for this week',tag:'Social',done:false});}
+  if(content.includes('Video')){tasks.push({text:'Script your next YouTube video intro',tag:'YouTube',done:false});}
+  if(content.includes('Business')||role.includes('Business')){tasks.push({text:'Write ad copy for your top product',tag:'Ads',done:false});tasks.push({text:'Draft a 3-email welcome sequence',tag:'Email',done:false});}
+  if(goal.includes('brand')||role.includes('Job')){tasks.push({text:'Update your LinkedIn bio using the Bio Writer',tag:'Branding',done:false});tasks.push({text:'Write a cover letter for your dream role',tag:'Career',done:false});}
+  if(challenge.includes('convert')){tasks.push({text:'Create Facebook ad copy for your best offer',tag:'Ads',done:false});}
+  if(tasks.length<3){tasks.push({text:'Try the Blog Writer on a topic you care about',tag:'Start',done:false});tasks.push({text:'Generate a cold email for your dream client',tag:'Email',done:false});tasks.push({text:'Write a Twitter thread on your expertise',tag:'Twitter',done:false});}
   return tasks.slice(0,6);
 }
 
 function getRecommendedTools(){
-  const content=surveyAnswers.q3||'', goal=surveyAnswers.q2||'', role=surveyAnswers.q1||'';
+  const content=surveyAnswers.q3||'',goal=surveyAnswers.q2||'',role=surveyAnswers.q1||'';
   const recs=[];
-  if(content.includes('Blog')) recs.push({id:'blog',reason:'Matches your blog focus'});
-  if(content.includes('Social')) recs.push({id:'twitter',reason:'Grow your social presence'});
-  if(content.includes('Video')) recs.push({id:'ytscript',reason:'Script your next video'});
-  if(content.includes('Business')||role.includes('Business')) recs.push({id:'product',reason:'Convert more customers'});
-  if(goal.includes('brand')||role.includes('Job')) recs.push({id:'bio',reason:'Stand out professionally'});
-  if(goal.includes('leads')) recs.push({id:'email',reason:'Generate more leads'});
-  if(recs.length<3){recs.push({id:'blog',reason:'Best place to start'});recs.push({id:'twitter',reason:'Build your audience'});}
+  if(content.includes('Blog'))recs.push({id:'blog',reason:'Matches your blog focus'});
+  if(content.includes('Social'))recs.push({id:'twitter',reason:'Build your audience fast'});
+  if(content.includes('Video'))recs.push({id:'ytscript',reason:'Script your next video'});
+  if(content.includes('Business')||role.includes('Business'))recs.push({id:'adcopy',reason:'Convert more customers'});
+  if(goal.includes('leads'))recs.push({id:'emailseq',reason:'Nurture your leads'});
+  if(goal.includes('brand')||role.includes('Job'))recs.push({id:'bio',reason:'Stand out professionally'});
+  if(recs.length<3){recs.push({id:'blog',reason:'Best place to start'});recs.push({id:'twitter',reason:'Grow your audience'});}
   return recs.slice(0,4);
 }
 
-function saveToHistory(toolId, input, output){
-  if(!user) return;
-  const key = 'writeai_history_'+user.email;
-  const history = JSON.parse(localStorage.getItem(key)||'[]');
-  history.unshift({id:Date.now(), tool:toolId, toolName:tools[toolId].name, input:input.slice(0,100), output, time:new Date().toLocaleString()});
-  if(history.length>50) history.pop();
-  localStorage.setItem(key, JSON.stringify(history));
+function saveToHistory(toolId,input,output){
+  if(!user)return;
+  const key='writeai_history_'+user.email;
+  const history=JSON.parse(localStorage.getItem(key)||'[]');
+  history.unshift({id:Date.now(),tool:toolId,toolName:tools[toolId].name,input:input.slice(0,100),output,time:new Date().toLocaleString()});
+  if(history.length>100)history.pop();
+  localStorage.setItem(key,JSON.stringify(history));
 }
-
-function getHistory(){
-  if(!user) return [];
-  return JSON.parse(localStorage.getItem('writeai_history_'+user.email)||'[]');
-}
+function getHistory(){if(!user)return[];return JSON.parse(localStorage.getItem('writeai_history_'+user.email)||'[]');}
 
 function openSection(section){
   document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));
-  const navEl = document.getElementById('nav-'+section); if(navEl) navEl.classList.add('active');
-  if(section==='dashboard') renderDashboard();
-  else if(section==='history') renderHistory();
+  const navEl=document.getElementById('nav-'+section);if(navEl)navEl.classList.add('active');
+  const mc=document.getElementById('main-content');
+  if(section==='dashboard')renderDashboard();
+  else if(section==='history')renderHistory();
+  else if(section==='referral')renderReferral();
+  else if(section==='favourites')renderFavourites();
+  else if(section==='admin')renderAdmin();
 }
 
 function renderDashboard(){
   const name=user?.name||'there';
-  const av=document.getElementById('sidebar-avatar'); if(av) av.textContent=name[0].toUpperCase();
-  const sn=document.getElementById('sidebar-name'); if(sn) sn.textContent=name;
+  const av=document.getElementById('sidebar-avatar');if(av)av.textContent=name[0].toUpperCase();
+  const sn=document.getElementById('sidebar-name');if(sn)sn.textContent=name;
   document.getElementById('nav-username').textContent=name;
-  updateUsageUI();
-  if(taskState.length===0) taskState=getPersonalisedTasks();
+  updateUsageUI();updateFavStars();
+  if(taskState.length===0)taskState=getPersonalisedTasks();
   const recs=getRecommendedTools();
-  const toolIcons={blog:'✍️',email:'📧',rewrite:'🔄',twitter:'🐦',instagram:'📸',tiktok:'📱',ytscript:'🎥',yttitle:'🎬',pitch:'📊',proposal:'📄',product:'🛒',bio:'👤',cv:'📋',linkedin:'💼',seo:'🔍'};
-  const hasAnswers=Object.keys(surveyAnswers).length>0;
   const history=getHistory().slice(0,3);
+  const totalGens=getHistory().length;
+  const refs=JSON.parse(localStorage.getItem(getReferralKey(user?.email||''))||'[]').length;
+  const bonusDays=parseInt(localStorage.getItem('writeai_bonus_'+(user?.email||''))||'0');
   document.getElementById('main-content').innerHTML=`
     <div class="dash-greeting">Welcome back, ${name} 👋</div>
-    <div class="dash-sub">${hasAnswers?'Your personalised writing plan for today.':'Complete your profile to personalise your dashboard.'}</div>
-    ${!hasAnswers?`<button class="btn-primary" onclick="showPage('survey')" style="margin-bottom:2rem;">Take the survey →</button>`:''}
+    <div class="dash-sub">Your personalised writing plan for today.</div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-num">${totalGens}</div><div class="stat-label">Total generations</div></div>
+      <div class="stat-card"><div class="stat-num">${refs}</div><div class="stat-label">Referrals made</div></div>
+      <div class="stat-card"><div class="stat-num">${bonusDays}</div><div class="stat-label">Bonus uses earned</div></div>
+      <div class="stat-card"><div class="stat-num">${getUsesLeft()}</div><div class="stat-label">Uses left today</div></div>
+    </div>
     <div class="tasks-section">
       <div class="tasks-title">📋 Today's tasks</div>
       ${taskState.map((task,i)=>`
@@ -601,131 +712,231 @@ function renderDashboard(){
           <span class="task-tag">${task.tag}</span>
         </div>`).join('')}
     </div>
-    <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin:0 0 0.8rem;">⭐ Recommended for you</p>
+    <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;margin:0 0 0.8rem;">⭐ Recommended for you</p>
     <div class="dash-grid">
       ${recs.map(r=>`
-        <div class="dash-card ${!tools[r.id].isPro||isPro?'highlight':''}" onclick="openTool('${r.id}')" style="cursor:pointer;">
-          <div class="dash-card-icon">${toolIcons[r.id]}</div>
+        <div class="dash-card ${!tools[r.id].isPro||isPro?'highlight':''}" onclick="openTool('${r.id}')">
+          <div class="dash-card-icon">${tools[r.id].icon}</div>
           <h4>${tools[r.id].name}</h4>
           <p>${r.reason}</p>
-          ${tools[r.id].isPro&&!isPro?'<span style="font-size:10px;color:#854F0B;background:#faeeda;padding:2px 7px;border-radius:4px;display:inline-block;margin-top:5px;">PRO</span>':''}
+          ${tools[r.id].isPro&&!isPro?'<span style="font-size:10px;color:#854F0B;background:#faeeda;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:4px;">PRO</span>':''}
         </div>`).join('')}
     </div>
     ${history.length>0?`
-    <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin:1.5rem 0 0.8rem;">🕐 Recent history</p>
+    <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;margin:0 0 0.8rem;">🕐 Recent history</p>
     ${history.map(h=>`
-      <div class="history-item" onclick="loadFromHistory('${h.id}')">
+      <div class="history-item" onclick="loadFromHistory(${h.id})">
         <div class="history-item-header"><span class="history-tool">${h.toolName}</span><span class="history-time">${h.time}</span></div>
         <div class="history-input">${h.input}</div>
         <div class="history-preview">${h.output}</div>
       </div>`).join('')}`:''}`;
-  document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));
-  const nd=document.getElementById('nav-dashboard'); if(nd) nd.classList.add('active');
 }
 
 function renderHistory(){
   const history=getHistory();
-  const mc=document.getElementById('main-content');
-  mc.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;"><div><h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;">Generation history</h2><p style="font-size:13px;color:var(--muted);margin-top:3px;">${history.length} saved generations</p></div>${history.length>0?`<button class="action-btn" onclick="clearHistory()">Clear all</button>`:''}</div>
-  ${history.length===0?`<div class="history-empty">No history yet. Start generating content and it will appear here.</div>`:
-  history.map(h=>`
-    <div class="history-item">
-      <div class="history-item-header"><span class="history-tool">${h.toolName}</span><span class="history-time">${h.time}</span></div>
-      <div class="history-input">${h.input}</div>
-      <div class="history-preview">${h.output}</div>
-      <div class="history-actions">
-        <button class="action-btn" onclick="copyText('${encodeURIComponent(h.output)}')">Copy</button>
-        <button class="action-btn" onclick="openTool('${h.tool}')">Use tool again</button>
-        <button class="action-btn" onclick="deleteHistory(${h.id})">Delete</button>
-      </div>
-    </div>`).join('')}`;
+  document.getElementById('main-content').innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+      <div><h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;">Generation history</h2><p style="font-size:13px;color:var(--muted);margin-top:3px;">${history.length} saved generations</p></div>
+      ${history.length>0?`<button class="action-btn" onclick="clearHistory()">Clear all</button>`:''}
+    </div>
+    ${history.length===0?`<div style="text-align:center;padding:3rem;color:var(--muted);font-size:14px;">No history yet. Start generating content!</div>`:
+    history.map(h=>`
+      <div class="history-item">
+        <div class="history-item-header"><span class="history-tool">${h.toolName}</span><span class="history-time">${h.time}</span></div>
+        <div class="history-input">${h.input}</div>
+        <div class="history-preview">${h.output}</div>
+        <div class="history-actions">
+          <button class="action-btn" onclick="copyText('${encodeURIComponent(h.output)}')">📋 Copy</button>
+          <button class="action-btn" onclick="exportTxt('${encodeURIComponent(h.output)}','${h.toolName}')">⬇️ Export .txt</button>
+          <button class="action-btn" onclick="openTool('${h.tool}')">Use tool again</button>
+          <button class="action-btn" onclick="deleteHistory(${h.id})">Delete</button>
+        </div>
+      </div>`).join('')}`;
 }
 
+function renderFavourites(){
+  const favTools=Object.entries(tools).filter(([id])=>favourites.includes(id));
+  document.getElementById('main-content').innerHTML=`
+    <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:0.5rem;">⭐ Favourite tools</h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1.5rem;">Star tools from the sidebar to add them here.</p>
+    ${favTools.length===0?`<div style="text-align:center;padding:3rem;color:var(--muted);font-size:14px;">No favourites yet. Tap the ★ next to any tool in the sidebar.</div>`:''}
+    <div class="dash-grid">
+      ${favTools.map(([id,t])=>`
+        <div class="dash-card highlight" onclick="openTool('${id}')">
+          <div class="dash-card-icon">${t.icon}</div>
+          <h4>${t.name}</h4>
+          <p>${t.cat}</p>
+          ${t.isPro&&!isPro?'<span style="font-size:10px;color:#854F0B;background:#faeeda;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:4px;">PRO</span>':''}
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderReferral(){
+  if(!user){openSection('dashboard');return;}
+  const code=generateReferralCode(user.email);
+  const link=window.location.href.split('?')[0]+'?ref='+code;
+  const refs=JSON.parse(localStorage.getItem(getReferralKey(user.email))||'[]');
+  const bonus=parseInt(localStorage.getItem('writeai_bonus_'+user.email)||'0');
+  document.getElementById('main-content').innerHTML=`
+    <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:0.5rem;">🎁 Referral programme</h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1.5rem;">Share your link and earn free Pro uses. You and your friend both get 5 bonus uses when they sign up.</p>
+    <div class="referral-box">
+      <div class="referral-title">Your referral link</div>
+      <p style="font-size:12px;color:var(--muted);">Share this with friends, on social media, or in your bio.</p>
+      <div class="referral-link-row">
+        <input class="referral-link" value="${link}" readonly id="ref-link-input">
+        <button class="referral-copy-btn" onclick="copyRefLink()">Copy link</button>
+      </div>
+      <div style="margin-top:0.8rem;font-size:12px;color:var(--muted);">Your code: <strong style="color:var(--brand);">${code}</strong></div>
+      <div class="referral-stats">
+        <div class="ref-stat"><div class="ref-stat-num">${refs.length}</div><div class="ref-stat-label">Referrals</div></div>
+        <div class="ref-stat"><div class="ref-stat-num">${bonus}</div><div class="ref-stat-label">Bonus uses earned</div></div>
+        <div class="ref-stat"><div class="ref-stat-num">${AFFILIATE_COMMISSION}%</div><div class="ref-stat-label">Commission rate</div></div>
+      </div>
+    </div>
+    <div class="referral-box">
+      <div class="referral-title">How it works</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:0.8rem;">
+        <div style="display:flex;align-items:center;gap:12px;font-size:13px;"><span style="width:24px;height:24px;background:var(--brand);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">1</span> Share your unique referral link</div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:13px;"><span style="width:24px;height:24px;background:var(--brand);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">2</span> Friend signs up using your link</div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:13px;"><span style="width:24px;height:24px;background:var(--brand);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">3</span> You both get 5 bonus uses instantly</div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:13px;"><span style="width:24px;height:24px;background:var(--brand);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">4</span> Earn ${AFFILIATE_COMMISSION}% commission if they go Pro</div>
+      </div>
+    </div>
+    ${refs.length>0?`
+    <div class="referral-box">
+      <div class="referral-title">Your referrals</div>
+      ${refs.map(r=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;"><span>${r.email}</span><span style="color:var(--muted);">${r.joined}</span></div>`).join('')}
+    </div>`:''}`;
+}
+
+function copyRefLink(){
+  const inp=document.getElementById('ref-link-input');
+  navigator.clipboard.writeText(inp.value).then(()=>{
+    const btn=document.querySelector('.referral-copy-btn');
+    btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy link',1500);
+  });
+}
+
+function renderAdmin(){
+  if(user?.email!==OWNER_EMAIL){openSection('dashboard');return;}
+  const users=JSON.parse(localStorage.getItem('writeai_all_users')||'[]');
+  const totalGens=users.reduce((sum,u)=>{
+    const history=JSON.parse(localStorage.getItem('writeai_history_'+u.email)||'[]');
+    return sum+history.length;
+  },0);
+  const proUsers=users.filter(u=>u.plan==='pro').length;
+  const revenue=proUsers*9.99;
+  document.getElementById('main-content').innerHTML=`
+    <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:1.5rem;">👑 Admin dashboard</h2>
+    <div class="admin-grid">
+      <div class="admin-card"><div class="admin-num">${users.length}</div><div class="admin-label">Total users</div></div>
+      <div class="admin-card"><div class="admin-num">${proUsers}</div><div class="admin-label">Pro subscribers</div></div>
+      <div class="admin-card"><div class="admin-num">$${revenue.toFixed(2)}</div><div class="admin-label">Monthly revenue</div></div>
+      <div class="admin-card"><div class="admin-num">${totalGens}</div><div class="admin-label">Total generations</div></div>
+      <div class="admin-card"><div class="admin-num">${users.length-proUsers}</div><div class="admin-label">Free users</div></div>
+      <div class="admin-card"><div class="admin-num">${proUsers>0?((proUsers/users.length)*100).toFixed(0):0}%</div><div class="admin-label">Conversion rate</div></div>
+    </div>
+    <div class="admin-table">
+      <table>
+        <thead><tr><th>User</th><th>Plan</th><th>Joined</th><th>Generations</th></tr></thead>
+        <tbody>
+          ${users.length===0?`<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:2rem;">No users yet</td></tr>`:''}
+          ${users.map(u=>{
+            const gens=JSON.parse(localStorage.getItem('writeai_history_'+u.email)||'[]').length;
+            const isOw=u.email===OWNER_EMAIL;
+            return `<tr>
+              <td>${u.name}<br><span style="font-size:11px;color:var(--muted);">${u.email}</span></td>
+              <td><span class="admin-badge ${isOw?'badge-owner':u.plan==='pro'?'badge-pro':'badge-free'}">${isOw?'Owner':u.plan}</span></td>
+              <td style="font-size:12px;color:var(--muted);">${u.joined}</td>
+              <td>${gens}</td>
+            </tr>`;}).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function toggleTask(i){taskState[i].done=!taskState[i].done;renderDashboard();}
+
 function loadFromHistory(id){
-  const history=getHistory();
-  const item=history.find(h=>h.id==id);
-  if(!item) return;
+  const item=getHistory().find(h=>h.id==id);
+  if(!item)return;
   openTool(item.tool);
   setTimeout(()=>{
-    const inp=document.getElementById('tool-input'); if(inp) inp.value=item.input;
-    const out=document.getElementById('output-box'); if(out) out.textContent=item.output;
-    const oa=document.getElementById('output-actions'); if(oa) oa.style.display='flex';
+    const inp=document.getElementById('tool-input');if(inp)inp.value=item.input;
+    const out=document.getElementById('output-box');if(out)out.textContent=item.output;
+    const oa=document.getElementById('output-actions');if(oa)oa.style.display='flex';
     currentOutput=item.output;
   },100);
 }
 
-function clearHistory(){
-  if(!user) return;
-  localStorage.removeItem('writeai_history_'+user.email);
-  renderHistory();
-}
-
-function deleteHistory(id){
-  if(!user) return;
-  const key='writeai_history_'+user.email;
-  const history=JSON.parse(localStorage.getItem(key)||'[]').filter(h=>h.id!=id);
-  localStorage.setItem(key,JSON.stringify(history));
-  renderHistory();
-}
-
-function copyText(encoded){
-  navigator.clipboard.writeText(decodeURIComponent(encoded)).then(()=>alert('Copied!'));
-}
-
-function toggleTask(i){
-  taskState[i].done=!taskState[i].done;
-  renderDashboard();
+function clearHistory(){if(!user)return;localStorage.removeItem('writeai_history_'+user.email);renderHistory();}
+function deleteHistory(id){if(!user)return;const key='writeai_history_'+user.email;localStorage.setItem(key,JSON.stringify(JSON.parse(localStorage.getItem(key)||'[]').filter(h=>h.id!=id)));renderHistory();}
+function copyText(encoded){navigator.clipboard.writeText(decodeURIComponent(encoded)).then(()=>alert('Copied!'));}
+function exportTxt(encoded,toolName){
+  const text=decodeURIComponent(encoded);
+  const blob=new Blob([text],{type:'text/plain'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=toolName.replace(/\s+/g,'-').toLowerCase()+'-'+Date.now()+'.txt';a.click();
+  URL.revokeObjectURL(url);
 }
 
 function openTool(id){
   currentTool=id;
-  const t=tools[id], locked=t.isPro&&!isPro&&user?.email!==OWNER_EMAIL;
+  const t=tools[id],locked=t.isPro&&!isPro&&user?.email!==OWNER_EMAIL;
   const opts=t.options.map(o=>`<select class="select-input" id="opt-${o.id}">${o.values.map(v=>`<option>${v}</option>`).join('')}</select>`).join('');
   const usesLeft=getUsesLeft();
   document.getElementById('main-content').innerHTML=`
-    <div class="tool-header"><h2>${t.icon} ${t.name}</h2><p>${t.cat} tool ${t.isPro&&user?.email!==OWNER_EMAIL?'· Pro':'· Free'}</p></div>
-    ${locked?`<div class="locked-banner">🔒 Pro tool. <button class="unlock-btn" onclick="showPage('pricing')">Upgrade for $9.99/mo →</button></div>`:''}
+    <div class="tool-header">
+      <h2>${t.icon} ${t.name}</h2>
+      <p>${t.cat} · ${t.isPro&&user?.email!==OWNER_EMAIL?'Pro tool':'Free tool'}</p>
+    </div>
+    ${locked?`<div class="locked-banner">🔒 Pro tool — <button class="unlock-btn" onclick="showPage('pricing')">Upgrade for $9.99/mo →</button></div>`:''}
     <div class="input-wrap">
       <textarea class="input-area" id="tool-input" placeholder="${t.placeholder}" ${locked?'disabled':''} oninput="updateWordCount(this)"></textarea>
-      <span class="word-counter" id="word-counter">0 words</span>
+      <span class="word-counter" id="word-counter">0 words · 0 chars</span>
     </div>
-    <div class="options-row">${opts}<button class="generate-btn" id="gen-btn" onclick="generate()" ${locked?'disabled':''}>✦ Generate</button>${!isPro&&user?.email!==OWNER_EMAIL?`<span class="free-uses-counter">${usesLeft} uses left today</span>`:''}</div>
+    <div class="options-row">
+      ${opts}
+      <button class="generate-btn" id="gen-btn" onclick="generate()" ${locked?'disabled':''}>✦ Generate</button>
+      ${!isPro&&user?.email!==OWNER_EMAIL?`<span class="free-uses-counter">${usesLeft} uses left today</span>`:''}
+    </div>
     <div class="output-box" id="output-box"><span class="output-placeholder">Your generated content will appear here...</span></div>
     <div class="output-actions" id="output-actions" style="display:none;">
       <button class="action-btn" onclick="copyCurrentOutput()">📋 Copy</button>
+      <button class="action-btn" onclick="exportCurrentOutput()">⬇️ Export .txt</button>
       <button class="action-btn" onclick="openTool('${id}')">↺ Regenerate</button>
-      <button class="action-btn" onclick="openSection('history')">📚 View history</button>
+      <button class="action-btn" onclick="openSection('history')">📚 History</button>
     </div>`;
   document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));
-  const navEl=document.getElementById('nav-'+id); if(navEl) navEl.classList.add('active');
+  const navEl=document.getElementById('nav-'+id);if(navEl)navEl.classList.add('active');
+  updateFavStars();
 }
 
 function updateWordCount(el){
   const words=el.value.trim()===''?0:el.value.trim().split(/\s+/).length;
-  const chars=el.value.length;
   const counter=document.getElementById('word-counter');
-  if(counter) counter.textContent=`${words} words · ${chars} chars`;
+  if(counter)counter.textContent=`${words} words · ${el.value.length} chars`;
 }
 
 async function generate(){
-  const t=tools[currentTool], input=document.getElementById('tool-input').value.trim();
+  const t=tools[currentTool],input=document.getElementById('tool-input').value.trim();
   if(!input){alert('Please enter some input first!');return;}
   const usesLeft=getUsesLeft();
   if(usesLeft<=0&&user?.email!==OWNER_EMAIL){
-    document.getElementById('main-content').insertAdjacentHTML('beforeend',`<div class="paywall-card"><h3>You've hit your daily limit</h3><p>Upgrade to Pro for unlimited generations and all tools.</p><button class="btn-primary" onclick="showPage('pricing')">Upgrade for $9.99/mo →</button></div>`);
+    document.getElementById('main-content').insertAdjacentHTML('beforeend',`<div class="paywall-card"><h3>You've hit your daily limit</h3><p>Upgrade to Pro for unlimited generations.</p><button class="btn-primary" onclick="showPage('pricing')">Upgrade for $9.99/mo →</button></div>`);
     return;
   }
-  const opts={};
-  t.options.forEach(o=>{const el=document.getElementById('opt-'+o.id);if(el) opts[o.id]=el.value;});
-  const btn=document.getElementById('gen-btn'), out=document.getElementById('output-box');
-  btn.disabled=true; btn.innerHTML='<span class="spinner"></span> Generating...';
+  const opts={};t.options.forEach(o=>{const el=document.getElementById('opt-'+o.id);if(el)opts[o.id]=el.value;});
+  const btn=document.getElementById('gen-btn'),out=document.getElementById('output-box');
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Generating...';
   out.innerHTML='<span class="output-placeholder">Writing your content...</span>';
   document.getElementById('output-actions').style.display='none';
   try{
     const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_API_KEY},
-      body:JSON.stringify({model:'llama-3.1-8b-instant',max_tokens:1200,messages:[{role:'user',content:t.buildPrompt(input,opts)}]})
+      body:JSON.stringify({model:'llama-3.1-8b-instant',max_tokens:1500,messages:[{role:'user',content:t.buildPrompt(input,opts)}]})
     });
     const data=await res.json();
     if(!res.ok){out.textContent='Error: '+(data.error?.message||'Something went wrong');btn.disabled=false;btn.innerHTML='✦ Generate';return;}
@@ -733,22 +944,21 @@ async function generate(){
     out.textContent=currentOutput;
     document.getElementById('output-actions').style.display='flex';
     incrementUses();
-    saveToHistory(currentTool, input, currentOutput);
+    saveToHistory(currentTool,input,currentOutput);
   }catch(e){out.textContent='Something went wrong: '+e.message;}
-  btn.disabled=false; btn.innerHTML='✦ Generate';
+  btn.disabled=false;btn.innerHTML='✦ Generate';
 }
 
-function copyCurrentOutput(){
-  navigator.clipboard.writeText(currentOutput).then(()=>{
-    const btn=event.target; btn.textContent='✓ Copied!';
-    setTimeout(()=>btn.textContent='📋 Copy',1500);
-  });
-}
+function copyCurrentOutput(){navigator.clipboard.writeText(currentOutput).then(()=>{const btn=event.target;btn.textContent='✓ Copied!';setTimeout(()=>btn.textContent='📋 Copy',1500);});}
+function exportCurrentOutput(){exportTxt(encodeURIComponent(currentOutput),tools[currentTool].name);}
 
-// Init
+// Check for referral code in URL
 window.addEventListener('load',()=>{
   const dark=localStorage.getItem('writeai_dark');
-  if(dark==='true'){document.body.classList.add('dark');document.querySelectorAll('.dark-toggle,#app-dark-btn').forEach(b=>b.textContent='☀️');}
+  if(dark==='true'){document.body.classList.add('dark');document.querySelectorAll('.dark-toggle').forEach(b=>b.textContent='☀️');}
+  const params=new URLSearchParams(window.location.search);
+  const ref=params.get('ref');
+  if(ref){const refInput=document.getElementById('auth-ref');if(refInput)refInput.value=ref;switchTab('signup');}
 });
 </script>
 </body>
