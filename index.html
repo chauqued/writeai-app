@@ -962,7 +962,7 @@ async function scanHomework(){
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_API_KEY},
       body:JSON.stringify({
-        model:'grok-2-vision-1212',
+        model:'meta-llama/llama-3.2-11b-vision-instruct',
         max_tokens:1500,
         messages:[{role:'user',content:[
           {type:'image_url',image_url:{url:homeworkImage}},
