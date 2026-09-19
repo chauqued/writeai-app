@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StudyForge — AI Revision App</title>
 
 <style>
@@ -19,21 +19,75 @@
   --warning:#ffbf69;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
   font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:radial-gradient(circle at top right,#17244d 0,#08111f 38%);
+  background:
+    radial-gradient(circle at top right,#17244d 0,#08111f 38%);
   color:var(--text);
   min-height:100vh;
 }
 
-button,input,select,textarea{font:inherit}
-button{cursor:pointer;border:0}
-.hidden{display:none!important}
-.muted{color:var(--muted)}
-.small{font-size:13px}
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.small{
+  font-size:13px;
+}
+
+.primary{
+  background:linear-gradient(135deg,var(--accent),#9c73ff);
+  color:white;
+  padding:12px 16px;
+  border-radius:11px;
+  font-weight:750;
+}
+
+.secondary{
+  background:#17283f;
+  color:#dce9f7;
+  padding:11px 15px;
+  border-radius:11px;
+  border:1px solid var(--border);
+}
+
+.danger{
+  background:#351722;
+  color:#ffb7c0;
+  border:1px solid #64303d;
+  padding:10px 14px;
+  border-radius:10px;
+}
+
+.ghost{
+  background:transparent;
+  color:#aebfd2;
+  padding:9px 12px;
+}
+
+.full{
+  width:100%;
+}
+
+/* LANDING */
 
 #landing{
   min-height:100vh;
@@ -57,8 +111,7 @@ button{cursor:pointer;border:0}
   letter-spacing:.4px;
 }
 
-.brand span,
-.logo span{
+.brand span{
   color:var(--accent2);
 }
 
@@ -99,68 +152,7 @@ h1{
   box-shadow:0 25px 70px #0005;
 }
 
-.auth h2{margin-top:0}
-
-.field{
-  display:grid;
-  gap:7px;
-  margin:13px 0;
-}
-
-.field label{
-  font-size:13px;
-  color:#b9c8da;
-}
-
-.field input,
-.field textarea,
-.field select{
-  width:100%;
-  background:#091525;
-  border:1px solid var(--border);
-  color:var(--text);
-  padding:12px 13px;
-  border-radius:11px;
-  outline:none;
-}
-
-.field input:focus,
-.field textarea:focus,
-.field select:focus{
-  border-color:var(--accent);
-}
-
-.primary{
-  background:linear-gradient(135deg,var(--accent),#9c73ff);
-  color:#fff;
-  padding:12px 16px;
-  border-radius:11px;
-  font-weight:750;
-}
-
-.secondary{
-  background:#17283f;
-  color:#dce9f7;
-  padding:11px 15px;
-  border-radius:11px;
-  border:1px solid var(--border);
-}
-
-.danger{
-  background:#351722;
-  color:#ffb7c0;
-  border:1px solid #64303d;
-  padding:10px 14px;
-  border-radius:10px;
-}
-
-.ghost{
-  background:transparent;
-  color:#aebfd2;
-  padding:9px 12px;
-}
-
-.full{width:100%}
+/* APP */
 
 #app{
   display:none;
@@ -188,6 +180,10 @@ h1{
   padding:4px 10px 24px;
 }
 
+.logo span{
+  color:var(--accent2);
+}
+
 .nav{
   display:grid;
   gap:6px;
@@ -204,7 +200,7 @@ h1{
 .nav button.active,
 .nav button:hover{
   background:#152640;
-  color:#fff;
+  color:white;
 }
 
 .userbox{
@@ -353,7 +349,7 @@ h1{
 .topic-actions .go{
   background:#6e51e9;
   border-color:#6e51e9;
-  color:#fff;
+  color:white;
 }
 
 .section-title{
@@ -376,8 +372,15 @@ h1{
   color:#b9cbe0;
 }
 
-.success{color:#72e4c7}
-.error{color:#ff9daa}
+.success{
+  color:#72e4c7;
+}
+
+.error{
+  color:#ff9daa;
+}
+
+/* QUIZ */
 
 .quiz-wrap{
   max-width:850px;
@@ -455,7 +458,9 @@ h1{
   max-width:700px;
 }
 
-.result{text-align:center}
+.result{
+  text-align:center;
+}
 
 .result-score{
   font-size:55px;
@@ -469,7 +474,9 @@ h1{
   margin:20px 0;
 }
 
-.result-grid .card{text-align:center}
+.result-grid .card{
+  text-align:center;
+}
 
 .review-item{
   padding:13px;
@@ -496,6 +503,8 @@ h1{
   border-bottom:1px solid var(--border);
 }
 
+/* MODAL */
+
 .modal{
   position:fixed;
   inset:0;
@@ -515,26 +524,42 @@ h1{
   padding:22px;
 }
 
+/* BOTTOM NAV */
+
 .bottom-nav{
   display:none;
 }
 
-code{
-  background:#07111e;
-  padding:3px 6px;
-  border-radius:5px;
-}
+/* MOBILE */
 
 @media(max-width:850px){
-  .hero{grid-template-columns:1fr}
-  .grid{grid-template-columns:1fr}
-  .stats{grid-template-columns:repeat(2,1fr)}
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
 @media(max-width:680px){
-  .layout{display:block}
-  .sidebar{display:none}
-  .main{padding:18px 14px 82px}
+
+  .layout{
+    display:block;
+  }
+
+  .sidebar{
+    display:none;
+  }
+
+  .main{
+    padding:18px 14px 82px;
+  }
 
   .subject-grid,
   .topic-grid{
@@ -561,7 +586,7 @@ code{
   }
 
   .bottom-nav button.active{
-    color:#fff;
+    color:white;
   }
 
   .topbar h1{
@@ -585,7 +610,8 @@ code{
 
 <body>
 
-<!-- LANDING -->
+<!-- ================= LANDING ================= -->
+
 <section id="landing">
 
   <div class="hero">
@@ -602,8 +628,7 @@ code{
 
       <p>
         Practice with flashcards, timed quizzes and written questions.
-        Track what you actually master instead of just counting how many
-        questions you attempted.
+        Track what you actually master instead of just counting attempts.
       </p>
 
       <div class="chips">
@@ -619,49 +644,17 @@ code{
 
     <div class="auth">
 
-      <h2>Start studying</h2>
+      <h2>Welcome to StudyForge</h2>
 
       <p class="muted small">
-        Prototype mode: your account and progress stay on this device.
+        Local prototype mode. Your progress is saved in this browser.
       </p>
-
-      <div class="field">
-        <label>Email</label>
-        <input
-          id="email"
-          type="email"
-          placeholder="you@example.com"
-        >
-      </div>
-
-      <div class="field">
-        <label>Password</label>
-        <input
-          id="password"
-          type="password"
-          placeholder="••••••••"
-        >
-      </div>
 
       <button
         class="primary full"
-        onclick="doAuth()"
-      >
+        onclick="enterStudyForge()">
         Enter StudyForge
       </button>
-
-      <button
-        class="secondary full"
-        style="margin-top:9px"
-        onclick="guestLogin()"
-      >
-        Continue as guest
-      </button>
-
-      <p
-        id="authMsg"
-        class="small error"
-      ></p>
 
     </div>
 
@@ -670,142 +663,138 @@ code{
 </section>
 
 
-<!-- APP -->
+<!-- ================= APP ================= -->
+
 <section id="app">
 
-<div class="layout">
+  <div class="layout">
 
-<aside class="sidebar">
+    <aside class="sidebar">
 
-  <div class="logo">
-    Study<span>Forge</span>
-  </div>
-
-  <div class="nav">
-
-    <button
-      data-page="dashboard"
-      onclick="showPage('dashboard')"
-    >
-      ▣ &nbsp; Dashboard
-    </button>
-
-    <button
-      data-page="subjects"
-      onclick="showPage('subjects')"
-    >
-      ◈ &nbsp; Subjects
-    </button>
-
-    <button
-      data-page="ai"
-      onclick="showPage('ai')"
-    >
-      ✦ &nbsp; AI Quiz Generator
-    </button>
-
-    <button
-      data-page="leaderboard"
-      onclick="showPage('leaderboard')"
-    >
-      ♛ &nbsp; Leaderboard
-    </button>
-
-    <button
-      data-page="settings"
-      onclick="showPage('settings')"
-    >
-      ⚙ &nbsp; Settings
-    </button>
-
-  </div>
-
-  <div class="userbox">
-
-    <div class="userrow">
-
-      <div
-        class="avatar"
-        id="avatar"
-      >
-        G
+      <div class="logo">
+        Study<span>Forge</span>
       </div>
 
-      <div>
+      <div class="nav">
 
-        <b id="userName">
-          Guest
-        </b>
+        <button
+          data-page="dashboard"
+          onclick="showPage('dashboard')">
+          ▣ &nbsp; Dashboard
+        </button>
 
-        <div
-          class="small muted"
-          id="userEmail"
-        >
-          Local mode
+        <button
+          data-page="subjects"
+          onclick="showPage('subjects')">
+          ◈ &nbsp; Subjects
+        </button>
+
+        <button
+          data-page="ai"
+          onclick="showPage('ai')">
+          ✦ &nbsp; AI Quiz Generator
+        </button>
+
+        <button
+          data-page="leaderboard"
+          onclick="showPage('leaderboard')">
+          ♛ &nbsp; Leaderboard
+        </button>
+
+        <button
+          data-page="settings"
+          onclick="showPage('settings')">
+          ⚙ &nbsp; Settings
+        </button>
+
+      </div>
+
+      <div class="userbox">
+
+        <div class="userrow">
+
+          <div
+            class="avatar"
+            id="avatar">
+            G
+          </div>
+
+          <div>
+
+            <b id="userName">
+              Guest
+            </b>
+
+            <div
+              class="small muted"
+              id="userEmail">
+              Local mode
+            </div>
+
+          </div>
+
         </div>
 
       </div>
 
-    </div>
+    </aside>
+
+
+    <main class="main">
+
+      <div id="page"></div>
+
+    </main>
 
   </div>
 
-</aside>
 
+  <div class="bottom-nav">
 
-<main class="main">
+    <button
+      data-page="dashboard"
+      onclick="showPage('dashboard')">
+      ⌂<br>
+      Home
+    </button>
 
-  <div id="page"></div>
+    <button
+      data-page="subjects"
+      onclick="showPage('subjects')">
+      ◈<br>
+      Subjects
+    </button>
 
-</main>
+    <button
+      data-page="ai"
+      onclick="showPage('ai')">
+      ✦<br>
+      AI
+    </button>
 
-</div>
+    <button
+      data-page="settings"
+      onclick="showPage('settings')">
+      ⚙<br>
+      Settings
+    </button>
 
-
-<div class="bottom-nav">
-
-  <button
-    data-page="dashboard"
-    onclick="showPage('dashboard')"
-  >
-    ⌂<br>Home
-  </button>
-
-  <button
-    data-page="subjects"
-    onclick="showPage('subjects')"
-  >
-    ◈<br>Subjects
-  </button>
-
-  <button
-    data-page="ai"
-    onclick="showPage('ai')"
-  >
-    ✦<br>AI
-  </button>
-
-  <button
-    data-page="settings"
-    onclick="showPage('settings')"
-  >
-    ⚙<br>Settings
-  </button>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- MODAL -->
+<!-- ================= MODAL ================= -->
+
 <div
   id="modal"
-  class="modal hidden"
->
+  class="modal hidden">
+
   <div
     class="modal-box"
-    id="modalBox"
-  ></div>
+    id="modalBox">
+  </div>
+
 </div>
 
 
@@ -834,7 +823,12 @@ const SUBJECTS = {
           [
             "Solve: 3x + 5 = 20.",
             "x = 5",
-            ["x = 3","x = 5","x = 7","x = 15"]
+            [
+              "x = 3",
+              "x = 5",
+              "x = 7",
+              "x = 15"
+            ]
           ],
 
           [
@@ -871,19 +865,34 @@ const SUBJECTS = {
           [
             "Angles in a triangle add to…",
             "180°",
-            ["90°","180°","270°","360°"]
+            [
+              "90°",
+              "180°",
+              "270°",
+              "360°"
+            ]
           ],
 
           [
             "Area of a rectangle 8 cm by 5 cm?",
             "40 cm²",
-            ["13 cm²","26 cm²","40 cm²","80 cm²"]
+            [
+              "13 cm²",
+              "26 cm²",
+              "40 cm²",
+              "80 cm²"
+            ]
           ],
 
           [
             "A right angle measures…",
             "90°",
-            ["45°","90°","180°","360°"]
+            [
+              "45°",
+              "90°",
+              "180°",
+              "360°"
+            ]
           ]
 
         ]
@@ -898,19 +907,34 @@ const SUBJECTS = {
           [
             "Mean of 2, 4, 6, 8?",
             "5",
-            ["4","5","6","10"]
+            [
+              "4",
+              "5",
+              "6",
+              "10"
+            ]
           ],
 
           [
             "Median of 3, 7, 8, 10, 12?",
             "8",
-            ["7","8","9","10"]
+            [
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
           ],
 
           [
             "Most frequent value is the…",
             "mode",
-            ["mean","median","mode","range"]
+            [
+              "mean",
+              "median",
+              "mode",
+              "range"
+            ]
           ]
 
         ]
@@ -934,13 +958,23 @@ const SUBJECTS = {
           [
             "Which particle has a negative charge?",
             "Electron",
-            ["Proton","Neutron","Electron","Nucleus"]
+            [
+              "Proton",
+              "Neutron",
+              "Electron",
+              "Nucleus"
+            ]
           ],
 
           [
             "Atomic number tells you the number of…",
             "protons",
-            ["neutrons","protons","shells","isotopes"]
+            [
+              "neutrons",
+              "protons",
+              "shells",
+              "isotopes"
+            ]
           ],
 
           [
@@ -988,7 +1022,12 @@ const SUBJECTS = {
           [
             "What type of bonding is typical in metals?",
             "Metallic",
-            ["Ionic","Covalent","Metallic","Hydrogen"]
+            [
+              "Ionic",
+              "Covalent",
+              "Metallic",
+              "Hydrogen"
+            ]
           ]
 
         ]
@@ -1012,13 +1051,23 @@ const SUBJECTS = {
           [
             "Newton's second law is…",
             "F = ma",
-            ["E = mc²","F = ma","V = IR","p = mv²"]
+            [
+              "E = mc²",
+              "F = ma",
+              "V = IR",
+              "p = mv²"
+            ]
           ],
 
           [
             "Unit of force?",
             "newton",
-            ["joule","watt","newton","pascal"]
+            [
+              "joule",
+              "watt",
+              "newton",
+              "pascal"
+            ]
           ],
 
           [
@@ -1044,13 +1093,23 @@ const SUBJECTS = {
           [
             "Frequency is measured in…",
             "hertz",
-            ["watts","hertz","joules","newtons"]
+            [
+              "watts",
+              "hertz",
+              "joules",
+              "newtons"
+            ]
           ],
 
           [
             "Wave speed equation?",
             "v = fλ",
-            ["v = m/a","v = fλ","E = mc²","P = VI"]
+            [
+              "v = m/a",
+              "v = fλ",
+              "E = mc²",
+              "P = VI"
+            ]
           ],
 
           [
@@ -1096,7 +1155,12 @@ const SUBJECTS = {
           [
             "Macbeth is set mainly in…",
             "Scotland",
-            ["England","Scotland","France","Italy"]
+            [
+              "England",
+              "Scotland",
+              "France",
+              "Italy"
+            ]
           ],
 
           [
@@ -1115,4 +1179,3464 @@ const SUBJECTS = {
 
 
       poetry:{
-        name:"Power & Conflict Poetry
+        name:"Power & Conflict Poetry",
+
+        qs:[
+
+          [
+            "A metaphor directly compares…",
+            "one thing to another",
+            [
+              "two sounds",
+              "one thing to another",
+              "two historical dates",
+              "only people"
+            ]
+          ],
+
+          [
+            "Caesura is a…",
+            "pause in a line",
+            [
+              "rhyme",
+              "pause in a line",
+              "stanza",
+              "metaphor"
+            ]
+          ],
+
+          [
+            "Personification gives human qualities to…",
+            "non-human things",
+            [
+              "only humans",
+              "non-human things",
+              "only animals",
+              "only speakers"
+            ]
+          ]
+
+        ]
+      }
+
+    }
+  },
+
+
+  biology:{
+    name:"Biology",
+    icon:"🧬",
+
+    topics:{
+
+      cells:{
+        name:"Cell Biology",
+
+        qs:[
+
+          [
+            "Which organelle controls cell activities?",
+            "Nucleus",
+            [
+              "Ribosome",
+              "Nucleus",
+              "Vacuole",
+              "Cell wall"
+            ]
+          ],
+
+          [
+            "Mitochondria are the site of…",
+            "aerobic respiration",
+            [
+              "photosynthesis",
+              "aerobic respiration",
+              "protein digestion",
+              "DNA storage only"
+            ]
+          ],
+
+          [
+            "Plant cells have a cell wall made mainly of…",
+            "cellulose",
+            [
+              "starch",
+              "cellulose",
+              "glucose",
+              "protein"
+            ]
+          ]
+
+        ]
+      }
+
+    }
+  },
+
+
+  geography:{
+    name:"Geography",
+    icon:"🌍",
+
+    topics:{
+
+      climate:{
+        name:"Climate & Ecosystems",
+
+        qs:[
+
+          [
+            "Tropical rainforests are generally…",
+            "hot and wet",
+            [
+              "cold and dry",
+              "hot and wet",
+              "cold and wet",
+              "hot and dry"
+            ]
+          ],
+
+          [
+            "Deforestation can increase atmospheric…",
+            "carbon dioxide",
+            [
+              "oxygen only",
+              "carbon dioxide",
+              "helium",
+              "nitrogen only"
+            ]
+          ],
+
+          [
+            "An ecosystem includes living organisms and…",
+            "their physical environment",
+            [
+              "only plants",
+              "only animals",
+              "their physical environment",
+              "only soil"
+            ]
+          ]
+
+        ]
+      }
+
+    }
+  }
+
+};
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+const DEFAULT_STATE = {
+
+  user:null,
+
+  xp:0,
+
+  streak:0,
+
+  dailyXP:0,
+
+  lastActiveDate:null,
+
+  mastered:{},
+
+  wrong:[],
+
+  history:[],
+
+  sessions:0,
+
+  apiEndpoint:""
+
+};
+
+
+let state = loadState();
+
+let currentPage = "dashboard";
+
+let currentQuiz = null;
+
+let quizTimer = null;
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function loadState(){
+
+  try{
+
+    const raw =
+      localStorage.getItem("studyforge_state");
+
+    if(!raw){
+
+      return structuredClone(DEFAULT_STATE);
+
+    }
+
+    return {
+      ...structuredClone(DEFAULT_STATE),
+      ...JSON.parse(raw)
+    };
+
+  }catch(error){
+
+    return structuredClone(DEFAULT_STATE);
+
+  }
+
+}
+
+
+function save(){
+
+  localStorage.setItem(
+    "studyforge_state",
+    JSON.stringify(state)
+  );
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function esc(value){
+
+  return String(value ?? "")
+    .replace(/[&<>"']/g,function(char){
+
+      return {
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+
+      }[char];
+
+    });
+
+}
+
+
+function today(){
+
+  return new Date()
+    .toISOString()
+    .slice(0,10);
+
+}
+
+
+function level(){
+
+  return Math.floor(state.xp / 500) + 1;
+
+}
+
+
+function initials(){
+
+  return (
+    state.user?.name || "Guest"
+  )
+  .slice(0,1)
+  .toUpperCase();
+
+}
+
+
+function allQuestions(){
+
+  const questions=[];
+
+  for(
+    const [subjectId,subject]
+    of Object.entries(SUBJECTS)
+  ){
+
+    for(
+      const [topicId,topic]
+      of Object.entries(subject.topics)
+    ){
+
+      topic.qs.forEach(function(q,index){
+
+        questions.push({
+
+          id:
+            `${subjectId}:${topicId}:${index}`,
+
+          sid:subjectId,
+
+          tid:topicId,
+
+          topic:topic.name,
+
+          q:q[0],
+
+          a:q[1],
+
+          options:q[2]
+
+        });
+
+      });
+
+    }
+
+  }
+
+  return questions;
+
+}
+
+
+/* =========================================================
+   XP / STREAK
+========================================================= */
+
+function updateActivity(xp){
+
+  const date = today();
+
+  if(state.lastActiveDate !== date){
+
+    const yesterday =
+      new Date(Date.now()-86400000)
+      .toISOString()
+      .slice(0,10);
+
+    if(state.lastActiveDate === yesterday){
+
+      state.streak++;
+
+    }else{
+
+      state.streak = 1;
+
+    }
+
+    state.dailyXP = 0;
+
+    state.lastActiveDate = date;
+
+  }
+
+  state.xp += xp;
+
+  state.dailyXP += xp;
+
+  save();
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function progressFor(subjectId,topicId){
+
+  const topic =
+    SUBJECTS[subjectId].topics[topicId];
+
+  const total = topic.qs.length;
+
+  const done =
+    topic.qs.filter(function(_,index){
+
+      return state.mastered[
+        `${subjectId}:${topicId}:${index}`
+      ];
+
+    }).length;
+
+  return {
+
+    done:done,
+
+    total:total,
+
+    pct:
+      Math.round(
+        done / total * 100
+      )
+
+  };
+
+}
+
+
+function subjectProgress(subjectId){
+
+  const subject =
+    SUBJECTS[subjectId];
+
+  let done=0;
+
+  let total=0;
+
+  for(
+    const topicId
+    of Object.keys(subject.topics)
+  ){
+
+    const progress =
+      progressFor(subjectId,topicId);
+
+    done += progress.done;
+
+    total += progress.total;
+
+  }
+
+  return {
+
+    done:done,
+
+    total:total,
+
+    pct:
+      total === 0
+      ? 0
+      : Math.round(done/total*100)
+
+  };
+
+}
+
+
+/* =========================================================
+   STARTUP
+========================================================= */
+
+function start(){
+
+  /*
+    IMPORTANT:
+    There is NO LOGIN REQUIREMENT.
+    If there is no user, automatically create
+    a local guest user.
+  */
+
+  if(!state.user){
+
+    state.user={
+
+      name:"Guest",
+
+      email:"Local demo"
+
+    };
+
+    save();
+
+  }
+
+  document
+    .getElementById("landing")
+    .style.display="none";
+
+  document
+    .getElementById("app")
+    .style.display="block";
+
+  syncUser();
+
+  showPage("dashboard");
+
+}
+
+
+function enterStudyForge(){
+
+  state.user={
+
+    name:"Guest",
+
+    email:"Local demo"
+
+  };
+
+  save();
+
+  document
+    .getElementById("landing")
+    .style.display="none";
+
+  document
+    .getElementById("app")
+    .style.display="block";
+
+  syncUser();
+
+  showPage("dashboard");
+
+}
+
+
+function syncUser(){
+
+  document
+    .getElementById("avatar")
+    .textContent=initials();
+
+  document
+    .getElementById("userName")
+    .textContent=
+      state.user?.name || "Guest";
+
+  document
+    .getElementById("userEmail")
+    .textContent=
+      state.user?.email || "Local mode";
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showPage(page){
+
+  clearTimer();
+
+  currentPage=page;
+
+  document
+    .querySelectorAll(
+      ".nav button,.bottom-nav button"
+    )
+    .forEach(function(button){
+
+      button.classList.toggle(
+        "active",
+        button.dataset.page === page
+      );
+
+    });
+
+  const pageElement =
+    document.getElementById("page");
+
+
+  if(page === "dashboard"){
+
+    renderDashboard(pageElement);
+
+  }
+
+
+  if(page === "subjects"){
+
+    renderSubjects(pageElement);
+
+  }
+
+
+  if(page === "ai"){
+
+    renderAI(pageElement);
+
+  }
+
+
+  if(page === "leaderboard"){
+
+    renderLeaderboard(pageElement);
+
+  }
+
+
+  if(page === "settings"){
+
+    renderSettings(pageElement);
+
+  }
+
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"smooth"
+
+  });
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+function header(title,subtitle=""){
+
+  return `
+
+    <div class="topbar">
+
+      <div>
+
+        <h1>
+          ${esc(title)}
+        </h1>
+
+        ${
+          subtitle
+          ?
+          `
+          <div class="muted small">
+            ${esc(subtitle)}
+          </div>
+          `
+          :
+          ""
+        }
+
+      </div>
+
+      <div class="notice">
+
+        Level ${level()}
+        ·
+        ${state.xp} XP
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function renderDashboard(element){
+
+  const recent =
+    state.history
+      .slice(-5)
+      .reverse();
+
+  const weak =
+    state.wrong
+      .slice(-5)
+      .reverse();
+
+
+  element.innerHTML =
+
+    header(
+      "Dashboard",
+      "Your revision overview"
+    )
+
+    +
+
+    `
+
+    <div class="stats">
+
+      <div class="stat">
+
+        <div class="muted small">
+          Total XP
+        </div>
+
+        <div class="num">
+          ${state.xp}
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div class="muted small">
+          Current streak
+        </div>
+
+        <div class="num">
+          🔥 ${state.streak}
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div class="muted small">
+          Sessions
+        </div>
+
+        <div class="num">
+          ${state.sessions}
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div class="muted small">
+          Today's XP
+        </div>
+
+        <div class="num">
+          ${state.dailyXP}/100
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="grid">
+
+      <div class="card">
+
+        <div class="section-title">
+
+          <h2>
+            Subjects
+          </h2>
+
+          <button
+            class="ghost"
+            onclick="showPage('subjects')">
+
+            View all →
+
+          </button>
+
+        </div>
+
+
+        <div class="subject-grid">
+
+          ${
+            Object.entries(SUBJECTS)
+              .map(function([id,subject]){
+
+                const progress =
+                  subjectProgress(id);
+
+                return `
+
+                <div class="subject">
+
+                  <div class="subject-head">
+
+                    <div>
+
+                      <h3>
+                        ${subject.icon}
+                        ${esc(subject.name)}
+                      </h3>
+
+                      <div class="small muted">
+
+                        ${progress.done}
+                        /
+                        ${progress.total}
+                        mastered
+
+                      </div>
+
+                    </div>
+
+                    <b>
+                      ${progress.pct}%
+                    </b>
+
+                  </div>
+
+
+                  <div class="bar">
+
+                    <i
+                      style="width:${progress.pct}%">
+                    </i>
+
+                  </div>
+
+                </div>
+
+                `;
+
+              })
+              .join("")
+          }
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="section-title">
+
+          <h2>
+            Quick start
+          </h2>
+
+        </div>
+
+        <p class="muted">
+
+          Pick a subject and complete a focused
+          revision session.
+
+        </p>
+
+        <button
+          class="primary full"
+          onclick="showPage('subjects')">
+
+          Start revision
+
+        </button>
+
+
+        <div style="height:8px"></div>
+
+
+        <button
+          class="secondary full"
+          onclick="startReview()">
+
+          Review mistakes
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="grid">
+
+      <div class="card">
+
+        <div class="section-title">
+
+          <h2>
+            Recent sessions
+          </h2>
+
+        </div>
+
+
+        ${
+          recent.length
+
+          ?
+
+          recent.map(function(item){
+
+            return `
+
+              <div class="review-item">
+
+                <b>
+                  ${esc(item.name)}
+                </b>
+
+                <span class="muted small">
+
+                  ${item.correct}/${item.total}
+                  correct
+                  ·
+                  ${item.xp} XP
+                  ·
+                  ${esc(item.date)}
+
+                </span>
+
+              </div>
+
+            `;
+
+          }).join("")
+
+          :
+
+          `
+
+            <p class="muted">
+
+              No sessions yet.
+              Complete your first quiz.
+
+            </p>
+
+          `
+        }
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="section-title">
+
+          <h2>
+            Needs review
+          </h2>
+
+        </div>
+
+
+        ${
+          weak.length
+
+          ?
+
+          weak.map(function(item){
+
+            return `
+
+              <div class="review-item">
+
+                <b>
+                  ${esc(item.q)}
+                </b>
+
+                <span class="muted small">
+
+                  Answer:
+                  ${esc(item.a)}
+
+                </span>
+
+              </div>
+
+            `;
+
+          }).join("")
+
+          :
+
+          `
+
+            <p class="muted">
+
+              Nothing here yet —
+              keep practicing.
+
+            </p>
+
+          `
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SUBJECTS
+========================================================= */
+
+function renderSubjects(element){
+
+  element.innerHTML =
+
+    header(
+      "Subjects",
+      "Choose a topic and practice mode"
+    )
+
+    +
+
+    `
+
+    <div class="subject-grid">
+
+      ${
+        Object.entries(SUBJECTS)
+          .map(function([subjectId,subject]){
+
+            const progress =
+              subjectProgress(subjectId);
+
+            return `
+
+              <div class="card">
+
+                <div class="subject-head">
+
+                  <div>
+
+                    <h2>
+
+                      ${subject.icon}
+                      ${esc(subject.name)}
+
+                    </h2>
+
+                    <div class="muted small">
+
+                      ${progress.done}
+                      /
+                      ${progress.total}
+                      questions mastered
+
+                    </div>
+
+                  </div>
+
+                  <b>
+                    ${progress.pct}%
+                  </b>
+
+                </div>
+
+
+                <div class="bar">
+
+                  <i
+                    style="width:${progress.pct}%">
+                  </i>
+
+                </div>
+
+
+                <div
+                  class="topic-grid"
+                  style="margin-top:13px">
+
+                  ${
+                    Object.entries(subject.topics)
+                      .map(function([topicId,topic]){
+
+                        const progress =
+                          progressFor(
+                            subjectId,
+                            topicId
+                          );
+
+                        return `
+
+                          <div class="topic">
+
+                            <h3>
+                              ${esc(topic.name)}
+                            </h3>
+
+                            <div class="small muted">
+
+                              ${progress.done}
+                              /
+                              ${progress.total}
+                              mastered
+
+                            </div>
+
+
+                            <div class="bar">
+
+                              <i
+                                style="width:${progress.pct}%">
+                              </i>
+
+                            </div>
+
+
+                            <div class="topic-actions">
+
+                              <button
+                                class="go"
+                                onclick="
+                                  launchSubject(
+                                    '${subjectId}',
+                                    '${topicId}',
+                                    'mcq'
+                                  )
+                                ">
+
+                                Quiz
+
+                              </button>
+
+
+                              <button
+                                onclick="
+                                  launchSubject(
+                                    '${subjectId}',
+                                    '${topicId}',
+                                    'flash'
+                                  )
+                                ">
+
+                                Flashcards
+
+                              </button>
+
+
+                              <button
+                                onclick="
+                                  launchSubject(
+                                    '${subjectId}',
+                                    '${topicId}',
+                                    'written'
+                                  )
+                                ">
+
+                                Written
+
+                              </button>
+
+                            </div>
+
+                          </div>
+
+                        `;
+
+                      })
+                      .join("")
+                  }
+
+                </div>
+
+              </div>
+
+            `;
+
+          })
+          .join("")
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   LAUNCH SUBJECT
+========================================================= */
+
+function launchSubject(
+  subjectId,
+  topicId,
+  mode
+){
+
+  const subject =
+    SUBJECTS[subjectId];
+
+  const topic =
+    subject.topics[topicId];
+
+
+  const questions =
+    topic.qs.map(function(q,index){
+
+      return {
+
+        id:
+          `${subjectId}:${topicId}:${index}`,
+
+        sid:subjectId,
+
+        tid:topicId,
+
+        topic:topic.name,
+
+        q:q[0],
+
+        a:q[1],
+
+        options:q[2]
+
+      };
+
+    });
+
+
+  startQuiz({
+
+    name:
+      subject.name +
+      " — " +
+      topic.name,
+
+    subjectName:
+      subject.name,
+
+    topicName:
+      topic.name,
+
+    mode:mode,
+
+    questions:questions
+
+  });
+
+}
+
+
+/* =========================================================
+   REVIEW MISTAKES
+========================================================= */
+
+function startReview(){
+
+  const ids =
+    new Set(
+      state.wrong.map(
+        item=>item.id
+      )
+    );
+
+
+  const questions =
+    allQuestions()
+      .filter(
+        question =>
+          ids.has(question.id)
+      );
+
+
+  if(!questions.length){
+
+    showModal(`
+
+      <h2>
+        No mistakes to review
+      </h2>
+
+      <p class="muted">
+
+        Complete some questions first
+        and missed questions will appear here.
+
+      </p>
+
+      <button
+        class="primary"
+        onclick="closeModal()">
+
+        Close
+
+      </button>
+
+    `);
+
+    return;
+
+  }
+
+
+  startQuiz({
+
+    name:"Review mistakes",
+
+    subjectName:"Review",
+
+    topicName:"Mistakes",
+
+    mode:"mcq",
+
+    questions:
+      questions.slice(-10)
+
+  });
+
+}
+
+
+/* =========================================================
+   START QUIZ
+========================================================= */
+
+function startQuiz(config){
+
+  clearTimer();
+
+
+  const questions =
+    [...config.questions]
+      .sort(
+        ()=>Math.random()-.5
+      );
+
+
+  currentQuiz={
+
+    ...config,
+
+    questions:questions,
+
+    index:0,
+
+    answers:[],
+
+    correct:0,
+
+    wrong:[],
+
+    selected:null,
+
+    flipped:false,
+
+    start:Date.now()
+
+  };
+
+
+  renderQuiz();
+
+}
+
+
+/* =========================================================
+   QUIZ RENDER
+========================================================= */
+
+function renderQuiz(){
+
+  const element =
+    document.getElementById("page");
+
+  const question =
+    currentQuiz
+      .questions[
+        currentQuiz.index
+      ];
+
+  const number =
+    currentQuiz.index+1;
+
+  const total =
+    currentQuiz.questions.length;
+
+
+  if(currentQuiz.mode==="flash"){
+
+    renderFlashcard(
+      element,
+      question,
+      number,
+      total
+    );
+
+    return;
+
+  }
+
+
+  if(currentQuiz.mode==="written"){
+
+    renderWritten(
+      element,
+      question,
+      number,
+      total
+    );
+
+    return;
+
+  }
+
+
+  renderMCQ(
+    element,
+    question,
+    number,
+    total
+  );
+
+}
+
+
+/* =========================================================
+   QUIZ TOP
+========================================================= */
+
+function quizTop(number,total){
+
+  return `
+
+    <div class="quiz-meta">
+
+      <button
+        class="secondary"
+        onclick="exitQuiz()">
+
+        ← Exit
+
+      </button>
+
+      <span class="muted">
+
+        Question
+        ${number}
+        /
+        ${total}
+
+      </span>
+
+      <span id="timer">
+        --
+      </span>
+
+    </div>
+
+
+    <div class="bar">
+
+      <i
+        style="
+          width:${Math.round(number/total*100)}%
+        ">
+      </i>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   MCQ
+========================================================= */
+
+function renderMCQ(
+  element,
+  question,
+  number,
+  total
+){
+
+  element.innerHTML = `
+
+    <div class="quiz-wrap">
+
+      ${quizTop(number,total)}
+
+
+      <div class="card">
+
+        <div class="small muted">
+
+          ${esc(currentQuiz.subjectName)}
+          ·
+          ${esc(currentQuiz.topicName)}
+
+        </div>
+
+
+        <div class="question">
+
+          ${esc(question.q)}
+
+        </div>
+
+
+        <div class="answers">
+
+          ${
+            question.options
+              .map(function(answer,index){
+
+                return `
+
+                  <button
+
+                    class="
+                      answer
+                      ${
+                        currentQuiz.selected===index
+                        ? "selected"
+                        : ""
+                      }
+                    "
+
+                    onclick="
+                      selectMCQ(${index})
+                    ">
+
+                    ${String.fromCharCode(65+index)}.
+                    ${esc(answer)}
+
+                  </button>
+
+                `;
+
+              })
+              .join("")
+          }
+
+        </div>
+
+
+        <div class="quiz-actions">
+
+          <span></span>
+
+          <button
+            class="primary"
+            onclick="nextMCQ()">
+
+            ${
+              number===total
+              ? "Finish"
+              : "Next"
+            }
+
+            →
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  startTimer(45);
+
+}
+
+
+/* =========================================================
+   MCQ ANSWER
+========================================================= */
+
+function selectMCQ(index){
+
+  currentQuiz.selected=index;
+
+  renderQuiz();
+
+}
+
+
+/* =========================================================
+   NEXT MCQ
+========================================================= */
+
+function nextMCQ(){
+
+  if(currentQuiz.selected===null){
+
+    showModal(`
+
+      <h2>
+        Choose an answer
+      </h2>
+
+      <p class="muted">
+
+        Pick an option before moving on.
+
+      </p>
+
+      <button
+        class="primary"
+        onclick="closeModal()">
+
+        OK
+
+      </button>
+
+    `);
+
+    return;
+
+  }
+
+
+  const question =
+    currentQuiz.questions[
+      currentQuiz.index
+    ];
+
+
+  const selected =
+    question.options[
+      currentQuiz.selected
+    ];
+
+
+  const correct =
+    selected === question.a;
+
+
+  currentQuiz.answers.push({
+
+    q:question.q,
+
+    a:question.a,
+
+    given:selected,
+
+    correct:correct,
+
+    id:question.id
+
+  });
+
+
+  if(correct){
+
+    currentQuiz.correct++;
+
+  }else{
+
+    currentQuiz.wrong.push(question);
+
+    rememberWrong(question);
+
+  }
+
+
+  currentQuiz.index++;
+
+  currentQuiz.selected=null;
+
+
+  if(
+    currentQuiz.index >=
+    currentQuiz.questions.length
+  ){
+
+    finishQuiz();
+
+  }else{
+
+    renderQuiz();
+
+  }
+
+}
+
+
+/* =========================================================
+   FLASHCARDS
+========================================================= */
+
+function renderFlashcard(
+  element,
+  question,
+  number,
+  total
+){
+
+  const side =
+    currentQuiz.flipped
+    ? question.a
+    : question.q;
+
+
+  element.innerHTML = `
+
+    <div class="quiz-wrap">
+
+      ${quizTop(number,total)}
+
+
+      <div
+        class="flashcard"
+        onclick="flipCard()">
+
+        <div>
+
+          <div class="small muted">
+
+            ${
+              currentQuiz.flipped
+              ? "ANSWER"
+              : "QUESTION"
+            }
+
+            · tap to flip
+
+          </div>
+
+
+          <div class="fc-text">
+
+            ${esc(side)}
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="quiz-actions">
+
+        <button
+          class="danger"
+          onclick="flashAnswer(false)">
+
+          Still learning
+
+        </button>
+
+
+        <button
+          class="primary"
+          onclick="flashAnswer(true)">
+
+          Got it ✓
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  startTimer(60);
+
+}
+
+
+function flipCard(){
+
+  currentQuiz.flipped =
+    !currentQuiz.flipped;
+
+  renderQuiz();
+
+}
+
+
+function flashAnswer(gotIt){
+
+  const question =
+    currentQuiz.questions[
+      currentQuiz.index
+    ];
+
+
+  currentQuiz.answers.push({
+
+    q:question.q,
+
+    a:question.a,
+
+    given:
+      gotIt
+      ? "Got it"
+      : "Still learning",
+
+    correct:gotIt,
+
+    id:question.id
+
+  });
+
+
+  if(gotIt){
+
+    currentQuiz.correct++;
+
+  }else{
+
+    currentQuiz.wrong.push(question);
+
+    rememberWrong(question);
+
+  }
+
+
+  currentQuiz.index++;
+
+  currentQuiz.flipped=false;
+
+
+  if(
+    currentQuiz.index >=
+    currentQuiz.questions.length
+  ){
+
+    finishQuiz();
+
+  }else{
+
+    renderQuiz();
+
+  }
+
+}
+
+
+/* =========================================================
+   WRITTEN
+========================================================= */
+
+function renderWritten(
+  element,
+  question,
+  number,
+  total
+){
+
+  element.innerHTML = `
+
+    <div class="quiz-wrap">
+
+      ${quizTop(number,total)}
+
+
+      <div class="card">
+
+        <div class="small muted">
+
+          ${esc(currentQuiz.subjectName)}
+          ·
+          Written practice
+
+        </div>
+
+
+        <div class="question">
+
+          ${esc(question.q)}
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Your answer
+          </label>
+
+          <textarea
+            id="writtenAnswer"
+            rows="7"
+            placeholder="Write your answer here..."
+            style="
+              width:100%;
+              background:#091525;
+              border:1px solid var(--border);
+              color:white;
+              padding:13px;
+              border-radius:11px;
+              resize:vertical;
+            "
+          ></textarea>
+
+        </div>
+
+
+        <div class="notice small">
+
+          After submitting,
+          compare your response with the model answer.
+
+        </div>
+
+
+        <div class="quiz-actions">
+
+          <span></span>
+
+          <button
+            class="primary"
+            onclick="submitWritten()">
+
+            Submit →
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  startTimer(120);
+
+}
+
+
+function submitWritten(){
+
+  const input =
+    document
+      .getElementById("writtenAnswer")
+      .value
+      .trim();
+
+
+  if(!input){
+
+    showModal(`
+
+      <h2>
+        Write something first
+      </h2>
+
+      <p class="muted">
+
+        Try answering the question
+        in your own words.
+
+      </p>
+
+      <button
+        class="primary"
+        onclick="closeModal()">
+
+        OK
+
+      </button>
+
+    `);
+
+    return;
+
+  }
+
+
+  const question =
+    currentQuiz.questions[
+      currentQuiz.index
+    ];
+
+
+  showModal(`
+
+    <h2>
+      Model answer
+    </h2>
+
+    <p>
+      ${esc(question.a)}
+    </p>
+
+
+    <div class="notice">
+
+      Mark yourself honestly:
+      did your answer contain the key idea?
+
+    </div>
+
+
+    <div
+      style="
+        display:flex;
+        gap:8px;
+        margin-top:15px;
+      ">
+
+      <button
+        class="danger"
+        onclick="scoreWritten(false)">
+
+        Not yet
+
+      </button>
+
+
+      <button
+        class="primary"
+        onclick="scoreWritten(true)">
+
+        I got it
+
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+function scoreWritten(correct){
+
+  closeModal();
+
+
+  const question =
+    currentQuiz.questions[
+      currentQuiz.index
+    ];
+
+
+  currentQuiz.answers.push({
+
+    q:question.q,
+
+    a:question.a,
+
+    given:"Written response",
+
+    correct:correct,
+
+    id:question.id
+
+  });
+
+
+  if(correct){
+
+    currentQuiz.correct++;
+
+  }else{
+
+    currentQuiz.wrong.push(question);
+
+    rememberWrong(question);
+
+  }
+
+
+  currentQuiz.index++;
+
+
+  if(
+    currentQuiz.index >=
+    currentQuiz.questions.length
+  ){
+
+    finishQuiz();
+
+  }else{
+
+    renderQuiz();
+
+  }
+
+}
+
+
+/* =========================================================
+   MISTAKES
+========================================================= */
+
+function rememberWrong(question){
+
+  const item={
+
+    id:question.id,
+
+    q:question.q,
+
+    a:question.a,
+
+    date:today()
+
+  };
+
+
+  state.wrong =
+    state.wrong.filter(
+      x=>x.id !== question.id
+    );
+
+
+  state.wrong.push(item);
+
+
+  if(state.wrong.length > 30){
+
+    state.wrong =
+      state.wrong.slice(-30);
+
+  }
+
+}
+
+
+/* =========================================================
+   FINISH QUIZ
+========================================================= */
+
+function finishQuiz(){
+
+  clearTimer();
+
+
+  const total =
+    currentQuiz.questions.length;
+
+
+  const accuracy =
+    Math.round(
+      currentQuiz.correct /
+      total *
+      100
+    );
+
+
+  /*
+    XP IS ONLY AWARDED HERE.
+    This prevents double XP.
+  */
+
+  const xp =
+    Math.max(
+      10,
+      Math.round(
+        25 * currentQuiz.correct +
+        10 * (accuracy===100 ? 2 : 1)
+      )
+    );
+
+
+  currentQuiz.questions.forEach(
+    function(question){
+
+      const answer =
+        currentQuiz.answers.find(
+          item =>
+            item.id === question.id
+        );
+
+
+      if(answer?.correct){
+
+        state.mastered[
+          question.id
+        ] = true;
+
+      }
+
+    }
+  );
+
+
+  state.sessions++;
+
+
+  state.history.push({
+
+    name:currentQuiz.name,
+
+    correct:currentQuiz.correct,
+
+    total:total,
+
+    xp:xp,
+
+    date:today()
+
+  });
+
+
+  state.history =
+    state.history.slice(-20);
+
+
+  updateActivity(xp);
+
+  save();
+
+
+  renderResults(
+    xp,
+    accuracy
+  );
+
+}
+
+
+/* =========================================================
+   RESULTS
+========================================================= */
+
+function renderResults(
+  xp,
+  accuracy
+){
+
+  const element =
+    document.getElementById("page");
+
+
+  element.innerHTML = `
+
+    <div class="quiz-wrap result">
+
+      ${header(
+        "Session complete",
+        "Review your performance"
+      )}
+
+
+      <div class="card">
+
+        <div class="result-score">
+
+          ${accuracy}%
+
+        </div>
+
+
+        <p class="muted">
+
+          ${currentQuiz.correct}
+          /
+          ${currentQuiz.questions.length}
+          correct
+
+        </p>
+
+
+        <div class="result-grid">
+
+          <div class="card">
+
+            <b>
+              ${xp}
+            </b>
+
+            <div class="small muted">
+              XP earned
+            </div>
+
+          </div>
+
+
+          <div class="card">
+
+            <b>
+              ${currentQuiz.wrong.length}
+            </b>
+
+            <div class="small muted">
+              To review
+            </div>
+
+          </div>
+
+
+          <div class="card">
+
+            <b>
+              🔥 ${state.streak}
+            </b>
+
+            <div class="small muted">
+              Day streak
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          style="
+            display:flex;
+            gap:8px;
+            justify-content:center;
+            flex-wrap:wrap;
+          ">
+
+          <button
+            class="primary"
+            onclick="showPage('subjects')">
+
+            Back to subjects
+
+          </button>
+
+
+          <button
+            class="secondary"
+            onclick="
+              startQuiz({
+                name:currentQuiz.name,
+                subjectName:currentQuiz.subjectName,
+                topicName:currentQuiz.topicName,
+                mode:currentQuiz.mode,
+                questions:currentQuiz.questions
+              })
+            ">
+
+            Try again
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="card"
+        style="margin-top:14px">
+
+        <div class="section-title">
+
+          <h2>
+            Review
+          </h2>
+
+        </div>
+
+
+        ${
+          currentQuiz.answers
+            .map(function(answer){
+
+              return `
+
+                <div class="review-item">
+
+                  <b>
+
+                    ${
+                      answer.correct
+                      ? "✓"
+                      : "✗"
+                    }
+
+                    ${esc(answer.q)}
+
+                  </b>
+
+
+                  <span class="small muted">
+
+                    Answer:
+                    ${esc(answer.a)}
+
+                  </span>
+
+
+                  ${
+                    answer.given !==
+                    "Written response"
+
+                    ?
+
+                    `
+
+                    <br>
+
+                    <span class="small muted">
+
+                      Your response:
+                      ${esc(answer.given)}
+
+                    </span>
+
+                    `
+
+                    :
+
+                    ""
+
+                  }
+
+                </div>
+
+              `;
+
+            })
+            .join("")
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer(seconds){
+
+  clearTimer();
+
+
+  let remaining=seconds;
+
+
+  const timer =
+    document.getElementById("timer");
+
+
+  if(timer){
+
+    timer.textContent =
+      `⏱ ${remaining}s`;
+
+  }
+
+
+  quizTimer =
+    setInterval(function(){
+
+      remaining--;
+
+
+      const element =
+        document.getElementById("timer");
+
+
+      if(element){
+
+        element.textContent =
+          `⏱ ${remaining}s`;
+
+      }
+
+
+      if(remaining<=0){
+
+        clearTimer();
+
+
+        if(
+          currentQuiz?.mode === "mcq"
+        ){
+
+          if(
+            currentQuiz.selected !== null
+          ){
+
+            nextMCQ();
+
+          }else{
+
+            const question =
+              currentQuiz.questions[
+                currentQuiz.index
+              ];
+
+            currentQuiz.answers.push({
+
+              q:question.q,
+
+              a:question.a,
+
+              given:"Time expired",
+
+              correct:false,
+
+              id:question.id
+
+            });
+
+            rememberWrong(question);
+
+            currentQuiz.wrong.push(question);
+
+            currentQuiz.index++;
+
+            currentQuiz.selected=null;
+
+
+            if(
+              currentQuiz.index >=
+              currentQuiz.questions.length
+            ){
+
+              finishQuiz();
+
+            }else{
+
+              renderQuiz();
+
+            }
+
+          }
+
+        }
+
+
+        else if(
+          currentQuiz?.mode === "flash"
+        ){
+
+          flashAnswer(false);
+
+        }
+
+
+        else if(
+          currentQuiz?.mode === "written"
+        ){
+
+          scoreWritten(false);
+
+        }
+
+      }
+
+    },1000);
+
+}
+
+
+function clearTimer(){
+
+  if(quizTimer){
+
+    clearInterval(quizTimer);
+
+    quizTimer=null;
+
+  }
+
+}
+
+
+function exitQuiz(){
+
+  const confirmed =
+    confirm(
+      "Exit this session? Your current session will not award XP."
+    );
+
+
+  if(confirmed){
+
+    clearTimer();
+
+    showPage("subjects");
+
+  }
+
+}
+
+
+/* =========================================================
+   AI GENERATOR
+========================================================= */
+
+function renderAI(element){
+
+  element.innerHTML =
+
+    header(
+      "AI Quiz Generator",
+      "Create custom revision questions"
+    )
+
+    +
+
+    `
+
+    <div class="card">
+
+      <div class="notice">
+
+        <b>
+          AI setup
+        </b>
+
+        <br>
+
+        For a real public app,
+        keep your AI provider key on a server.
+        Do not put a secret API key directly
+        into this HTML file.
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Topic
+        </label>
+
+        <input
+          id="aiTopic"
+          placeholder="
+            e.g. quadratic equations, Macbeth themes
+          "
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Mode
+        </label>
+
+        <select id="aiMode">
+
+          <option value="mcq">
+            Multiple choice
+          </option>
+
+          <option value="flash">
+            Flashcards
+          </option>
+
+          <option value="written">
+            Written
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Number of questions
+        </label>
+
+        <select id="aiCount">
+
+          <option>
+            5
+          </option>
+
+          <option>
+            10
+          </option>
+
+          <option>
+            15
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="generateAI()">
+
+        Generate quiz
+
+      </button>
+
+
+      <div
+        id="aiStatus"
+        class="small muted"
+        style="margin-top:10px">
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+async function generateAI(){
+
+  const topic =
+    document
+      .getElementById("aiTopic")
+      .value
+      .trim();
+
+
+  const mode =
+    document
+      .getElementById("aiMode")
+      .value;
+
+
+  const count =
+    Number(
+      document
+        .getElementById("aiCount")
+        .value
+    );
+
+
+  const status =
+    document
+      .getElementById("aiStatus");
+
+
+  if(!topic){
+
+    status.textContent =
+      "Enter a topic.";
+
+    return;
+
+  }
+
+
+  if(!state.apiEndpoint){
+
+    status.innerHTML = `
+
+      No AI endpoint configured.
+
+      <button
+        class="ghost"
+        onclick="showPage('settings')">
+
+        Open Settings →
+
+      </button>
+
+    `;
+
+    return;
+
+  }
+
+
+  status.textContent =
+    "Generating…";
+
+
+  try{
+
+    const response =
+      await fetch(
+        state.apiEndpoint,
+        {
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify({
+
+              topic:topic,
+
+              mode:mode,
+
+              count:count
+
+            })
+
+        }
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        `Server returned ${response.status}`
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    const raw =
+      Array.isArray(data)
+      ? data
+      : data.questions;
+
+
+    if(
+      !Array.isArray(raw) ||
+      !raw.length
+    ){
+
+      throw new Error(
+        "Endpoint returned no questions."
+      );
+
+    }
+
+
+    const questions =
+      raw.map(function(item,index){
+
+        return {
+
+          id:
+            `ai:${Date.now()}:${index}`,
+
+          sid:"ai",
+
+          tid:"custom",
+
+          topic:topic,
+
+          q:
+            item.q ||
+            item.question ||
+            "Question",
+
+          a:
+            item.a ||
+            item.answer ||
+            "",
+
+          options:
+            item.options ||
+            item.choices ||
+            [
+              item.a ||
+              item.answer ||
+              "Answer"
+            ]
+
+        };
+
+      });
+
+
+    startQuiz({
+
+      name:
+        `AI: ${topic}`,
+
+      subjectName:
+        "AI Generated",
+
+      topicName:
+        topic,
+
+      mode:mode,
+
+      questions:questions
+
+    });
+
+
+  }catch(error){
+
+    status.textContent =
+      "Could not generate: " +
+      error.message;
+
+  }
+
+}
+
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
+
+function renderLeaderboard(element){
+
+  const rows=[
+
+    {
+      name:"StudyBot",
+      xp:2450
+    },
+
+    {
+      name:"Alex",
+      xp:1980
+    },
+
+    {
+      name:"Maya",
+      xp:1760
+    },
+
+    {
+      name:
+        state.user?.name || "You",
+
+      xp:state.xp
+    }
+
+  ];
+
+
+  rows.sort(
+    (a,b)=>b.xp-a.xp
+  );
+
+
+  element.innerHTML =
+
+    header(
+      "Leaderboard",
+      "Demo leaderboard"
+    )
+
+    +
+
+    `
+
+    <div class="card">
+
+      <div class="notice small">
+
+        This is demo data.
+        It is not a real global leaderboard.
+
+      </div>
+
+
+      <table class="table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              #
+            </th>
+
+            <th>
+              Name
+            </th>
+
+            <th>
+              XP
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          ${
+            rows.map(function(row,index){
+
+              return `
+
+                <tr>
+
+                  <td>
+                    ${index+1}
+                  </td>
+
+                  <td>
+                    ${esc(row.name)}
+                  </td>
+
+                  <td>
+                    ${row.xp}
+                  </td>
+
+                </tr>
+
+              `;
+
+            }).join("")
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function renderSettings(element){
+
+  element.innerHTML =
+
+    header(
+      "Settings",
+      "Manage your StudyForge prototype"
+    )
+
+    +
+
+    `
+
+    <div class="grid">
+
+
+      <div class="card">
+
+        <h2>
+          AI endpoint
+        </h2>
+
+
+        <p class="muted small">
+
+          For a real app,
+          use a server or serverless function
+          that keeps your AI provider key private.
+
+        </p>
+
+
+        <div class="field">
+
+          <label>
+            Backend endpoint URL
+          </label>
+
+          <input
+            id="endpoint"
+            value="${esc(state.apiEndpoint)}"
+            placeholder="
+              https://your-site.com/api/generate-quiz
+            "
+          >
+
+        </div>
+
+
+        <button
+          class="primary"
+          onclick="saveSettings()">
+
+          Save settings
+
+        </button>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>
+          Local data
+        </h2>
+
+
+        <p class="muted small">
+
+          Progress, XP, streaks and mastered
+          questions are stored in this browser.
+
+        </p>
+
+
+        <button
+          class="secondary full"
+          onclick="exportData()">
+
+          Export progress
+
+        </button>
+
+
+        <div style="height:8px"></div>
+
+
+        <button
+          class="secondary full"
+          onclick="importData()">
+
+          Import progress
+
+        </button>
+
+
+        <div style="height:8px"></div>
+
+
+        <button
+          class="danger full"
+          onclick="resetProgress()">
+
+          Reset progress
+
+        </button>
+
+
+        <div style="height:8px"></div>
+
+
+        <button
+          class="ghost full"
+          onclick="logout()">
+
+          Return to start
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SAVE SETTINGS
+========================================================= */
+
+function saveSettings(){
+
+  state.apiEndpoint =
+    document
+      .getElementById("endpoint")
+      .value
+      .trim();
+
+
+  save();
+
+
+  showModal(`
+
+    <h2>
+      Saved
+    </h2>
+
+    <p class="muted">
+
+      Your AI endpoint setting
+      has been saved locally.
+
+    </p>
+
+
+    <button
+      class="primary"
+      onclick="closeModal()">
+
+      Done
+
+    </button>
+
+  `);
+
+}
+
+
+/* =========================================================
+   EXPORT
+========================================================= */
+
+function exportData(){
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          state,
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const link =
+    document.createElement("a");
+
+
+  link.href=url;
+
+  link.download=
+    "studyforge-progress.json";
+
+
+  link.click();
+
+
+  URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================================================
+   IMPORT
+========================================================= */
+
+function importData(){
+
+  const input =
+    document.createElement("input");
+
+
+  input.type="file";
+
+  input.accept=
+    ".json,application/json";
+
+
+  input.onchange=function(){
+
+    const file =
+      input.files[0];
+
+
+    if(!file)return;
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload=function(){
+
+      try{
+
+        const imported =
+          JSON.parse(
+            reader.result
+          );
+
+
+        state={
+
+          ...structuredClone(
+            DEFAULT_STATE
+          ),
+
+          ...imported
+
+        };
+
+
+        save();
+
+        syncUser();
+
+        showPage(
+          currentPage
+        );
+
+
+      }catch(error){
+
+        alert(
+          "Invalid StudyForge JSON file."
+        );
+
+      }
+
+    };
+
+
+    reader.readAsText(file);
+
+  };
+
+
+  input.click();
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetProgress(){
+
+  const confirmed =
+    confirm(
+      "Reset all XP, streak, mastered questions and history?"
+    );
+
+
+  if(!confirmed)return;
+
+
+  const user =
+    state.user;
+
+
+  state =
+    structuredClone(
+      DEFAULT_STATE
+    );
+
+
+  state.user=user;
+
+
+  save();
+
+  syncUser();
+
+  showPage("dashboard");
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout(){
+
+  state.user=null;
+
+  save();
+
+  location.reload();
+
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function showModal(html){
+
+  document
+    .getElementById("modalBox")
+    .innerHTML=html;
+
+
+  document
+    .getElementById("modal")
+    .classList
+    .remove("hidden");
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("modal")
+    .classList
+    .add("hidden");
+
+}
+
+
+document
+  .getElementById("modal")
+  .addEventListener(
+    "click",
+    function(event){
+
+      if(
+        event.target.id === "modal"
+      ){
+
+        closeModal();
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   KEYBOARD CONTROLS
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(!currentQuiz)return;
+
+
+    if(
+      currentQuiz.mode === "mcq"
+    ){
+
+      const number =
+        Number(event.key);
+
+
+      if(
+        number>=1 &&
+        number<=4
+      ){
+
+        selectMCQ(
+          number-1
+        );
+
+      }
+
+
+      if(
+        event.key === "Enter"
+      ){
+
+        nextMCQ();
+
+      }
+
+    }
+
+
+    if(
+      currentQuiz.mode === "flash" &&
+      event.code === "Space"
+    ){
+
+      event.preventDefault();
+
+      flipCard();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   START APP
+========================================================= */
+
+start();
+
+</script>
+
+</body>
+</html>
