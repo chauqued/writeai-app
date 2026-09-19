@@ -2,630 +2,1117 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>StudyForge — AI Revision App</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
-
-*{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --navy:#0B0F1A;
-  --navy2:#111827;
-  --navy3:#1A2235;
-  --navy4:#1F2D45;
-  --teal:#00D4AA;
-  --teal2:#00B894;
-  --teal-dim:rgba(0,212,170,0.12);
-  --teal-glow:0 0 20px rgba(0,212,170,0.3);
-  --amber:#F59E0B;
-  --amber-dim:rgba(245,158,11,0.12);
-  --rose:#F43F5E;
-  --rose-dim:rgba(244,63,94,0.12);
-  --violet:#7C3AED;
-  --violet-dim:rgba(124,58,237,0.15);
-  --text:#F0F4FF;
-  --text-muted:#8896B3;
-  --text-dim:#4A5568;
-  --border:rgba(255,255,255,0.06);
-  --border2:rgba(255,255,255,0.1);
-  --card-shadow:0 4px 24px rgba(0,0,0,0.4);
-  --font:'Space Grotesk',sans-serif;
-  --mono:'JetBrains Mono',monospace;
-  --radius:14px;
-  --radius-lg:20px;
-  --sidebar:260px;
+  --bg:#08111f;
+  --panel:#0e1b2e;
+  --panel2:#12233a;
+  --border:#203653;
+  --text:#edf5ff;
+  --muted:#91a4bd;
+  --accent:#7c5cff;
+  --accent2:#25d0b1;
+  --danger:#ff6678;
+  --warning:#ffbf69;
 }
-html,body{height:100%;background:var(--navy);color:var(--text);font-family:var(--font);font-size:15px;}
 
-.screen{display:none;min-height:100vh;}
-.screen.active{display:block;}
+*{box-sizing:border-box}
 
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px;background:var(--navy2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
-.brand{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;}
-.brand-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--teal),var(--violet));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;}
-.brand-name{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--text);letter-spacing:-0.5px;}
-.brand-name span{color:var(--teal);}
-.topbar-right{display:flex;align-items:center;gap:10px;}
-.xp-pill{display:flex;align-items:center;gap:6px;background:var(--amber-dim);border:1px solid rgba(245,158,11,0.25);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;color:var(--amber);}
-.streak-pill{display:flex;align-items:center;gap:5px;background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.2);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;color:var(--rose);}
-.nav-btn{background:none;border:none;color:var(--text-muted);font-family:var(--font);font-size:13px;font-weight:500;padding:6px 12px;border-radius:8px;cursor:pointer;transition:all 0.15s;}
-.nav-btn:hover{background:var(--teal-dim);color:var(--teal);}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:radial-gradient(circle at top right,#17244d 0,#08111f 38%);
+  color:var(--text);
+  min-height:100vh;
+}
 
-.landing-hero{max-width:700px;margin:0 auto;text-align:center;padding:5rem 2rem 3rem;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--teal-dim);border:1px solid rgba(0,212,170,0.25);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;color:var(--teal);font-family:var(--mono);margin-bottom:2rem;letter-spacing:0.5px;}
-.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:blink 2s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
-h1.hero-h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;line-height:1.1;letter-spacing:-1.5px;margin-bottom:1.2rem;}
-h1.hero-h1 .accent{color:var(--teal);}
-.hero-sub{font-size:16px;color:var(--text-muted);line-height:1.7;max-width:480px;margin:0 auto 2.5rem;}
-.btn-primary{background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--navy);padding:13px 32px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;border:none;font-family:var(--font);box-shadow:var(--teal-glow);transition:all 0.2s;letter-spacing:-0.3px;}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(0,212,170,0.45);}
-.btn-ghost{background:transparent;color:var(--text-muted);padding:13px 24px;border-radius:12px;font-size:15px;font-weight:500;cursor:pointer;border:1.5px solid var(--border2);font-family:var(--font);transition:all 0.2s;}
-.btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.subjects-preview{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:3rem;padding-top:2.5rem;border-top:1px solid var(--border);}
-.subj-chip{padding:7px 15px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid var(--border2);color:var(--text-muted);}
-.subj-chip:nth-child(1){border-color:rgba(0,212,170,0.3);color:var(--teal);}
-.subj-chip:nth-child(2){border-color:rgba(245,158,11,0.3);color:var(--amber);}
-.subj-chip:nth-child(3){border-color:rgba(124,58,237,0.3);color:#A78BFA;}
-.subj-chip:nth-child(4){border-color:rgba(244,63,94,0.3);color:var(--rose);}
-.subj-chip:nth-child(5){border-color:rgba(59,130,246,0.3);color:#60A5FA;}
-.subj-chip:nth-child(6){border-color:rgba(16,185,129,0.3);color:#34D399;}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0}
+.hidden{display:none!important}
+.muted{color:var(--muted)}
+.small{font-size:13px}
 
-.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,212,170,0.04) 0%,transparent 70%);}
-.auth-card{background:var(--navy2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:2.5rem;width:100%;max-width:420px;box-shadow:var(--card-shadow);}
-.auth-title{font-size:1.3rem;font-weight:700;margin-bottom:0.3rem;}
-.auth-sub{font-size:13px;color:var(--text-muted);margin-bottom:1.8rem;}
-.field label{display:block;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;}
-.field{margin-bottom:1rem;}
-.field input{width:100%;padding:11px 14px;background:var(--navy3);border:1.5px solid var(--border2);border-radius:10px;font-size:14px;font-family:var(--font);color:var(--text);outline:none;transition:all 0.15s;}
-.field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,212,170,0.1);}
-.auth-tabs{display:flex;background:var(--navy);border-radius:10px;padding:3px;margin-bottom:1.5rem;}
-.auth-tab{flex:1;padding:8px;border-radius:8px;border:none;background:none;font-family:var(--font);font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all 0.15s;}
-.auth-tab.active{background:var(--navy3);color:var(--teal);font-weight:600;}
+#landing{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:24px;
+}
 
-.app-shell{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:calc(100vh - 56px);}
-.sidebar{background:var(--navy2);border-right:1px solid var(--border);padding:1.2rem 0.8rem;overflow-y:auto;height:calc(100vh - 56px);position:sticky;top:56px;}
-.sidebar-section-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin:1rem 0.4rem 0.4rem;}
-.sidebar-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:9px;font-size:13px;font-weight:500;cursor:pointer;color:var(--text-muted);border:none;background:none;width:100%;text-align:left;font-family:var(--font);transition:all 0.15s;position:relative;}
-.sidebar-item:hover{background:var(--navy3);color:var(--text);}
-.sidebar-item.active{background:var(--teal-dim);color:var(--teal);font-weight:600;}
-.sidebar-item.active::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:3px;border-radius:2px;background:var(--teal);}
-.sidebar-item .s-icon{font-size:14px;width:18px;text-align:center;flex-shrink:0;}
-.sidebar-progress{margin:1rem 0.4rem 0.5rem;}
-.s-prog-label{font-size:10px;color:var(--text-muted);font-weight:600;display:flex;justify-content:space-between;margin-bottom:6px;}
-.s-prog-bar{background:var(--navy);height:5px;border-radius:3px;overflow:hidden;}
-.s-prog-fill{background:linear-gradient(90deg,var(--teal),var(--violet));height:5px;border-radius:3px;transition:width 0.5s;}
-.sidebar-user{display:flex;align-items:center;gap:9px;padding:0.7rem 0.4rem 1rem;border-bottom:1px solid var(--border);}
-.user-av{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--teal),var(--violet));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;}
-.user-av-name{font-size:12px;font-weight:600;}
-.user-av-lvl{font-size:10px;color:var(--text-muted);margin-top:1px;}
-.main{padding:1.8rem;overflow-y:auto;}
+.hero{
+  max-width:1050px;
+  width:100%;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:28px;
+  align-items:center;
+}
 
-.dash-greeting{font-size:1.4rem;font-weight:700;letter-spacing:-0.5px;margin-bottom:0.3rem;}
-.dash-sub{font-size:13px;color:var(--text-muted);margin-bottom:1.5rem;}
-.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:1.5rem;}
-.stat-box{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;position:relative;overflow:hidden;}
-.stat-box::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.stat-box.teal::after{background:linear-gradient(90deg,var(--teal),var(--teal2));}
-.stat-box.amber::after{background:linear-gradient(90deg,var(--amber),#EF4444);}
-.stat-box.violet::after{background:linear-gradient(90deg,var(--violet),var(--teal));}
-.stat-box.rose::after{background:linear-gradient(90deg,var(--rose),var(--violet));}
-.stat-num{font-family:var(--mono);font-size:1.7rem;font-weight:600;color:var(--text);margin-bottom:3px;}
-.stat-lbl{font-size:11px;color:var(--text-muted);font-weight:500;}
-.section-title{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--teal);letter-spacing:0.5px;margin-bottom:1rem;}
-.subjects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:1.5rem;}
-.subj-card{background:var(--navy2);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.2rem;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
-.subj-card:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:var(--card-shadow);}
-.subj-card-icon{font-size:24px;margin-bottom:8px;}
-.subj-card-name{font-size:13px;font-weight:600;margin-bottom:3px;}
-.subj-card-prog{font-size:11px;color:var(--text-muted);}
-.subj-mini-bar{background:var(--navy);height:3px;border-radius:2px;margin-top:8px;overflow:hidden;}
-.subj-mini-fill{height:3px;border-radius:2px;background:linear-gradient(90deg,var(--teal),var(--violet));transition:width 0.4s;}
-.recent-activity{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;margin-bottom:1.5rem;}
-.activity-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
-.activity-item:last-child{border-bottom:none;}
-.activity-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.activity-text{font-size:13px;flex:1;}
-.activity-time{font-size:11px;color:var(--text-muted);}
+.brand{
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:.4px;
+}
 
-.topic-header{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;}
-.back-btn{background:var(--navy2);border:1px solid var(--border2);color:var(--text-muted);padding:7px 14px;border-radius:9px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all 0.15s;}
-.back-btn:hover{border-color:var(--teal);color:var(--teal);}
-.topic-h{font-size:1.2rem;font-weight:700;letter-spacing:-0.4px;}
-.topics-list{display:flex;flex-direction:column;gap:10px;}
-.topic-card{background:var(--navy2);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
-.topic-card:hover{border-color:var(--teal);background:var(--navy3);}
-.topic-card-left{flex:1;}
-.topic-card-name{font-size:14px;font-weight:600;margin-bottom:3px;}
-.topic-card-sub{font-size:12px;color:var(--text-muted);}
-.topic-card-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.mastery-ring{width:36px;height:36px;position:relative;}
-.mastery-ring svg{transform:rotate(-90deg);}
-.mastery-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--mono);color:var(--teal);}
-.difficulty-badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:5px;letter-spacing:0.5px;}
-.diff-easy{background:rgba(0,212,170,0.12);color:var(--teal);}
-.diff-medium{background:rgba(245,158,11,0.12);color:var(--amber);}
-.diff-hard{background:rgba(244,63,94,0.12);color:var(--rose);}
+.brand span,
+.logo span{
+  color:var(--accent2);
+}
 
-.quiz-wrap{max-width:700px;margin:0 auto;}
-.quiz-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;gap:1rem;}
-.quiz-progress-bar{flex:1;height:6px;background:var(--navy3);border-radius:3px;overflow:hidden;}
-.quiz-progress-fill{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--teal),var(--violet));transition:width 0.4s;}
-.quiz-counter{font-family:var(--mono);font-size:12px;color:var(--text-muted);white-space:nowrap;}
-.quiz-timer{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--amber);background:var(--amber-dim);padding:4px 10px;border-radius:7px;}
-.quiz-card{background:var(--navy2);border:1.5px solid var(--border2);border-radius:var(--radius-lg);padding:2rem;margin-bottom:1.2rem;box-shadow:var(--card-shadow);}
-.quiz-type-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);font-family:var(--mono);margin-bottom:1rem;}
-.quiz-question{font-size:1.05rem;font-weight:600;line-height:1.55;letter-spacing:-0.2px;margin-bottom:1.5rem;}
-.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.option-btn{background:var(--navy3);border:1.5px solid var(--border2);border-radius:12px;padding:14px 16px;text-align:left;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font);color:var(--text);transition:all 0.15s;line-height:1.4;}
-.option-btn:hover:not(:disabled){border-color:var(--teal);background:var(--teal-dim);color:var(--teal);}
-.option-btn.correct{border-color:var(--teal);background:var(--teal-dim);color:var(--teal);}
-.option-btn.wrong{border-color:var(--rose);background:var(--rose-dim);color:var(--rose);}
-.option-btn:disabled{cursor:default;}
-.option-letter{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:4px;display:block;}
-.feedback-box{border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-size:14px;line-height:1.6;display:none;}
-.feedback-box.correct{background:rgba(0,212,170,0.08);border:1.5px solid rgba(0,212,170,0.2);color:var(--teal);}
-.feedback-box.wrong{background:var(--rose-dim);border:1.5px solid rgba(244,63,94,0.2);color:#FCA5A5;}
-.feedback-box.show{display:block;}
-.feedback-icon{font-size:16px;margin-right:6px;}
-.next-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--navy);border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font);display:none;transition:all 0.2s;letter-spacing:-0.3px;}
-.next-btn.show{display:block;}
-.next-btn:hover{box-shadow:var(--teal-glow);}
-.written-input{width:100%;padding:12px 14px;background:var(--navy3);border:1.5px solid var(--border2);border-radius:10px;font-size:14px;font-family:var(--font);color:var(--text);outline:none;transition:all 0.15s;min-height:100px;resize:vertical;}
-.written-input:focus{border-color:var(--teal);}
-.submit-answer-btn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--navy);padding:11px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:var(--font);margin-top:10px;transition:all 0.2s;}
-.submit-answer-btn:hover{box-shadow:var(--teal-glow);}
-.submit-answer-btn:disabled{opacity:0.5;cursor:not-allowed;}
+h1{
+  font-size:clamp(42px,7vw,76px);
+  line-height:.98;
+  margin:18px 0;
+}
 
-.flashcard-container{perspective:1000px;margin-bottom:1.2rem;}
-.flashcard{width:100%;min-height:200px;position:relative;transform-style:preserve-3d;transition:transform 0.5s;cursor:pointer;}
-.flashcard.flipped{transform:rotateY(180deg);}
-.flashcard-face{position:absolute;inset:0;backface-visibility:hidden;background:var(--navy2);border:1.5px solid var(--border2);border-radius:var(--radius-lg);padding:2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
-.flashcard-back{transform:rotateY(180deg);background:var(--navy3);}
-.flashcard-hint{font-size:11px;color:var(--text-dim);margin-top:1rem;font-family:var(--mono);}
-.flashcard-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.8rem;font-family:var(--mono);}
-.flashcard-text{font-size:1rem;font-weight:500;line-height:1.55;}
-.flashcard-answer{font-size:1.1rem;font-weight:700;color:var(--teal);}
-.fc-btns{display:flex;gap:10px;}
-.fc-btn{flex:1;padding:12px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:var(--font);transition:all 0.2s;}
-.fc-btn.know{background:var(--teal-dim);color:var(--teal);border:1.5px solid rgba(0,212,170,0.3);}
-.fc-btn.know:hover{background:var(--teal);color:var(--navy);}
-.fc-btn.review{background:var(--rose-dim);color:var(--rose);border:1.5px solid rgba(244,63,94,0.3);}
-.fc-btn.review:hover{background:var(--rose);color:#fff;}
+.hero p{
+  font-size:18px;
+  line-height:1.6;
+  color:var(--muted);
+  max-width:650px;
+}
 
-.results-card{background:var(--navy2);border:1.5px solid var(--border2);border-radius:var(--radius-lg);padding:2.5rem;text-align:center;max-width:500px;margin:0 auto;box-shadow:var(--card-shadow);}
-.results-score-ring{width:100px;height:100px;margin:0 auto 1.2rem;position:relative;}
-.results-score-ring svg{transform:rotate(-90deg);}
-.results-score-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.results-pct{font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--teal);}
-.results-of{font-size:10px;color:var(--text-muted);}
-.results-title{font-size:1.3rem;font-weight:700;margin-bottom:0.5rem;letter-spacing:-0.4px;}
-.results-sub{font-size:13px;color:var(--text-muted);margin-bottom:1.5rem;}
-.xp-earned{display:inline-flex;align-items:center;gap:7px;background:var(--amber-dim);border:1px solid rgba(245,158,11,0.25);padding:8px 18px;border-radius:20px;font-size:14px;font-weight:700;color:var(--amber);margin-bottom:1.5rem;font-family:var(--mono);}
-.results-breakdown{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1.5rem;}
-.res-box{background:var(--navy3);border-radius:10px;padding:10px;}
-.res-num{font-family:var(--mono);font-size:1.2rem;font-weight:700;}
-.res-lbl{font-size:10px;color:var(--text-muted);}
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin:22px 0;
+}
 
-.gen-card{background:var(--navy2);border:1.5px solid var(--border2);border-radius:var(--radius-lg);padding:1.8rem;margin-bottom:1.2rem;}
-.gen-title{font-size:1rem;font-weight:700;margin-bottom:0.3rem;}
-.gen-sub{font-size:13px;color:var(--text-muted);margin-bottom:1.2rem;}
-.gen-input{width:100%;padding:11px 14px;background:var(--navy3);border:1.5px solid var(--border2);border-radius:10px;font-size:14px;font-family:var(--font);color:var(--text);outline:none;transition:all 0.15s;min-height:90px;resize:vertical;}
-.gen-input:focus{border-color:var(--teal);}
-.gen-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;align-items:center;}
-.gen-select{padding:9px 12px;background:var(--navy3);border:1.5px solid var(--border2);border-radius:9px;font-size:13px;font-family:var(--font);color:var(--text);cursor:pointer;outline:none;}
-.gen-select:focus{border-color:var(--teal);}
-.gen-btn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--navy);padding:10px 22px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:var(--font);display:flex;align-items:center;gap:7px;transition:all 0.2s;}
-.gen-btn:hover:not(:disabled){box-shadow:var(--teal-glow);}
-.gen-btn:disabled{opacity:0.5;cursor:not-allowed;}
-.spinner{width:13px;height:13px;border:2px solid rgba(0,0,0,0.2);border-top-color:var(--navy);border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.generated-questions{margin-top:1.2rem;display:flex;flex-direction:column;gap:10px;}
-.gen-q-item{background:var(--navy3);border:1px solid var(--border);border-radius:10px;padding:0.9rem 1.1rem;font-size:13px;line-height:1.6;}
-.gen-q-num{font-family:var(--mono);font-size:10px;color:var(--teal);font-weight:700;display:block;margin-bottom:4px;}
-.api-notice{background:var(--navy3);border:1px solid var(--border2);border-radius:10px;padding:0.9rem 1rem;font-size:13px;color:var(--text-muted);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
-.api-badge{font-size:10px;background:var(--teal-dim);color:var(--teal);padding:2px 7px;border-radius:5px;font-weight:700;font-family:var(--mono);flex-shrink:0;}
+.chip{
+  padding:8px 12px;
+  border:1px solid var(--border);
+  background:#0d1a2c;
+  border-radius:999px;
+  color:#c8d5e6;
+  font-size:13px;
+}
 
-.settings-card{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1.2rem;}
-.settings-title{font-size:15px;font-weight:700;margin-bottom:0.3rem;}
-.settings-sub{font-size:12px;color:var(--text-muted);margin-bottom:1rem;}
-.key-row{display:flex;gap:8px;}
-.key-input{flex:1;padding:9px 12px;background:var(--navy3);border:1.5px solid var(--border2);border-radius:9px;font-size:12px;font-family:var(--mono);color:var(--text);outline:none;}
-.key-input:focus{border-color:var(--teal);}
-.save-btn{background:var(--teal-dim);color:var(--teal);border:1.5px solid rgba(0,212,170,0.3);padding:9px 16px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);}
-.key-status{font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;margin-top:6px;display:inline-flex;align-items:center;gap:4px;}
-.key-status.ok{background:rgba(0,212,170,0.1);color:var(--teal);}
-.key-status.missing{background:var(--rose-dim);color:var(--rose);}
+.auth{
+  background:rgba(14,27,46,.9);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:26px;
+  box-shadow:0 25px 70px #0005;
+}
 
-.leaderboard{display:flex;flex-direction:column;gap:8px;}
-.lb-item{background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:0.8rem 1.1rem;display:flex;align-items:center;gap:12px;}
-.lb-rank{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text-muted);width:20px;}
-.lb-rank.gold{color:#F59E0B;}
-.lb-rank.silver{color:#94A3B8;}
-.lb-rank.bronze{color:#B45309;}
-.lb-av{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--teal),var(--violet));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;}
-.lb-name{flex:1;font-size:13px;font-weight:600;}
-.lb-xp{font-family:var(--mono);font-size:12px;color:var(--amber);}
+.auth h2{margin-top:0}
 
-#toast-area{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;gap:7px;}
-.toast{background:var(--navy2);border:1px solid var(--border2);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:500;color:var(--text);box-shadow:var(--card-shadow);display:flex;align-items:center;gap:8px;animation:toastIn 0.2s ease;max-width:260px;}
-.toast.success{border-left:3px solid var(--teal);}
-.toast.error{border-left:3px solid var(--rose);}
-.toast.info{border-left:3px solid var(--violet);}
-@keyframes toastIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.field{
+  display:grid;
+  gap:7px;
+  margin:13px 0;
+}
 
-.loading-state{text-align:center;padding:3rem;color:var(--text-muted);}
-.loading-spinner{width:32px;height:32px;border:3px solid var(--border2);border-top-color:var(--teal);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1rem;}
-.empty-state{text-align:center;padding:3rem;color:var(--text-muted);}
-.empty-icon{font-size:3rem;margin-bottom:1rem;}
+.field label{
+  font-size:13px;
+  color:#b9c8da;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  background:#091525;
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:12px 13px;
+  border-radius:11px;
+  outline:none;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:var(--accent);
+}
+
+.primary{
+  background:linear-gradient(135deg,var(--accent),#9c73ff);
+  color:#fff;
+  padding:12px 16px;
+  border-radius:11px;
+  font-weight:750;
+}
+
+.secondary{
+  background:#17283f;
+  color:#dce9f7;
+  padding:11px 15px;
+  border-radius:11px;
+  border:1px solid var(--border);
+}
+
+.danger{
+  background:#351722;
+  color:#ffb7c0;
+  border:1px solid #64303d;
+  padding:10px 14px;
+  border-radius:10px;
+}
+
+.ghost{
+  background:transparent;
+  color:#aebfd2;
+  padding:9px 12px;
+}
+
+.full{width:100%}
+
+#app{
+  display:none;
+  min-height:100vh;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:245px 1fr;
+  min-height:100vh;
+}
+
+.sidebar{
+  border-right:1px solid var(--border);
+  background:#091524;
+  padding:20px 14px;
+  position:sticky;
+  top:0;
+  height:100vh;
+}
+
+.logo{
+  font-weight:900;
+  font-size:20px;
+  padding:4px 10px 24px;
+}
+
+.nav{
+  display:grid;
+  gap:6px;
+}
+
+.nav button{
+  background:transparent;
+  color:#8fa4bd;
+  text-align:left;
+  padding:11px 12px;
+  border-radius:10px;
+}
+
+.nav button.active,
+.nav button:hover{
+  background:#152640;
+  color:#fff;
+}
+
+.userbox{
+  position:absolute;
+  bottom:16px;
+  left:14px;
+  right:14px;
+  border-top:1px solid var(--border);
+  padding-top:15px;
+}
+
+.avatar{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  font-weight:900;
+}
+
+.userrow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.main{
+  padding:26px;
+  max-width:1400px;
+  width:100%;
+  margin:auto;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:center;
+  margin-bottom:22px;
+}
+
+.topbar h1{
+  font-size:30px;
+  margin:0;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+}
+
+.stat,
+.card{
+  background:rgba(14,27,46,.82);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+}
+
+.stat .num{
+  font-size:27px;
+  font-weight:850;
+  margin-top:7px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:16px;
+  margin-top:16px;
+}
+
+.subject-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.subject{
+  background:#0d1b2e;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+}
+
+.subject-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.subject h3{
+  margin:0 0 6px;
+}
+
+.bar{
+  height:7px;
+  background:#1c2b40;
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:12px;
+}
+
+.bar i{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:99px;
+}
+
+.topic-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.topic{
+  background:#0d1b2e;
+  border:1px solid var(--border);
+  padding:16px;
+  border-radius:14px;
+}
+
+.topic h3{
+  margin:0 0 6px;
+}
+
+.topic-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:13px;
+}
+
+.topic-actions button{
+  font-size:12px;
+  padding:8px 9px;
+  border-radius:8px;
+  background:#17283f;
+  color:#dbe8f7;
+  border:1px solid #28415f;
+}
+
+.topic-actions .go{
+  background:#6e51e9;
+  border-color:#6e51e9;
+  color:#fff;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:25px 0 12px;
+}
+
+.section-title h2{
+  margin:0;
+  font-size:20px;
+}
+
+.notice{
+  padding:11px 13px;
+  border-radius:10px;
+  background:#11243b;
+  border:1px solid var(--border);
+  color:#b9cbe0;
+}
+
+.success{color:#72e4c7}
+.error{color:#ff9daa}
+
+.quiz-wrap{
+  max-width:850px;
+  margin:30px auto;
+}
+
+.quiz-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:13px;
+}
+
+.question{
+  font-size:26px;
+  line-height:1.3;
+  margin:24px 0;
+}
+
+.answers{
+  display:grid;
+  gap:10px;
+}
+
+.answer{
+  padding:15px;
+  text-align:left;
+  background:#102139;
+  color:#e9f3ff;
+  border:1px solid #29415e;
+  border-radius:12px;
+}
+
+.answer:hover{
+  border-color:#7259e9;
+}
+
+.answer.selected{
+  border-color:var(--accent);
+  background:#1b2450;
+}
+
+.answer.correct{
+  border-color:#2ecfa9;
+  background:#103b35;
+}
+
+.answer.wrong{
+  border-color:#ff6678;
+  background:#3a1822;
+}
+
+.quiz-actions{
+  display:flex;
+  justify-content:space-between;
+  margin-top:20px;
+  gap:10px;
+}
+
+.flashcard{
+  min-height:300px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  background:linear-gradient(145deg,#142641,#0d1a2c);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:35px;
+  cursor:pointer;
+}
+
+.flashcard .fc-text{
+  font-size:28px;
+  font-weight:750;
+  max-width:700px;
+}
+
+.result{text-align:center}
+
+.result-score{
+  font-size:55px;
+  font-weight:900;
+}
+
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:20px 0;
+}
+
+.result-grid .card{text-align:center}
+
+.review-item{
+  padding:13px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  margin:8px 0;
+  text-align:left;
+}
+
+.review-item b{
+  display:block;
+  margin-bottom:5px;
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.table th,
+.table td{
+  text-align:left;
+  padding:11px;
+  border-bottom:1px solid var(--border);
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#0009;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  z-index:20;
+}
+
+.modal-box{
+  max-width:650px;
+  width:100%;
+  background:#0e1b2e;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+}
+
+.bottom-nav{
+  display:none;
+}
+
+code{
+  background:#07111e;
+  padding:3px 6px;
+  border-radius:5px;
+}
+
+@media(max-width:850px){
+  .hero{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+
 @media(max-width:680px){
-  .app-shell{grid-template-columns:1fr;}
-  .sidebar{display:none;}
-  .options-grid{grid-template-columns:1fr;}
-  .results-breakdown{grid-template-columns:1fr 1fr;}
+  .layout{display:block}
+  .sidebar{display:none}
+  .main{padding:18px 14px 82px}
+
+  .subject-grid,
+  .topic-grid{
+    grid-template-columns:1fr;
+  }
+
+  .bottom-nav{
+    position:fixed;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    bottom:0;
+    left:0;
+    right:0;
+    background:#091524;
+    border-top:1px solid var(--border);
+    z-index:10;
+  }
+
+  .bottom-nav button{
+    background:transparent;
+    color:#9db0c7;
+    padding:10px 3px;
+    font-size:11px;
+  }
+
+  .bottom-nav button.active{
+    color:#fff;
+  }
+
+  .topbar h1{
+    font-size:25px;
+  }
+
+  .question{
+    font-size:22px;
+  }
+
+  .result-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    gap:15px;
+  }
 }
 </style>
 </head>
+
 <body>
-<div id="toast-area"></div>
 
 <!-- LANDING -->
-<div id="screen-landing" class="screen active">
-  <div class="topbar">
-    <div class="brand"><div class="brand-icon">⚡</div><div class="brand-name">Study<span>Forge</span></div></div>
-    <div class="topbar-right">
-      <button class="nav-btn" onclick="show('screen-auth')">Log in</button>
-      <button class="btn-primary" style="padding:8px 20px;font-size:13px;" onclick="show('screen-auth')">Start free →</button>
-    </div>
-  </div>
-  <div class="landing-hero">
-    <div class="hero-badge"><span class="hero-dot"></span> AI-Powered · GCSE & A-Level</div>
-    <h1 class="hero-h1">Revision that <span class="accent">actually sticks</span></h1>
-    <p class="hero-sub">Flashcards, quizzes, and AI-generated questions across every subject. Built for GCSE and A-Level students.</p>
-    <div class="hero-btns">
-      <button class="btn-primary" onclick="show('screen-auth')">Start revising →</button>
-      <button class="btn-ghost" onclick="show('screen-auth')">View subjects</button>
-    </div>
-    <div class="subjects-preview">
-      <span class="subj-chip">📐 Maths</span>
-      <span class="subj-chip">🧪 Chemistry</span>
-      <span class="subj-chip">⚛️ Physics</span>
-      <span class="subj-chip">📖 English Lit</span>
-      <span class="subj-chip">🌍 Geography</span>
-      <span class="subj-chip">🧬 Biology</span>
-    </div>
-  </div>
-</div>
+<section id="landing">
 
-<!-- AUTH -->
-<div id="screen-auth" class="screen">
-  <div class="topbar">
-    <div class="brand" onclick="show('screen-landing')"><div class="brand-icon">⚡</div><div class="brand-name">Study<span>Forge</span></div></div>
-  </div>
-  <div class="auth-wrap">
-    <div class="auth-card">
-      <div class="auth-title">Welcome to StudyForge</div>
-      <div class="auth-sub">Your AI revision assistant for GCSE & A-Level</div>
-      <div class="auth-tabs">
-        <button class="auth-tab active" onclick="switchAuthTab('login',this)">Log in</button>
-        <button class="auth-tab" onclick="switchAuthTab('signup',this)">Sign up</button>
+  <div class="hero">
+
+    <div>
+
+      <div class="brand">
+        STUDY<span>FORGE</span>
       </div>
-      <div class="field"><label>Email</label><input type="email" id="auth-email" placeholder="you@example.com"></div>
-      <div class="field"><label>Password</label><input type="password" id="auth-pass" placeholder="••••••••"></div>
-      <div class="field" id="name-field" style="display:none;"><label>Name</label><input type="text" id="auth-name" placeholder="Your first name"></div>
-      <button class="btn-primary" style="width:100%;margin-top:0.5rem;" onclick="doAuth()">Continue →</button>
-      <div style="margin-top:1rem;text-align:center;">
-        <button class="nav-btn" onclick="guestLogin()" style="font-size:13px;color:var(--text-muted);">Or continue as guest</button>
+
+      <h1>
+        Turn revision into a system.
+      </h1>
+
+      <p>
+        Practice with flashcards, timed quizzes and written questions.
+        Track what you actually master instead of just counting how many
+        questions you attempted.
+      </p>
+
+      <div class="chips">
+        <span class="chip">Maths</span>
+        <span class="chip">Chemistry</span>
+        <span class="chip">Physics</span>
+        <span class="chip">Biology</span>
+        <span class="chip">English</span>
+        <span class="chip">Geography</span>
       </div>
+
     </div>
+
+    <div class="auth">
+
+      <h2>Start studying</h2>
+
+      <p class="muted small">
+        Prototype mode: your account and progress stay on this device.
+      </p>
+
+      <div class="field">
+        <label>Email</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="you@example.com"
+        >
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="••••••••"
+        >
+      </div>
+
+      <button
+        class="primary full"
+        onclick="doAuth()"
+      >
+        Enter StudyForge
+      </button>
+
+      <button
+        class="secondary full"
+        style="margin-top:9px"
+        onclick="guestLogin()"
+      >
+        Continue as guest
+      </button>
+
+      <p
+        id="authMsg"
+        class="small error"
+      ></p>
+
+    </div>
+
   </div>
-</div>
+
+</section>
+
 
 <!-- APP -->
-<div id="screen-app" class="screen">
-  <div class="topbar">
-    <div class="brand" onclick="openSection('dashboard')"><div class="brand-icon">⚡</div><div class="brand-name">Study<span>Forge</span></div></div>
-    <div class="topbar-right">
-      <div class="streak-pill" id="streak-display">🔥 0</div>
-      <div class="xp-pill" id="xp-display">⚡ 0 XP</div>
-      <button class="nav-btn" onclick="openSection('settings')">⚙️</button>
-      <button class="nav-btn" onclick="doLogout()">Out</button>
-    </div>
+<section id="app">
+
+<div class="layout">
+
+<aside class="sidebar">
+
+  <div class="logo">
+    Study<span>Forge</span>
   </div>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div class="sidebar-user">
-        <div class="user-av" id="sb-av">U</div>
-        <div>
-          <div class="user-av-name" id="sb-name">User</div>
-          <div class="user-av-lvl" id="sb-lvl">Level 1 · 0 XP</div>
+
+  <div class="nav">
+
+    <button
+      data-page="dashboard"
+      onclick="showPage('dashboard')"
+    >
+      ▣ &nbsp; Dashboard
+    </button>
+
+    <button
+      data-page="subjects"
+      onclick="showPage('subjects')"
+    >
+      ◈ &nbsp; Subjects
+    </button>
+
+    <button
+      data-page="ai"
+      onclick="showPage('ai')"
+    >
+      ✦ &nbsp; AI Quiz Generator
+    </button>
+
+    <button
+      data-page="leaderboard"
+      onclick="showPage('leaderboard')"
+    >
+      ♛ &nbsp; Leaderboard
+    </button>
+
+    <button
+      data-page="settings"
+      onclick="showPage('settings')"
+    >
+      ⚙ &nbsp; Settings
+    </button>
+
+  </div>
+
+  <div class="userbox">
+
+    <div class="userrow">
+
+      <div
+        class="avatar"
+        id="avatar"
+      >
+        G
+      </div>
+
+      <div>
+
+        <b id="userName">
+          Guest
+        </b>
+
+        <div
+          class="small muted"
+          id="userEmail"
+        >
+          Local mode
         </div>
+
       </div>
-      <div class="sidebar-section-label">Navigation</div>
-      <button class="sidebar-item active" id="nav-dashboard" onclick="openSection('dashboard')"><span class="s-icon">🏠</span>Dashboard</button>
-      <button class="sidebar-item" id="nav-subjects" onclick="openSection('subjects')"><span class="s-icon">📚</span>Subjects</button>
-      <button class="sidebar-item" id="nav-ai" onclick="openSection('ai')"><span class="s-icon">🤖</span>AI Quiz Generator</button>
-      <button class="sidebar-item" id="nav-leaderboard" onclick="openSection('leaderboard')"><span class="s-icon">🏆</span>Leaderboard</button>
-      <button class="sidebar-item" id="nav-settings" onclick="openSection('settings')"><span class="s-icon">⚙️</span>Settings</button>
-      <div class="sidebar-section-label">Today's Progress</div>
-      <div class="sidebar-progress">
-        <div class="s-prog-label"><span>Daily XP</span><span id="sb-daily-xp">0 / 200</span></div>
-        <div class="s-prog-bar"><div class="s-prog-fill" id="sb-prog" style="width:0%"></div></div>
-      </div>
-    </aside>
-    <main class="main" id="main-area"></main>
+
+    </div>
+
   </div>
+
+</aside>
+
+
+<main class="main">
+
+  <div id="page"></div>
+
+</main>
+
 </div>
 
+
+<div class="bottom-nav">
+
+  <button
+    data-page="dashboard"
+    onclick="showPage('dashboard')"
+  >
+    ⌂<br>Home
+  </button>
+
+  <button
+    data-page="subjects"
+    onclick="showPage('subjects')"
+  >
+    ◈<br>Subjects
+  </button>
+
+  <button
+    data-page="ai"
+    onclick="showPage('ai')"
+  >
+    ✦<br>AI
+  </button>
+
+  <button
+    data-page="settings"
+    onclick="showPage('settings')"
+  >
+    ⚙<br>Settings
+  </button>
+
+</div>
+
+</section>
+
+
+<!-- MODAL -->
+<div
+  id="modal"
+  class="modal hidden"
+>
+  <div
+    class="modal-box"
+    id="modalBox"
+  ></div>
+</div>
+
+
 <script>
-let state={user:null,xp:0,level:1,streak:0,dailyXP:0,lastDate:null,history:[],subjectProgress:{}};
-let isLoginMode=true;
-let currentQuiz=null;
-let currentSubjectId=null;
-let currentTopicId=null;
 
-const SUBJECTS={
-  maths:{name:'Mathematics',icon:'📐',color:'#00D4AA',topics:[
-    {id:'algebra',name:'Algebra',sub:'Equations, expressions, formulae',difficulty:'medium',
-     flashcards:[
-       {q:'What is the quadratic formula?',a:'x = (−b ± √(b²−4ac)) / 2a'},
-       {q:'Expand (x+3)(x−2)',a:'x² + x − 6'},
-       {q:'Solve: 2x + 7 = 15',a:'x = 4'},
-       {q:'What does "simplify" mean in algebra?',a:'Reduce to its simplest form by collecting like terms'},
-       {q:'Factorise: x² − 9',a:'(x+3)(x−3) — difference of two squares'},
-     ],
-     mcq:[
-       {q:'What is the value of x if 3x − 4 = 11?',options:['3','5','7','9'],correct:1},
-       {q:'Which of these is a linear equation?',options:['x² = 4','y = 2x + 3','x³ − 1 = 0','x = √9'],correct:1},
-       {q:'Expand (2x + 1)²',options:['4x² + 1','4x² + 2x + 1','4x² + 4x + 1','2x² + 4x + 1'],correct:2},
-       {q:'Factorise: 6x² + 9x',options:['3x(2x+3)','2x(3x+4)','6x(x+1)','3(2x²+3x)'],correct:0},
-     ]},
-    {id:'geometry',name:'Geometry',sub:'Shapes, angles, theorems',difficulty:'medium',
-     flashcards:[
-       {q:'State the theorem of Pythagoras',a:'In a right-angled triangle: a² + b² = c², where c is the hypotenuse'},
-       {q:'Area of a circle',a:'A = πr²'},
-       {q:'Angles in a triangle sum to?',a:'180°'},
-       {q:'What is a reflex angle?',a:'An angle greater than 180° but less than 360°'},
-       {q:'Circumference of a circle',a:'C = 2πr or C = πd'},
-     ],
-     mcq:[
-       {q:'What is the area of a triangle with base 8cm and height 5cm?',options:['20 cm²','40 cm²','13 cm²','80 cm²'],correct:0},
-       {q:'A right angle measures:',options:['45°','90°','180°','270°'],correct:1},
-       {q:'How many sides does a hexagon have?',options:['5','6','7','8'],correct:1},
-       {q:'Pythagoras: if a=3 and b=4, what is c?',options:['5','6','7','25'],correct:0},
-     ]},
-    {id:'statistics',name:'Statistics',sub:'Data, probability, averages',difficulty:'easy',
-     flashcards:[
-       {q:'Define the mean',a:'Sum of all values divided by the number of values'},
-       {q:'What is the median?',a:'The middle value when data is arranged in order'},
-       {q:'Define "range" in statistics',a:'Largest value minus smallest value'},
-       {q:'Probability of an impossible event',a:'0'},
-       {q:'What is a frequency table?',a:'A table showing how often each value occurs in a dataset'},
-     ],
-     mcq:[
-       {q:'The mode is:',options:['The middle value','The average','The most frequent value','The highest value'],correct:2},
-       {q:'If P(A) = 0.3, what is P(not A)?',options:['0.3','0.6','0.7','1.3'],correct:2},
-       {q:'Mean of 2, 4, 6, 8, 10 is:',options:['5','6','7','8'],correct:1},
-       {q:'Range of 3, 7, 12, 1, 9 is:',options:['9','11','12','13'],correct:1},
-     ]},
-  ]},
-  chemistry:{name:'Chemistry',icon:'🧪',color:'#F59E0B',topics:[
-    {id:'atoms',name:'Atomic Structure',sub:'Atoms, ions, electrons',difficulty:'medium',
-     flashcards:[
-       {q:'What particles are found in the nucleus?',a:'Protons and neutrons'},
-       {q:'Relative charge of an electron?',a:'−1'},
-       {q:'What is atomic number?',a:'The number of protons in an atom'},
-       {q:'What is an ion?',a:'An atom that has gained or lost electrons, giving it a charge'},
-       {q:'Define mass number',a:'Total number of protons and neutrons in the nucleus'},
-     ],
-     mcq:[
-       {q:'How many electrons does a neutral carbon atom have? (atomic number 6)',options:['4','5','6','8'],correct:2},
-       {q:'What is the charge of a proton?',options:['+1','-1','0','+2'],correct:0},
-       {q:'Isotopes have the same number of:',options:['Neutrons','Electrons','Protons','Mass number'],correct:2},
-       {q:"Which subatomic particle determines an element's identity?",options:['Electron','Neutron','Proton','Nucleus'],correct:2},
-     ]},
-    {id:'bonding',name:'Chemical Bonding',sub:'Ionic, covalent, metallic',difficulty:'hard',
-     flashcards:[
-       {q:'What is ionic bonding?',a:'Transfer of electrons from a metal to a non-metal, forming oppositely charged ions attracted to each other'},
-       {q:'What is covalent bonding?',a:'Sharing of electron pairs between non-metal atoms'},
-       {q:'Why do ionic compounds have high melting points?',a:'Strong electrostatic forces of attraction between oppositely charged ions require a lot of energy to break'},
-       {q:'What is a dot-and-cross diagram?',a:'A diagram showing the arrangement of electrons in atoms or molecules'},
-       {q:'Define metallic bonding',a:'Electrostatic attraction between positive metal ions and a sea of delocalised electrons'},
-     ],
-     mcq:[
-       {q:'Sodium chloride is an example of:',options:['Covalent bonding','Ionic bonding','Metallic bonding','Hydrogen bonding'],correct:1},
-       {q:'Water (H₂O) has which type of bonding?',options:['Ionic','Metallic','Covalent','None'],correct:2},
-       {q:'In ionic bonding, metals:',options:['Gain electrons','Share electrons','Lose electrons','Donate protons'],correct:2},
-       {q:'Which conducts electricity in solution?',options:['Covalent compound','Ionic compound','Metallic element only','Noble gas'],correct:1},
-     ]},
-  ]},
-  physics:{name:'Physics',icon:'⚛',color:'#7C3AED',topics:[
-    {id:'forces',name:'Forces & Motion',sub:"Newton's laws, speed, acceleration",difficulty:'medium',
-     flashcards:[
-       {q:"State Newton's 1st Law",a:'An object remains at rest or continues moving in a straight line at constant velocity unless acted upon by a resultant force'},
-       {q:'Formula for speed',a:'Speed = Distance ÷ Time (v = d/t)'},
-       {q:'Formula for acceleration',a:'a = (v − u) / t  (change in velocity ÷ time)'},
-       {q:'What is a resultant force?',a:'The single force that has the same effect as all the individual forces acting on an object combined'},
-       {q:'Unit of force',a:'Newton (N)'},
-     ],
-     mcq:[
-       {q:'A car travels 150 km in 2 hours. Its average speed is:',options:['50 km/h','75 km/h','100 km/h','300 km/h'],correct:1},
-       {q:"Which of Newton's laws relates F = ma?",options:['1st','2nd','3rd','None'],correct:1},
-       {q:'If forces are balanced, the object:',options:['Accelerates','Decelerates','Stays at rest or constant velocity','Stops immediately'],correct:2},
-       {q:'Weight is measured in:',options:['Kilograms','Newtons','Joules','Watts'],correct:1},
-     ]},
-    {id:'waves',name:'Waves',sub:'Frequency, wavelength, types of waves',difficulty:'hard',
-     flashcards:[
-       {q:'What is frequency?',a:'The number of complete waves per second, measured in Hertz (Hz)'},
-       {q:'Wave speed formula',a:'v = f × λ  (wave speed = frequency × wavelength)'},
-       {q:'Difference between transverse and longitudinal waves',a:'Transverse: oscillation perpendicular to direction of travel. Longitudinal: oscillation parallel to direction of travel'},
-       {q:'Name the 7 parts of the electromagnetic spectrum (low to high frequency)',a:'Radio, Microwave, Infrared, Visible light, Ultraviolet, X-ray, Gamma ray'},
-       {q:'What is reflection?',a:'When a wave bounces off a surface, angle of incidence = angle of reflection'},
-     ],
-     mcq:[
-       {q:'A wave has frequency 200 Hz and wavelength 1.5 m. Its speed is:',options:['133 m/s','300 m/s','201.5 m/s','1.5 m/s'],correct:1},
-       {q:'Sound is which type of wave?',options:['Transverse','Longitudinal','Electromagnetic','Polarised'],correct:1},
-       {q:'Which has the highest frequency in the EM spectrum?',options:['Radio waves','X-rays','Gamma rays','Microwaves'],correct:2},
-       {q:'What is the unit of frequency?',options:['Metre','Hertz','Newton','Watt'],correct:1},
-     ]},
-  ]},
-  english:{name:'English Literature',icon:'📖',color:'#F43F5E',topics:[
-    {id:'macbeth',name:'Macbeth',sub:'Shakespeare — themes, quotes, characters',difficulty:'medium',
-     flashcards:[
-       {q:'Who is the protagonist of Macbeth?',a:'Macbeth, Thane of Glamis and later King of Scotland'},
-       {q:'"Fair is foul and foul is fair" — which characters say this?',a:'The three witches (Weird Sisters) in Act 1, Scene 1'},
-       {q:'What theme does the "out, damned spot" soliloquy explore?',a:'Guilt — Lady Macbeth cannot wash away the metaphorical blood of her guilt'},
-       {q:'What is a tragic hero?',a:'A protagonist with a fatal flaw (hamartia) who falls from greatness to ruin'},
-       {q:"What is Macbeth's fatal flaw (hamartia)?",a:'Excessive ambition (vaulting ambition), combined with moral weakness and susceptibility to manipulation'},
-     ],
-     mcq:[
-       {q:'Who kills King Duncan in Macbeth?',options:['Macduff','Banquo','Macbeth','Malcolm'],correct:2},
-       {q:'"I am in blood stepped in so far" — this quote shows Macbeth\'s:',options:['Bravery','Loyalty','Moral corruption','Ambition towards Duncan'],correct:2},
-       {q:"The witches' prophecy tells Macbeth he will be killed by someone born of:",options:['A noble family','A woman','No woman','A soldier'],correct:2},
-       {q:'What does the dagger symbolise in Act 2?',options:["Macbeth's loyalty",'His hallucinations and guilt',"Lady Macbeth's power",'A real weapon found'],correct:1},
-     ]},
-    {id:'poetry',name:'Power & Conflict Poetry',sub:'AQA anthology poems',difficulty:'hard',
-     flashcards:[
-       {q:'Name the poem by Wilfred Owen that depicts the horror of a gas attack',a:'"Dulce et Decorum Est" — criticises the idea that dying for your country is glorious'},
-       {q:'What technique is "In Flanders fields the poppies blow"?',a:'Personification — poppies "blow" as if alive; also a symbol of remembrance'},
-       {q:'What is a volta?',a:'A turning point in a poem where the tone, mood, or argument shifts'},
-       {q:'Define iambic pentameter',a:'A metrical pattern of 10 syllables per line, alternating unstressed/stressed (da-DUM × 5)'},
-       {q:'"Ozymandias" by Shelley — what is the main theme?',a:'The futility of power and pride; all empires and rulers eventually decay and are forgotten'},
-     ],
-     mcq:[
-       {q:'Dulce et Decorum Est means:',options:['"Sweet and glorious"',"\"It is sweet and fitting to die for one's country\"",'War is brutal','Soldiers march on'],correct:1},
-       {q:'What poetic device is used in "The blood-dimmed tide"?',options:['Simile','Alliteration','Metaphor','Onomatopoeia'],correct:2},
-       {q:'Which of these is NOT a Power & Conflict poem?',options:['Ozymandias','London','Charge of the Light Brigade','My Last Duchess'],correct:3},
-       {q:'A sonnet traditionally has how many lines?',options:['10','12','14','16'],correct:2},
-     ]},
-  ]},
-  biology:{name:'Biology',icon:'🧬',color:'#10B981',topics:[
-    {id:'cells',name:'Cell Biology',sub:'Cell structure, microscopy, transport',difficulty:'easy',
-     flashcards:[
-       {q:'What is the function of the mitochondria?',a:'Site of aerobic respiration — produces ATP (energy) for the cell'},
-       {q:'Difference between plant and animal cells',a:'Plant cells have cell wall, chloroplasts, and large permanent vacuole; animal cells do not'},
-       {q:'What is osmosis?',a:'The movement of water molecules from an area of higher water potential to lower, through a partially permeable membrane'},
-       {q:"What is the cell membrane's main role?",a:'Controls what enters and exits the cell (selective permeability)'},
-       {q:'What is diffusion?',a:'Net movement of particles from an area of higher concentration to lower concentration, down a concentration gradient'},
-     ],
-     mcq:[
-       {q:'Which organelle contains the genetic material (DNA)?',options:['Mitochondria','Ribosome','Nucleus','Cell wall'],correct:2},
-       {q:'Photosynthesis occurs in:',options:['Mitochondria','Chloroplasts','Nucleus','Cytoplasm'],correct:1},
-       {q:'Osmosis involves the movement of:',options:['Glucose','Water','Oxygen','Ions'],correct:1},
-       {q:'Which of these is found in plant cells but NOT animal cells?',options:['Nucleus','Ribosome','Cell membrane','Cell wall'],correct:3},
-     ]},
-  ]},
-  geography:{name:'Geography',icon:'🌍',color:'#3B82F6',topics:[
-    {id:'climate',name:'Climate & Ecosystems',sub:'Biomes, climate change, weather',difficulty:'medium',
-     flashcards:[
-       {q:'What is the greenhouse effect?',a:"Greenhouse gases trap heat from the sun in the atmosphere, warming Earth's surface"},
-       {q:'Name three greenhouse gases',a:'Carbon dioxide (CO₂), methane (CH₄), water vapour (H₂O)'},
-       {q:'What is a biome?',a:'A large geographic area characterised by its climate and the plants and animals that live there'},
-       {q:'What causes seasons?',a:"Earth's axial tilt (23.5°) means different hemispheres receive more direct sunlight at different times of year"},
-       {q:'Define biodiversity',a:'The variety of living organisms in a habitat or ecosystem'},
-     ],
-     mcq:[
-       {q:'Which gas is most responsible for recent climate change?',options:['Oxygen','Nitrogen','Carbon dioxide','Hydrogen'],correct:2},
-       {q:'The tropical rainforest biome is found near:',options:['The poles','The equator','The tropics of Cancer/Capricorn only','60°N latitude'],correct:1},
-       {q:'Which of these is NOT a consequence of climate change?',options:['Rising sea levels','More extreme weather','Increased biodiversity','Glacier retreat'],correct:2},
-       {q:'Deforestation mainly contributes to climate change by:',options:['Releasing CO₂','Reducing rainfall','Creating more farmland','All of the above'],correct:3},
-     ]},
-  ]},
-};
+"use strict";
 
-function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
-function toast(msg,type='info'){const el=document.createElement('div');el.className='toast '+type;const icons={info:'💡',success:'✅',error:'❌'};el.innerHTML=`<span>${icons[type]||'💡'}</span><span>${msg}</span>`;document.getElementById('toast-area').appendChild(el);setTimeout(()=>{el.style.opacity='0';el.style.transition='opacity 0.3s';setTimeout(()=>el.remove(),350);},3000);}
-function getKey(){return localStorage.getItem('sf_api_key')||'';}
-function saveState(){localStorage.setItem('sf_state',JSON.stringify(state));}
-function loadState(){const s=localStorage.getItem('sf_state');if(s){const p=JSON.parse(s);state={...state,...p};}}
-function calcLevel(xp){return Math.floor(xp/200)+1;}
-function checkStreak(){const today=new Date().toDateString();if(state.lastDate!==today){const y=new Date();y.setDate(y.getDate()-1);if(state.lastDate===y.toDateString())state.streak++;else if(state.lastDate&&state.dailyXP===0)state.streak=0;state.dailyXP=0;state.lastDate=today;}}
-function awardXP(amount){state.xp+=amount;state.dailyXP+=amount;state.level=calcLevel(state.xp);saveState();updateTopbar();toast(`+${amount} XP! 🔥`,'success');}
-function updateTopbar(){document.getElementById('xp-display').textContent=`⚡ ${state.xp} XP`;document.getElementById('streak-display').textContent=`🔥 ${state.streak}`;const sb=document.getElementById('sb-lvl');if(sb)sb.textContent=`Level ${state.level} · ${state.xp} XP`;const sbP=document.getElementById('sb-prog');if(sbP)sbP.style.width=Math.min(100,(state.dailyXP/200)*100)+'%';const sdx=document.getElementById('sb-daily-xp');if(sdx)sdx.textContent=`${state.dailyXP} / 200`;}
-function getSubjectProgress(subjectId){const p=state.subjectProgress[subjectId]||{};const subj=SUBJECTS[subjectId];const total=subj.topics.reduce((s,t)=>s+(t.flashcards.length+t.mcq.length),0);const done=Object.values(p).reduce((s,v)=>s+v,0);return{done,total,pct:total>0?Math.round((done/total)*100):0};}
 
-function switchAuthTab(mode,btn){isLoginMode=mode==='login';document.querySelectorAll('.auth-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.getElementById('name-field').style.display=isLoginMode?'none':'block';}
-function doAuth(){const email=document.getElementById('auth-email').value.trim();const pass=document.getElementById('auth-pass').value.trim();if(!email||!pass){toast('Fill in all fields','error');return;}const name=isLoginMode?email.split('@')[0]:(document.getElementById('auth-name').value.trim()||email.split('@')[0]);state.user={email,name};loadState();state.user={email,name};checkStreak();setupApp();show('screen-app');openSection('dashboard');}
-function guestLogin(){state.user={email:'guest',name:'Guest'};checkStreak();setupApp();show('screen-app');openSection('dashboard');}
-function doLogout(){state.user=null;show('screen-landing');}
-function setupApp(){document.getElementById('sb-av').textContent=(state.user?.name||'U')[0].toUpperCase();document.getElementById('sb-name').textContent=state.user?.name||'User';updateTopbar();}
+/* =========================================================
+   SUBJECT DATA
+========================================================= */
 
-function openSection(id){document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));const navEl=document.getElementById('nav-'+id);if(navEl)navEl.classList.add('active');const main=document.getElementById('main-area');if(id==='dashboard')renderDashboard(main);else if(id==='subjects')renderSubjects(main);else if(id==='ai')renderAIGen(main);else if(id==='leaderboard')renderLeaderboard(main);else if(id==='settings')renderSettings(main);}
+const SUBJECTS = {
 
-function renderDashboard(el){
-  const name=state.user?.name||'there';
-  const h=new Date().getHours();
-  const greeting=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
-  el.innerHTML=`
-    <div class="dash-greeting">${greeting}, ${name} 👋</div>
-    <div class="dash-sub">Ready to revise? You're on a ${state.streak}-day streak.</div>
-    <div class="stats-row">
-      <div class="stat-box teal"><div class="stat-num">${state.xp}</div><div class="stat-lbl">Total XP</div></div>
-      <div class="stat-box amber"><div class="stat-num">${state.streak}🔥</div><div class="stat-lbl">Day Streak</div></div>
-      <div class="stat-box violet"><div class="stat-num">${state.level}</div><div class="stat-lbl">Level</div></div>
-      <div class="stat-box rose"><div class="stat-num">${state.history.length}</div><div class="stat-lbl">Sessions done</div></div>
-    </div>
-    <div class="section-title">// SUBJECTS</div>
-    <div class="subjects-grid">
-      ${Object.entries(SUBJECTS).map(([id,subj])=>{const{pct,done,total}=getSubjectProgress(id);return`<div class="subj-card" onclick="openTopics('${id}')"><div class="subj-card-icon">${subj.icon}</div><div class="subj-card-name">${subj.name}</div><div class="subj-card-prog">${done}/${total} questions</div><div class="subj-mini-bar"><div class="subj-mini-fill" style="width:${pct}%;background:linear-gradient(90deg,${subj.color},${subj.color}88)"></div></div></div>`;}).join('')}
-    </div>
-    <div class="section-title">// RECENT ACTIVITY</div>
-    <div class="recent-activity">
-      ${state.history.length===0
-        ?'<div style="color:var(--text-muted);font-size:13px;text-align:center;padding:1rem;">No activity yet. Start a quiz to track your progress!</div>'
-        :state.history.slice(0,6).map(h=>`<div class="activity-item"><div class="activity-dot" style="background:${h.pass?'var(--teal)':'var(--rose)'}"></div><div class="activity-text">${h.topic} — ${h.correct}/${h.total} correct</div><div class="activity-time">${h.xp} XP · ${h.time}</div></div>`).join('')}
-    </div>`;}
+  maths:{
+    name:"Maths",
+    icon:"∑",
 
-function renderSubjects(el){el.innerHTML=`<div class="dash-greeting">Choose a subject</div><div class="dash-sub">Select a subject to view its topics.</div><div class="subjects-grid">${Object.entries(SUBJECTS).map(([id,subj])=>{const{pct}=getSubjectProgress(id);return`<div class="subj-card" onclick="openTopics('${id}')"><div class="subj-card-icon" style="font-size:28px;">${subj.icon}</div><div class="subj-card-name">${subj.name}</div><div class="subj-card-prog">${pct}% complete · ${subj.topics.length} topics</div><div class="subj-mini-bar"><div class="subj-mini-fill" style="width:${pct}%;background:linear-gradient(90deg,${subj.color},${subj.color}aa)"></div></div></div>`;}).join('')}</div>`;}
+    topics:{
 
-function openTopics(subjId){currentSubjectId=subjId;const subj=SUBJECTS[subjId];const main=document.getElementById('main-area');main.innerHTML=`<div class="topic-header"><button class="back-btn" onclick="renderSubjects(document.getElementById('main-area'))">← Back</button><div><div class="topic-h">${subj.icon} ${subj.name}</div><div style="font-size:13px;color:var(--text-muted)">${subj.topics.length} topics</div></div></div><div class="topics-list">${subj.topics.map(topic=>{const done=state.subjectProgress[subjId]?.[topic.id]||0;const total=topic.flashcards.length+topic.mcq.length;const pct=total>0?Math.round((done/total)*100):0;return`<div class="topic-card" onclick="openTopicMenu('${subjId}','${topic.id}')"><div class="topic-card-left"><div class="topic-card-name">${topic.name}</div><div class="topic-card-sub">${topic.sub} · ${total} questions</div><div class="subj-mini-bar" style="margin-top:8px;max-width:200px;"><div class="subj-mini-fill" style="width:${pct}%;background:linear-gradient(90deg,${subj.color},${subj.color}aa)"></div></div></div><div class="topic-card-right"><span class="difficulty-badge ${topic.difficulty==='easy'?'diff-easy':topic.difficulty==='medium'?'diff-medium':'diff-hard'}">${topic.difficulty.toUpperCase()}</span><div class="mastery-ring"><svg width="36" height="36" viewBox="0 0 36 36"><circle cx="18" cy="18" r="14" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="3"/><circle cx="18" cy="18" r="14" fill="none" stroke="${subj.color}" stroke-width="3" stroke-dasharray="${(pct/100)*87.96} 87.96" stroke-linecap="round"/></svg><div class="mastery-text">${pct}%</div></div></div></div>`;}).join('')}</div>`;}
+      algebra:{
+        name:"Algebra",
 
-function openTopicMenu(subjId,topicId){currentSubjectId=subjId;currentTopicId=topicId;const subj=SUBJECTS[subjId];const topic=subj.topics.find(t=>t.id===topicId);const main=document.getElementById('main-area');main.innerHTML=`<div class="topic-header"><button class="back-btn" onclick="openTopics('${subjId}')">← Subjects</button><div><div class="topic-h">${topic.name}</div><div style="font-size:13px;color:var(--text-muted)">${topic.sub}</div></div></div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;max-width:700px;"><div class="subj-card" onclick="startMode('flashcards','${subjId}','${topicId}')"><div class="subj-card-icon">🃏</div><div class="subj-card-name">Flashcards</div><div class="subj-card-prog">${topic.flashcards.length} cards · flip to reveal</div></div><div class="subj-card" onclick="startMode('mcq','${subjId}','${topicId}')"><div class="subj-card-icon">✅</div><div class="subj-card-name">Multiple Choice Quiz</div><div class="subj-card-prog">${topic.mcq.length} questions · timed</div></div><div class="subj-card" onclick="startMode('written','${subjId}','${topicId}')"><div class="subj-card-icon">✍️</div><div class="subj-card-name">Written Questions</div><div class="subj-card-prog">AI-marked · uses flashcards</div></div></div>`;}
+        qs:[
 
-function startMode(mode,subjId,topicId){const subj=SUBJECTS[subjId];const topic=subj.topics.find(t=>t.id===topicId);const questions=mode==='flashcards'?[...topic.flashcards]:mode==='mcq'?[...topic.mcq]:[...topic.flashcards];for(let i=questions.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[questions[i],questions[j]]=[questions[j],questions[i]];}currentQuiz={questions,idx:0,correct:0,wrong:0,mode,topicId,subjId,startTime:Date.now()};renderQuestion();}
+          [
+            "Solve: 3x + 5 = 20.",
+            "x = 5",
+            ["x = 3","x = 5","x = 7","x = 15"]
+          ],
 
-let timerInterval=null;
-function renderQuestion(){
-  const q=currentQuiz;const main=document.getElementById('main-area');const subj=SUBJECTS[q.subjId];
-  if(q.idx>=q.questions.length){showResults();return;}
-  const cur=q.questions[q.idx];const pct=Math.round((q.idx/q.questions.length)*100);
-  clearInterval(timerInterval);
-  if(q.mode==='flashcards'){
-    main.innerHTML=`<div class="quiz-wrap"><div class="quiz-topbar"><button class="back-btn" onclick="openTopicMenu('${q.subjId}','${q.topicId}')">← Exit</button><div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${pct}%"></div></div><div class="quiz-counter">${q.idx+1}/${q.questions.length}</div></div><div style="font-size:11px;color:var(--text-muted);margin-bottom:1rem;font-family:var(--mono);">// FLASHCARDS · ${subj.name.toUpperCase()}</div><div class="flashcard-container" onclick="flipCard()"><div class="flashcard" id="flashcard"><div class="flashcard-face"><div class="flashcard-label">QUESTION</div><div class="flashcard-text">${cur.q}</div><div class="flashcard-hint">tap to reveal answer</div></div><div class="flashcard-face flashcard-back"><div class="flashcard-label">ANSWER</div><div class="flashcard-answer">${cur.a}</div></div></div></div><div class="fc-btns" id="fc-btns" style="display:none;"><button class="fc-btn review" onclick="fcAnswer(false)">🔁 Still learning</button><button class="fc-btn know" onclick="fcAnswer(true)">✓ Got it!</button></div><div style="text-align:center;margin-top:1rem;font-size:12px;color:var(--text-muted);">${q.correct} known · ${q.wrong} to review</div></div>`;
-  } else if(q.mode==='mcq'){
-    const letters=['A','B','C','D'];
-    main.innerHTML=`<div class="quiz-wrap"><div class="quiz-topbar"><button class="back-btn" onclick="openTopicMenu('${q.subjId}','${q.topicId}')">← Exit</button><div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${pct}%"></div></div><div class="quiz-counter">${q.idx+1}/${q.questions.length}</div><div class="quiz-timer" id="quiz-timer">0:30</div></div><div class="quiz-card"><div class="quiz-type-label">// MULTIPLE CHOICE</div><div class="quiz-question">${cur.q}</div><div class="options-grid">${cur.options.map((opt,i)=>`<button class="option-btn" id="opt-${i}" onclick="selectMCQ(${i},${cur.correct})"><span class="option-letter">${letters[i]}</span>${opt}</button>`).join('')}</div></div><div class="feedback-box" id="feedback"></div><button class="next-btn" id="next-btn" onclick="nextQuestion()">Next question →</button></div>`;
-    let secondsLeft=30;
-    timerInterval=setInterval(()=>{secondsLeft--;const el=document.getElementById('quiz-timer');if(el){el.textContent=`0:${secondsLeft.toString().padStart(2,'0')}`;el.style.color=secondsLeft>15?'var(--teal)':secondsLeft>7?'var(--amber)':'var(--rose)';}if(secondsLeft<=0){clearInterval(timerInterval);autoTimeout();}},1000);
-  } else if(q.mode==='written'){
-    main.innerHTML=`<div class="quiz-wrap"><div class="quiz-topbar"><button class="back-btn" onclick="openTopicMenu('${q.subjId}','${q.topicId}')">← Exit</button><div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${pct}%"></div></div><div class="quiz-counter">${q.idx+1}/${q.questions.length}</div></div><div class="quiz-card"><div class="quiz-type-label">// WRITTEN ANSWER</div><div class="quiz-question">${cur.q}</div><textarea class="written-input" id="written-input" placeholder="Type your answer here…"></textarea><button class="submit-answer-btn" id="submit-btn" onclick="submitWritten()">Check answer →</button></div><div class="feedback-box" id="feedback"></div><div id="reveal-answer" style="display:none;background:var(--teal-dim);border:1.5px solid rgba(0,212,170,0.2);border-radius:12px;padding:1rem;font-size:14px;color:var(--teal);margin-bottom:1.2rem;"><strong>Model answer:</strong><br>${cur.a}</div><button class="next-btn" id="next-btn" onclick="nextQuestion()">Next question →</button></div>`;
-  }
-}
+          [
+            "Expand: (x + 4)(x + 2).",
+            "x² + 6x + 8",
+            [
+              "x² + 8x + 6",
+              "x² + 6x + 8",
+              "x² + 4x + 8",
+              "x² + 2x + 4"
+            ]
+          ],
 
-function flipCard(){const fc=document.getElementById('flashcard');if(!fc)return;fc.classList.toggle('flipped');const btns=document.getElementById('fc-btns');if(fc.classList.contains('flipped')&&btns)btns.style.display='flex';}
-function fcAnswer(knew){if(knew){currentQuiz.correct++;awardXP(10);}else{currentQuiz.wrong++;}currentQuiz.idx++;incrementProgress();renderQuestion();}
-function selectMCQ(chosen,correct){clearInterval(timerInterval);const letters=['A','B','C','D'];document.querySelectorAll('.option-btn').forEach((b,i)=>{b.disabled=true;if(i===correct)b.classList.add('correct');else if(i===chosen&&chosen!==correct)b.classList.add('wrong');});const isCorrect=chosen===correct;const fb=document.getElementById('feedback');fb.className='feedback-box '+(isCorrect?'correct':'wrong')+' show';if(isCorrect){fb.innerHTML=`<span class="feedback-icon">✅</span> Correct! Well done.`;currentQuiz.correct++;awardXP(15);}else{fb.innerHTML=`<span class="feedback-icon">❌</span> Not quite. The correct answer was <strong>${letters[correct]}: ${currentQuiz.questions[currentQuiz.idx].options[correct]}</strong>.`;currentQuiz.wrong++;}incrementProgress();const nb=document.getElementById('next-btn');if(nb)nb.classList.add('show');}
-function autoTimeout(){const correct=currentQuiz.questions[currentQuiz.idx].correct;document.querySelectorAll('.option-btn').forEach((b,i)=>{b.disabled=true;if(i===correct)b.classList.add('correct');});const fb=document.getElementById('feedback');fb.className='feedback-box wrong show';fb.innerHTML=`<span class="feedback-icon">⏱️</span> Time's up! The answer was <strong>${currentQuiz.questions[currentQuiz.idx].options[correct]}</strong>.`;currentQuiz.wrong++;incrementProgress();const nb=document.getElementById('next-btn');if(nb)nb.classList.add('show');}
-async function submitWritten(){const answer=document.getElementById('written-input')?.value?.trim();if(!answer){toast('Write an answer first!','error');return;}const btn=document.getElementById('submit-btn');btn.disabled=true;btn.textContent='Checking…';const modelAnswer=currentQuiz.questions[currentQuiz.idx].a;const apiKey=getKey();if(apiKey){try{const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:300,messages:[{role:'user',content:`You are a GCSE/A-Level teacher. Grade this student answer.\nQuestion: ${currentQuiz.questions[currentQuiz.idx].q}\nModel answer: ${modelAnswer}\nStudent's answer: ${answer}\n\nReply with ONLY: CORRECT or PARTIAL or WRONG, then a colon, then one sentence of specific feedback.`}]})});const data=await resp.json();const reply=data.content?.[0]?.text||'';const[grade,...rest]=reply.split(':');const feedback=rest.join(':').trim();const isCorrect=grade.trim().toUpperCase()==='CORRECT';const isPartial=grade.trim().toUpperCase()==='PARTIAL';const fb=document.getElementById('feedback');fb.className='feedback-box '+(isCorrect?'correct':'wrong')+' show';fb.innerHTML=`<span class="feedback-icon">${isCorrect?'✅':isPartial?'🟡':'❌'}</span> <strong>${grade.trim()}:</strong> ${feedback}`;if(isCorrect){currentQuiz.correct++;awardXP(20);}else if(isPartial){currentQuiz.correct+=0.5;awardXP(8);}else currentQuiz.wrong++;}catch(e){simpleWrittenCheck(answer,modelAnswer);}}else{simpleWrittenCheck(answer,modelAnswer);}document.getElementById('reveal-answer').style.display='block';const nb=document.getElementById('next-btn');if(nb)nb.classList.add('show');incrementProgress();btn.textContent='Checked ✓';}
-function simpleWrittenCheck(answer,modelAnswer){const aWords=new Set(answer.toLowerCase().split(/\W+/).filter(w=>w.length>3));const mWords=new Set(modelAnswer.toLowerCase().split(/\W+/).filter(w=>w.length>3));const matches=[...aWords].filter(w=>mWords.has(w)).length;const score=matches/Math.max(mWords.size,1);const isGood=score>0.3;const fb=document.getElementById('feedback');fb.className='feedback-box '+(isGood?'correct':'wrong')+' show';fb.innerHTML=`<span class="feedback-icon">${isGood?'✅':'❌'}</span> ${isGood?'Good answer! You covered key points.':'Your answer missed some key terms. Check the model answer below.'} <em style="font-size:11px;margin-left:4px;">(Add an API key in Settings for AI marking)</em>`;if(isGood){currentQuiz.correct++;awardXP(15);}else currentQuiz.wrong++;}
-function nextQuestion(){currentQuiz.idx++;renderQuestion();}
-function incrementProgress(){if(!state.subjectProgress[currentQuiz.subjId])state.subjectProgress[currentQuiz.subjId]={};const key=currentQuiz.topicId;state.subjectProgress[currentQuiz.subjId][key]=(state.subjectProgress[currentQuiz.subjId][key]||0)+1;saveState();}
+          [
+            "Factorise: x² + 7x + 12.",
+            "(x + 3)(x + 4)",
+            [
+              "(x + 2)(x + 6)",
+              "(x + 3)(x + 4)",
+              "(x - 3)(x - 4)",
+              "(x + 1)(x + 12)"
+            ]
+          ]
 
-function showResults(){clearInterval(timerInterval);const q=currentQuiz;const total=q.questions.length;const pct=Math.round((q.correct/total)*100);const subj=SUBJECTS[q.subjId];const topic=subj?.topics?.find(t=>t.id===q.topicId)||{name:'Quiz'};const xpEarned=Math.floor(q.correct)*15+(pct===100?50:pct>=80?20:0);const elapsed=Math.round((Date.now()-q.startTime)/1000);state.history.unshift({topic:topic.name,correct:Math.floor(q.correct),total,xp:xpEarned,pass:pct>=60,time:new Date().toLocaleTimeString()});if(state.history.length>50)state.history.pop();const today=new Date().toDateString();if(state.lastDate!==today){state.streak++;state.lastDate=today;state.dailyXP=0;}state.dailyXP+=xpEarned;state.xp+=xpEarned;state.level=calcLevel(state.xp);saveState();updateTopbar();const msg=pct===100?'Perfect score! 🏆':pct>=80?'Excellent work! 🌟':pct>=60?'Good effort! Keep going 💪':'Keep practising — you\'ll get there! 📚';const main=document.getElementById('main-area');main.innerHTML=`<div class="quiz-wrap"><div class="results-card"><div class="results-score-ring"><svg width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8"/><circle cx="50" cy="50" r="40" fill="none" stroke="${pct>=80?'var(--teal)':pct>=60?'var(--amber)':'var(--rose)'}" stroke-width="8" stroke-dasharray="${(pct/100)*251.2} 251.2" stroke-linecap="round"/></svg><div class="results-score-text"><div class="results-pct">${pct}%</div><div class="results-of">score</div></div></div><div class="results-title">${msg}</div><div class="results-sub">${topic.name} · ${q.mode==='flashcards'?'Flashcards':q.mode==='mcq'?'Multiple Choice':'Written'}</div><div class="xp-earned">⚡ +${xpEarned} XP earned</div><div class="results-breakdown"><div class="res-box"><div class="res-num" style="color:var(--teal)">${Math.floor(q.correct)}</div><div class="res-lbl">Correct</div></div><div class="res-box"><div class="res-num" style="color:var(--rose)">${q.wrong}</div><div class="res-lbl">Wrong</div></div><div class="res-box"><div class="res-num" style="color:var(--text-muted)">${elapsed}s</div><div class="res-lbl">Time</div></div></div><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;"><button class="btn-primary" style="padding:11px 20px;font-size:13px;" onclick="startMode('${q.mode}','${q.subjId}','${q.topicId}')">Try again 🔄</button><button class="btn-ghost" style="padding:11px 20px;font-size:13px;" onclick="openTopicMenu('${q.subjId}','${q.topicId}')">Pick mode</button><button class="btn-ghost" style="padding:11px 20px;font-size:13px;" onclick="openSection('dashboard')">Dashboard</button></div></div></div>`;}
+        ]
+      },
 
-function renderAIGen(el){const apiKey=getKey();el.innerHTML=`<div class="dash-greeting">AI Quiz Generator</div><div class="dash-sub">Paste any text and get instant revision questions.</div>${!apiKey?`<div class="api-notice"><div class="api-badge">INFO</div> Add your Anthropic API key in Settings to enable AI generation.</div>`:''}<div class="gen-card"><div class="gen-title">📄 Paste your notes or topic text</div><div class="gen-sub">The AI will generate flashcards, MCQ, and written questions from your content.</div><textarea class="gen-input" id="gen-notes" placeholder="Paste your revision notes, a textbook extract, or describe a topic…"></textarea><div class="gen-row"><select class="gen-select" id="gen-type"><option value="mcq">Multiple Choice (MCQ)</option><option value="flashcards">Flashcards</option><option value="written">Written questions</option></select><select class="gen-select" id="gen-count"><option value="4">4 questions</option><option value="6">6 questions</option><option value="8">8 questions</option></select><button class="gen-btn" id="gen-btn" onclick="generateQuestions()" ${!apiKey?'disabled':''}><span>✦ Generate</span></button></div></div><div id="gen-output"></div>`;}
-async function generateQuestions(){const notes=document.getElementById('gen-notes')?.value?.trim();const type=document.getElementById('gen-type')?.value;const count=document.getElementById('gen-count')?.value;if(!notes||notes.length<20){toast('Add some content first!','error');return;}const apiKey=getKey();if(!apiKey){toast('Add your API key in Settings','error');return;}const btn=document.getElementById('gen-btn');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Generating…';const outputEl=document.getElementById('gen-output');outputEl.innerHTML='<div class="loading-state"><div class="loading-spinner"></div>Creating questions…</div>';const prompts={mcq:`You are a GCSE/A-Level revision assistant. Based on the notes below, generate exactly ${count} multiple choice questions. Return ONLY a JSON array like: [{"q":"question text","options":["A","B","C","D"],"correct":0,"explanation":"why A is correct"}]. No other text.`,flashcards:`You are a GCSE/A-Level revision assistant. Based on the notes below, generate exactly ${count} flashcard pairs. Return ONLY a JSON array like: [{"q":"question","a":"concise answer"}]. No other text.`,written:`You are a GCSE/A-Level revision assistant. Based on the notes below, generate exactly ${count} written questions. Return ONLY a JSON array like: [{"q":"exam-style question","mark_scheme":"key points for full marks"}]. No other text.`};try{const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1500,messages:[{role:'user',content:`${prompts[type]}\n\nNOTES:\n${notes}`}]})});const data=await resp.json();const text=data.content?.[0]?.text||'[]';const clean=text.replace(/```json|```/g,'').trim();const questions=JSON.parse(clean);renderGeneratedQuestions(questions,type,outputEl);awardXP(10);}catch(e){outputEl.innerHTML=`<div class="api-notice" style="border-color:rgba(244,63,94,0.3);color:var(--rose);">❌ Error: ${e.message}. Check your API key in Settings.</div>`;}btn.disabled=false;btn.innerHTML='<span>✦ Generate</span>';}
-function renderGeneratedQuestions(questions,type,el){if(!questions||questions.length===0){el.innerHTML='<div class="empty-state"><div class="empty-icon">🤔</div>No questions generated. Try adding more content.</div>';return;}const letters=['A','B','C','D'];let html=`<div class="section-title">// GENERATED QUESTIONS</div><div class="generated-questions">`;questions.forEach((q,i)=>{if(type==='mcq'){html+=`<div class="gen-q-item"><span class="gen-q-num">Q${i+1} · MCQ</span><strong>${q.q}</strong>${q.options?'<div style="margin-top:8px;display:flex;flex-direction:column;gap:4px;">'+q.options.map((o,oi)=>`<span style="font-size:12px;color:${oi===q.correct?'var(--teal)':'var(--text-muted)'}">${letters[oi]}) ${o}${oi===q.correct?' ✓':''}</span>`).join('')+'</div>':''}<div style="margin-top:6px;font-size:12px;color:var(--text-muted);font-style:italic;">${q.explanation||''}</div></div>`;}else if(type==='flashcards'){html+=`<div class="gen-q-item"><span class="gen-q-num">CARD ${i+1}</span><strong>Q: ${q.q}</strong><div style="margin-top:6px;color:var(--teal);font-size:13px;">A: ${q.a}</div></div>`;}else{html+=`<div class="gen-q-item"><span class="gen-q-num">Q${i+1} · WRITTEN</span><strong>${q.q}</strong><div style="margin-top:6px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:6px;">Mark scheme: ${q.mark_scheme||''}</div></div>`;}});html+='</div>';const safeQ=encodeURIComponent(JSON.stringify(questions));html+=`<div style="margin-top:1rem;display:flex;gap:10px;flex-wrap:wrap;"><button class="btn-primary" style="padding:10px 20px;font-size:13px;" onclick="quizFromGenerated(decodeURIComponent('${safeQ}'),'${type}')">▶ Quiz yourself →</button></div>`;el.innerHTML=html;}
-function quizFromGenerated(jsonStr,type){const questions=JSON.parse(jsonStr);const mapped=type==='flashcards'?questions:type==='mcq'?questions:questions.map(q=>({q:q.q,a:q.mark_scheme||'See mark scheme'}));currentQuiz={questions:mapped,idx:0,correct:0,wrong:0,mode:type==='mcq'?'mcq':'flashcards',topicId:'generated',subjId:'ai',startTime:Date.now()};renderQuestion();}
 
-function renderLeaderboard(el){const users=JSON.parse(localStorage.getItem('sf_leaderboard')||'[]');if(state.user&&state.xp>0){const existing=users.findIndex(u=>u.name===state.user.name);if(existing>-1)users[existing].xp=state.xp;else users.push({name:state.user.name,xp:state.xp});users.sort((a,b)=>b.xp-a.xp);if(users.length>20)users.pop();localStorage.setItem('sf_leaderboard',JSON.stringify(users));}const demo=[{name:'Zara A.',xp:4850},{name:'Marcus K.',xp:3920},{name:'Sophie T.',xp:3640},{name:'Liam W.',xp:2880},{name:'Priya M.',xp:2210},{name:'Alex C.',xp:1750},{name:'Jamie R.',xp:1340},{name:'Chloe B.',xp:980},{name:'Sam H.',xp:620}];const combined=[...users,...demo.filter(d=>!users.find(u=>u.name===d.name))].sort((a,b)=>b.xp-a.xp).slice(0,10);const rankClass=['gold','silver','bronze'];const medals=['🥇','🥈','🥉'];el.innerHTML=`<div class="dash-greeting">Leaderboard 🏆</div><div class="dash-sub">Top students this week. Keep studying to climb the ranks!</div><div class="leaderboard">${combined.map((u,i)=>`<div class="lb-item" style="${u.name===state.user?.name?'border-color:var(--teal);background:var(--teal-dim);':''}"><div class="lb-rank ${rankClass[i]||''}">${i<3?medals[i]:`#${i+1}`}</div><div class="lb-av">${u.name[0]}</div><div class="lb-name">${u.name}${u.name===state.user?.name?' <span style="font-size:10px;color:var(--teal);">(you)</span>':''}</div><div class="lb-xp">⚡ ${u.xp.toLocaleString()} XP</div></div>`).join('')}</div>`;}
+      geometry:{
+        name:"Geometry",
 
-function renderSettings(el){const key=getKey();el.innerHTML=`<div class="dash-greeting">Settings ⚙️</div><div class="dash-sub">Manage your API key and preferences.</div><div class="settings-card"><div class="settings-title">🤖 Anthropic API Key</div><div class="settings-sub">Used for AI-marked written questions and the quiz generator. Get yours free at <a href="https://console.anthropic.com" target="_blank" style="color:var(--teal);">console.anthropic.com</a>. Stored locally on your device only.</div><div class="key-row"><input class="key-input" id="api-key-input" type="password" placeholder="sk-ant-..." value="${key}"><button class="save-btn" onclick="saveKey()">Save</button></div>${key?'<div class="key-status ok">✓ API key configured</div>':'<div class="key-status missing">⚠ No key — AI features limited</div>'}</div><div class="settings-card"><div class="settings-title">📊 Your Stats</div><div class="settings-sub">A summary of your revision progress.</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:0.5rem;"><div class="res-box"><div class="res-num" style="color:var(--teal)">${state.xp}</div><div class="res-lbl">Total XP</div></div><div class="res-box"><div class="res-num" style="color:var(--amber)">${state.streak}</div><div class="res-lbl">Day Streak</div></div><div class="res-box"><div class="res-num" style="color:var(--violet)">${state.level}</div><div class="res-lbl">Level</div></div><div class="res-box"><div class="res-num" style="color:var(--rose)">${state.history.length}</div><div class="res-lbl">Sessions</div></div></div></div><div class="settings-card"><div class="settings-title">🗑️ Reset Progress</div><div class="settings-sub">Clear all your XP, streak, and history. This cannot be undone.</div><button class="btn-ghost" style="margin-top:0.5rem;border-color:rgba(244,63,94,0.3);color:var(--rose);" onclick="resetProgress()">Reset all progress</button></div>`;}
-function saveKey(){const k=document.getElementById('api-key-input')?.value?.trim();if(k){localStorage.setItem('sf_api_key',k);toast('API key saved!','success');renderSettings(document.getElementById('main-area'));}else{localStorage.removeItem('sf_api_key');toast('Key removed','info');}}
-function resetProgress(){if(confirm('Are you sure? This will reset all your XP, streak, and quiz history.')){state.xp=0;state.level=1;state.streak=0;state.dailyXP=0;state.history=[];state.subjectProgress={};saveState();updateTopbar();toast('Progress reset','info');renderSettings(document.getElementById('main-area'));}}
+        qs:[
 
-window.addEventListener('load',()=>{loadState();});
-</script>
-</body>
-</html>
+          [
+            "Angles in a triangle add to…",
+            "180°",
+            ["90°","180°","270°","360°"]
+          ],
+
+          [
+            "Area of a rectangle 8 cm by 5 cm?",
+            "40 cm²",
+            ["13 cm²","26 cm²","40 cm²","80 cm²"]
+          ],
+
+          [
+            "A right angle measures…",
+            "90°",
+            ["45°","90°","180°","360°"]
+          ]
+
+        ]
+      },
+
+
+      statistics:{
+        name:"Statistics",
+
+        qs:[
+
+          [
+            "Mean of 2, 4, 6, 8?",
+            "5",
+            ["4","5","6","10"]
+          ],
+
+          [
+            "Median of 3, 7, 8, 10, 12?",
+            "8",
+            ["7","8","9","10"]
+          ],
+
+          [
+            "Most frequent value is the…",
+            "mode",
+            ["mean","median","mode","range"]
+          ]
+
+        ]
+      }
+
+    }
+  },
+
+
+  chemistry:{
+    name:"Chemistry",
+    icon:"⚗",
+
+    topics:{
+
+      atomic:{
+        name:"Atomic Structure",
+
+        qs:[
+
+          [
+            "Which particle has a negative charge?",
+            "Electron",
+            ["Proton","Neutron","Electron","Nucleus"]
+          ],
+
+          [
+            "Atomic number tells you the number of…",
+            "protons",
+            ["neutrons","protons","shells","isotopes"]
+          ],
+
+          [
+            "Where are electrons found?",
+            "Energy levels/shells",
+            [
+              "Inside neutrons",
+              "Energy levels/shells",
+              "Only in the nucleus",
+              "Outside the atom entirely"
+            ]
+          ]
+
+        ]
+      },
+
+
+      bonding:{
+        name:"Chemical Bonding",
+
+        qs:[
+
+          [
+            "Ionic bonding involves…",
+            "transfer of electrons",
+            [
+              "sharing of protons",
+              "transfer of electrons",
+              "sharing of nuclei",
+              "loss of neutrons"
+            ]
+          ],
+
+          [
+            "Covalent bonds involve…",
+            "shared pairs of electrons",
+            [
+              "shared neutrons",
+              "shared pairs of electrons",
+              "transferred protons",
+              "metal ions only"
+            ]
+          ],
+
+          [
+            "What type of bonding is typical in metals?",
+            "Metallic",
+            ["Ionic","Covalent","Metallic","Hydrogen"]
+          ]
+
+        ]
+      }
+
+    }
+  },
+
+
+  physics:{
+    name:"Physics",
+    icon:"⚡",
+
+    topics:{
+
+      forces:{
+        name:"Forces & Motion",
+
+        qs:[
+
+          [
+            "Newton's second law is…",
+            "F = ma",
+            ["E = mc²","F = ma","V = IR","p = mv²"]
+          ],
+
+          [
+            "Unit of force?",
+            "newton",
+            ["joule","watt","newton","pascal"]
+          ],
+
+          [
+            "Acceleration means change in…",
+            "velocity per unit time",
+            [
+              "mass per time",
+              "velocity per unit time",
+              "force per distance",
+              "energy per mass"
+            ]
+          ]
+
+        ]
+      },
+
+
+      waves:{
+        name:"Waves",
+
+        qs:[
+
+          [
+            "Frequency is measured in…",
+            "hertz",
+            ["watts","hertz","joules","newtons"]
+          ],
+
+          [
+            "Wave speed equation?",
+            "v = fλ",
+            ["v = m/a","v = fλ","E = mc²","P = VI"]
+          ],
+
+          [
+            "Amplitude is related to wave…",
+            "size/maximum displacement",
+            [
+              "frequency only",
+              "maximum displacement",
+              "speed only",
+              "wavelength only"
+            ]
+          ]
+
+        ]
+      }
+
+    }
+  },
+
+
+  english:{
+    name:"English Literature",
+    icon:"✎",
+
+    topics:{
+
+      macbeth:{
+        name:"Macbeth",
+
+        qs:[
+
+          [
+            "Who wrote Macbeth?",
+            "William Shakespeare",
+            [
+              "Charles Dickens",
+              "William Shakespeare",
+              "Jane Austen",
+              "George Orwell"
+            ]
+          ],
+
+          [
+            "Macbeth is set mainly in…",
+            "Scotland",
+            ["England","Scotland","France","Italy"]
+          ],
+
+          [
+            "Lady Macbeth encourages Macbeth to…",
+            "kill Duncan",
+            [
+              "leave Scotland",
+              "kill Duncan",
+              "become king peacefully",
+              "join the army"
+            ]
+          ]
+
+        ]
+      },
+
+
+      poetry:{
+        name:"Power & Conflict Poetry
