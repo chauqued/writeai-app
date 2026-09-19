@@ -1,4 +1,19 @@
-<!DOCTYPE html>
+* Multiple accounts stay supported.
+* Add Owner Settings → API Key with a password-style field.
+* The API key is NOT written anywhere in the HTML/JavaScript. You paste it into the Owner Settings screen.
+* Add Word .docx upload.
+* Add PowerPoint .pptx upload.
+* The app extracts the text from the file in the browser, then sends the extracted material to the AI to create:
+    * study notes
+    * flashcards
+    * practice questions
+    * a quiz
+    * key terms
+* Uploaded material can be saved to the user’s account.
+* Regular users cannot see the Owner API-key settings.
+* The owner can manage the accounts.
+* The API key is stored in the browser’s local storage, so this is suitable for your own/local prototype, but not secure for a public website. Anyone with access to that browser’s developer tools could potentially retrieve it.
+* Word extraction can use Mammoth’s browser support for .docx; it provides raw-text extraction directly in the browser. !DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
